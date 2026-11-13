@@ -41,7 +41,7 @@ jobs:
         run: dotnet test "${{ steps.sln.outputs.file }}" -c Release --no-build --logger trx --results-directory TestResults
       - name: Upload test results
         if: always() && steps.sln.outputs.file != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-results
           path: TestResults
@@ -52,7 +52,7 @@ jobs:
         run: echo "Performance suite arrives in milestone 5."
       - name: Keep the results 30 days
         if: always() && steps.sln.outputs.file != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: suite-results-${{ github.run_number }}
           path: TestResults
