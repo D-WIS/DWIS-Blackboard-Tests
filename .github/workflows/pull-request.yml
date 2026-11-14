@@ -44,7 +44,7 @@ jobs:
       - name: Validate the compose files
         run: |
           shopt -s nullglob
-          files=(compose/*.yaml compose/*.yml compose.yaml)
+          files=(compose/*.yaml compose/*.yml ./compose.y*ml)
           if [ ${#files[@]} -eq 0 ]; then echo "No compose files yet."; exit 0; fi
           for f in "${files[@]}"; do echo "== $f"; docker compose -f "$f" config --quiet; done
       - name: Build the Fuseki image, start the store, load the vocabulary, run the checks
