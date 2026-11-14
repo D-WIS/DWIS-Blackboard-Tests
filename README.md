@@ -8,14 +8,26 @@ Part of DWIS Blackboard Rig Edition (GitHub topic `dwis-blackboard-rig-edition`)
 
 **Depends on:** the `edge` or tagged images of `DWIS-Blackboard-Semantic` and `DWIS-Blackboard-RealTime`; the C# client NuGet 2.2.x from `DWIS-Blackboard-Base`.
 
-## Layout (planned)
+## Layout
 
-- `compose/`: compose files for the lab and the test runs.
-- `fuseki/`: Fuseki configuration and the image build from the Apache Jena build kit.
-- `fixtures/`: manifests, recorded sessions, pinned vocabulary.
-- `tests/`: the test projects.
-- `conformance/`: the conformance suite and tool.
-- `models/`: the optional TLA+ models.
+- `compose/`: `compose.yaml` for the stack (today: Fuseki and the vocabulary loader; the semantic service joins in M1.7, the real-time process in M4), `load-vocabulary.sh`, `smoke.sh`.
+- `fuseki/`: the image `digiwells/dwis.blackboard.fuseki` built from the Apache Jena Docker build kit at Jena 6.2.0 (decision D-28) and the dataset configuration `config/dwis.ttl` (`/dwis` with union default graph, `/dwis-quarantine`). See [fuseki/README.md](fuseki/README.md).
+- `fixtures/`: the pinned vocabulary and shapes, the SmartConnect manifest, later edited copies and recorded hub sessions. Provenance in [fixtures/README.md](fixtures/README.md).
+- `tests/` (planned): the test projects. `conformance/` (M4): the conformance suite and tool. `models/` (optional): the TLA+ models.
+
+## Running the store
+
+```bash
+docker compose -f compose/compose.yaml up -d
+```
+
+Builds the Fuseki image on first use, starts it with a health check, then runs the one-shot `vocabulary` service, which loads `fixtures/vocabulary` into the graph `http://d-wis.org/vocabulary/2026-10-14` of `/dwis` after translating `http://ddhub.no/` to `http://d-wis.org/`, and checks that no legacy IRI remains. Fuseki answers on `http://127.0.0.1:3030` (SPARQL at `/dwis/sparql`, Graph Store Protocol at `/dwis/data`, SHACL at `/dwis/shacl`, health at `/$/ping`). The data lives in the volume `dwis-blackboard_fuseki-databases`.
+
+```bash
+compose/smoke.sh --down
+```
+
+Does the same from a clean state, runs the milestone 1 checks (vocabulary visible in the union default graph, `dwis:SPP` found, no `ddhub.no` subject, quarantine empty) and stops the stack. The pull request workflow runs it on every pull request.
 
 ## How to work here
 

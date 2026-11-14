@@ -1,0 +1,52 @@
+# DWIS Blackboard Rig Edition: the store alone (milestone 1, issue M1.3).
+# The semantic service joins in M1.7, the real-time process in M4.
+#
+#   docker compose up -d          build the image, start Fuseki, load the vocabulary
+#   docker compose wait vocabulary   exit code 0 once the vocabulary is loaded and checked
+#   ./smoke.sh                    all of the above plus the checks of roadmap F.3
+#
+# Port 3030 is published on localhost only, for inspection in the lab profile (specification 7).
+
+name: dwis-blackboard
+
+services:
+  fuseki:
+    build:
+      context: ../fuseki
+      args:
+        JENA_VERSION: "6.2.0"
+        # The runtime base; keep it on the Alpine release of eclipse-temurin:21-alpine (3.24 in November 2026).
+        ALPINE_VERSION: "3.24"
+    image: digiwells/dwis.blackboard.fuseki:dev
+    environment:
+      JAVA_OPTIONS: -Xmx2g -Xms512m
+    ports:
+      - "127.0.0.1:3030:3030"
+    volumes:
+      - fuseki-databases:/fuseki/databases
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3030/$$/ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+    restart: unless-stopped
+
+  vocabulary:
+    # One-shot: loads the pinned vocabulary and shapes into the vocabulary graph of /dwis after
+    # translating http://ddhub.no/ to http://d-wis.org/ (decisions D-19, D-30), then checks it.
+    image: curlimages/curl:8.23.0
+    depends_on:
+      fuseki:
+        condition: service_healthy
+    environment:
+      FUSEKI_URL: http://fuseki:3030
+      VOCABULARY_VERSION: ${VOCABULARY_VERSION:-2026-10-14}
+    volumes:
+      - ../fixtures/vocabulary:/vocabulary:ro
+      - ./load-vocabulary.sh:/load-vocabulary.sh:ro
+    entrypoint: ["/bin/sh", "/load-vocabulary.sh"]
+    restart: "no"
+
+volumes:
+  fuseki-databases:

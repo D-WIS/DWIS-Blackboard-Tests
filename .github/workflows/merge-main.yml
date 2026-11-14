@@ -13,6 +13,47 @@ concurrency:
   group: suites-${{ github.event_name }}
   cancel-in-progress: false
 jobs:
+  fuseki-image:
+    name: Build and push the Fuseki image
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # Set in the organisation secret store; until they exist the image is built but not pushed.
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Note when the Docker Hub secrets are missing
+        if: hashFiles('fuseki/Dockerfile') != '' && env.DOCKERHUB_USERNAME == ''
+        run: echo "::notice::DOCKERHUB_USERNAME and DOCKERHUB_TOKEN are not set; the image is built and scanned but not pushed."
+      - name: Log in to Docker Hub
+        if: hashFiles('fuseki/Dockerfile') != '' && env.DOCKERHUB_USERNAME != ''
+        uses: docker/login-action@v4
+        with:
+          username: ${{ env.DOCKERHUB_USERNAME }}
+          password: ${{ env.DOCKERHUB_TOKEN }}
+      - name: Build the image, push sha and edge tags when logged in
+        if: hashFiles('fuseki/Dockerfile') != ''
+        uses: docker/build-push-action@v7
+        with:
+          context: fuseki
+          build-args: |
+            JENA_VERSION=6.2.0
+            ALPINE_VERSION=3.24
+          push: ${{ env.DOCKERHUB_USERNAME != '' }}
+          load: ${{ env.DOCKERHUB_USERNAME == '' }}
+          tags: |
+            digiwells/dwis.blackboard.fuseki:sha-${{ github.sha }}
+            digiwells/dwis.blackboard.fuseki:edge
+      - name: Scan the image
+        if: hashFiles('fuseki/Dockerfile') != ''
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: digiwells/dwis.blackboard.fuseki:sha-${{ github.sha }}
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: "1"
   suites:
     name: Integration, compatibility and replication suites
     runs-on: ubuntu-latest
@@ -38,7 +79,7 @@ jobs:
         run: dotnet build "${{ steps.sln.outputs.file }}" -c Release --no-restore
       - name: Test
         if: steps.sln.outputs.file != ''
-        run: dotnet test "${{ steps.sln.outputs.file }}" -c Release --no-build --logger trx --results-directory TestResults
+        run: dotnet test "${{ steps.sln.outputs.file }}" -c Release --no-build --report-trx --results-directory TestResults
       - name: Upload test results
         if: always() && steps.sln.outputs.file != ''
         uses: actions/upload-artifact@v7
