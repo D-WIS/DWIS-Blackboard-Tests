@@ -30,6 +30,10 @@ spp="$(query 'PREFIX dwis: <http://d-wis.org/> ASK { dwis:SPP ?p ?o }')"
 legacy="$(query 'ASK { ?s ?p ?o . FILTER (STRSTARTS(STR(?s), "http://ddhub.no/")) }')"
 [ "$legacy" = "false" ] || { echo "ddhub.no subjects found (T-SEM-4)"; exit 1; }
 
+# The unit and quantity individuals are visible in the union with their classes (decision D-44).
+pressure="$(query 'PREFIX dwis: <http://d-wis.org/> PREFIX uq: <http://d-wis.org/UnitAndQuantity/> ASK { uq:PressureDrillingQuantity a dwis:PressureDrillingQuantity . uq:Bar a dwis:Bar }')"
+[ "$pressure" = "true" ] || { echo "unit and quantity individuals not found in the union"; exit 1; }
+
 # The quarantine dataset exists and is empty.
 quarantine="$(curl -sS --fail -G http://127.0.0.1:3030/dwis-quarantine/sparql -H 'Accept: text/csv' --data-urlencode 'query=SELECT (COUNT(*) AS ?n) WHERE { GRAPH ?g { ?s ?p ?o } }' | tail -n 1 | tr -d '\r')"
 [ "$quarantine" = "0" ] || { echo "quarantine is not empty: ${quarantine}"; exit 1; }

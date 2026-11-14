@@ -21,7 +21,7 @@ Part of DWIS Blackboard Rig Edition (GitHub topic `dwis-blackboard-rig-edition`)
 docker compose -f compose/compose.yaml up -d
 ```
 
-Builds the Fuseki image on first use, starts it with a health check, then runs the one-shot `vocabulary` service, which loads `fixtures/vocabulary` into the graph `http://d-wis.org/vocabulary/2026-10-14` of `/dwis` after translating `http://ddhub.no/` to `http://d-wis.org/`, and checks that no legacy IRI remains. Fuseki answers on `http://127.0.0.1:3030` (SPARQL at `/dwis/sparql`, Graph Store Protocol at `/dwis/data`, SHACL at `/dwis/shacl`, health at `/$/ping`). The data lives in the volume `dwis-blackboard_fuseki-databases`.
+Builds the Fuseki image on first use, starts it with a health check, then runs the one-shot `vocabulary` service, which loads `fixtures/vocabulary` into the graph `http://d-wis.org/vocabulary/2026-10-14` of `/dwis` and the unit and quantity individuals into `http://d-wis.org/units/2026-10-14`, after translating `http://ddhub.no/` to `http://d-wis.org/`, and checks that no legacy IRI remains. Fuseki answers on `http://127.0.0.1:3030` (SPARQL at `/dwis/sparql`, Graph Store Protocol at `/dwis/data`, SHACL at `/dwis/shacl`, health at `/$/ping`). The data lives in the volume `dwis-blackboard_fuseki-databases`.
 
 ```bash
 compose/smoke.sh --down

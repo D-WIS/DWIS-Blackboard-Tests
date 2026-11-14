@@ -27,14 +27,26 @@ for file in "${VOCABULARY_DIR}/DWISVocabulary.ttl" "${VOCABULARY_DIR}"/advancedD
   method=POST
 done
 
+# The unit and quantity individuals (decision D-44) go to their own graph next to the vocabulary.
+UNITS_GRAPH="http://d-wis.org/units/${VERSION}"
+UNITS_PARAM="$(printf '%s' "$UNITS_GRAPH" | sed 's#:#%3A#g; s#/#%2F#g')"
+echo "PUT unit-and-quantity-individuals.ttl -> <${UNITS_GRAPH}>"
+sed 's#http://ddhub\.no/#http://d-wis.org/#g' "${VOCABULARY_DIR}/unit-and-quantity-individuals.ttl" \
+  | curl -sS --fail -X PUT -H 'Content-Type: text/turtle' --data-binary @- \
+      "${FUSEKI_URL}/dwis/data?graph=${UNITS_PARAM}" > /dev/null
+
 query() {
   curl -sS --fail -G "${FUSEKI_URL}/dwis/sparql" -H 'Accept: text/csv' --data-urlencode "query=$1" | tail -n 1 | tr -d '\r'
 }
 
 count="$(query "SELECT (COUNT(*) AS ?n) WHERE { GRAPH <${GRAPH}> { ?s ?p ?o } }")"
-legacy="$(query "ASK { GRAPH <${GRAPH}> { ?s ?p ?o . FILTER (STRSTARTS(STR(?s), 'http://ddhub.no/') || STRSTARTS(STR(?p), 'http://ddhub.no/') || (isIRI(?o) && STRSTARTS(STR(?o), 'http://ddhub.no/'))) } }")"
+units="$(query "SELECT (COUNT(*) AS ?n) WHERE { GRAPH <${UNITS_GRAPH}> { ?s ?p ?o } }")"
+legacy="$(query "ASK { ?s ?p ?o . FILTER (STRSTARTS(STR(?s), 'http://ddhub.no/') || STRSTARTS(STR(?p), 'http://ddhub.no/') || (isIRI(?o) && STRSTARTS(STR(?o), 'http://ddhub.no/'))) }")"
+bar="$(query "ASK { GRAPH <${UNITS_GRAPH}> { <http://d-wis.org/UnitAndQuantity/Bar> a <http://d-wis.org/Bar> ; <http://d-wis.org/IsUnitForQuantity> <http://d-wis.org/UnitAndQuantity/PressureQuantity> } }")"
 
-echo "vocabulary graph <${GRAPH}>: ${count} triples; legacy namespace present: ${legacy}"
+echo "vocabulary graph <${GRAPH}>: ${count} triples; units graph <${UNITS_GRAPH}>: ${units} triples; legacy namespace present: ${legacy}"
 [ "$count" -gt 0 ] || { echo "the vocabulary graph is empty"; exit 1; }
+[ "$units" -gt 0 ] || { echo "the units graph is empty"; exit 1; }
 [ "$legacy" = "false" ] || { echo "http://ddhub.no/ IRIs remain after translation (T-SEM-4)"; exit 1; }
-echo "vocabulary loaded"
+[ "$bar" = "true" ] || { echo "the unit individual Bar is missing or untyped"; exit 1; }
+echo "vocabulary and units loaded"
