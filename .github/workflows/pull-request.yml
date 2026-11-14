@@ -32,7 +32,7 @@ jobs:
         run: dotnet build "${{ steps.sln.outputs.file }}" -c Release --no-restore
       - name: Test
         if: steps.sln.outputs.file != ''
-        run: dotnet test "${{ steps.sln.outputs.file }}" -c Release --no-build --logger trx --results-directory TestResults
+        run: dotnet test "${{ steps.sln.outputs.file }}" -c Release --no-build --report-trx --results-directory TestResults
       - name: Upload test results
         if: always() && steps.sln.outputs.file != ''
         uses: actions/upload-artifact@v7
@@ -47,6 +47,23 @@ jobs:
           files=(compose/*.yaml compose/*.yml compose.yaml)
           if [ ${#files[@]} -eq 0 ]; then echo "No compose files yet."; exit 0; fi
           for f in "${files[@]}"; do echo "== $f"; docker compose -f "$f" config --quiet; done
+      - name: Build the Fuseki image, start the store, load the vocabulary, run the checks
+        if: hashFiles('fuseki/Dockerfile') != ''
+        run: ./compose/smoke.sh
+      - name: Scan the Fuseki image
+        if: hashFiles('fuseki/Dockerfile') != ''
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: digiwells/dwis.blackboard.fuseki:dev
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: Fuseki logs on failure
+        if: failure() && hashFiles('fuseki/Dockerfile') != ''
+        run: docker compose -f compose/compose.yaml logs --no-log-prefix fuseki | tail -100
+      - name: Stop the stack
+        if: always() && hashFiles('fuseki/Dockerfile') != ''
+        run: docker compose -f compose/compose.yaml down -v
   scan:
     name: Trivy filesystem scan
     runs-on: ubuntu-latest
