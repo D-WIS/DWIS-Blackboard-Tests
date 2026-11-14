@@ -9,7 +9,9 @@ Ours: the lines after the marker in `Dockerfile` and `config/dwis.ttl`, which de
 Build alone:
 
 ```bash
-docker build --build-arg JENA_VERSION=6.2.0 -t digiwells/dwis.blackboard.fuseki:dev fuseki
+docker build --build-arg JENA_VERSION=6.2.0 --build-arg ALPINE_VERSION=3.24 -t digiwells/dwis.blackboard.fuseki:dev fuseki
 ```
+
+`ALPINE_VERSION` is the kit's own argument for the runtime base image. The kit's default (3.21.2) is a stale snapshot with vulnerable OpenSSL packages that fail the Trivy scan, and the reduced Java runtime is linked on `eclipse-temurin:21-alpine`, so the runtime base is kept on that image's Alpine release (3.24 in November 2026; check with `docker run --rm eclipse-temurin:21-alpine cat /etc/alpine-release` when bumping).
 
 The server runs as user `fuseki` (uid 1000) on port 3030; the databases live under `/fuseki/databases`, a volume in the compose file. `JAVA_OPTIONS` sets the heap (the compose file uses 2 GB).

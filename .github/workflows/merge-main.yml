@@ -40,6 +40,7 @@ jobs:
           context: fuseki
           build-args: |
             JENA_VERSION=6.2.0
+            ALPINE_VERSION=3.24
           push: ${{ env.DOCKERHUB_USERNAME != '' }}
           load: ${{ env.DOCKERHUB_USERNAME == '' }}
           tags: |
