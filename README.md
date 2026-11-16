@@ -10,7 +10,8 @@ Part of DWIS Blackboard Rig Edition (GitHub topic `dwis-blackboard-rig-edition`)
 
 ## Layout
 
-- `compose/`: `compose.yaml` for the stack (Fuseki, the vocabulary loader and the semantic service; the real-time process joins in M4), `load-vocabulary.sh`, `smoke.sh`.
+- `compose/`: `compose.yaml` for the stack (Fuseki, the vocabulary loader and the semantic service; the real-time process joins in M4), `load-vocabulary.sh`, `smoke.sh`, `inference-evidence.sh` (decision D-15: repeated commits with concurrent queries against the inference view; time, memory, consistency).
+- `tools/inference/`: `owlrl-compare.py` (T-SEM-7: a manifest's inferred graph compared with the OWL 2 RL closure computed outside the store by owlrl; needs `pip install owlrl rdflib`).
 - `fuseki/`: the image `digiwells/dwis.blackboard.fuseki` built from the Apache Jena Docker build kit at Jena 6.2.0 (decision D-28) and the dataset configuration `config/dwis.ttl` (`/dwis` with union default graph, `/dwis-quarantine`, the inference view `/dwis-inf`). See [fuseki/README.md](fuseki/README.md).
 - `fixtures/`: the pinned vocabulary and shapes, the SmartConnect manifest, later edited copies and recorded hub sessions. Provenance in [fixtures/README.md](fixtures/README.md).
 - `tests/` (planned): the test projects. `conformance/` (M4): the conformance suite and tool. `models/` (optional): the TLA+ models.
