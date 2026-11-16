@@ -47,8 +47,19 @@ jobs:
           files=(compose/*.yaml compose/*.yml ./compose.y*ml)
           if [ ${#files[@]} -eq 0 ]; then echo "No compose files yet."; exit 0; fi
           for f in "${files[@]}"; do echo "== $f"; docker compose -f "$f" config --quiet; done
-      - name: Build the Fuseki image, start the store, load the vocabulary, run the checks
+      - name: Check out the semantic service sources (DWIS-Blackboard-Semantic)
         if: hashFiles('fuseki/Dockerfile') != ''
+        uses: actions/checkout@v7
+        with:
+          repository: D-WIS/DWIS-Blackboard-Semantic
+          ref: main
+          path: semantic-source
+      - name: Build the images, start the stack, load the vocabulary, run the checks through the service
+        if: hashFiles('fuseki/Dockerfile') != ''
+        env:
+          # The semantic image is built from the checkout above until the edge image is on Docker Hub.
+          SEMANTIC_SOURCE: ${{ github.workspace }}/semantic-source
+          SEMANTIC_TAG: ci
         run: ./compose/smoke.sh
       - name: Scan the Fuseki image
         if: hashFiles('fuseki/Dockerfile') != ''
@@ -58,9 +69,11 @@ jobs:
           severity: CRITICAL,HIGH
           ignore-unfixed: true
           exit-code: "1"
-      - name: Fuseki logs on failure
+      - name: Fuseki and service logs on failure
         if: failure() && hashFiles('fuseki/Dockerfile') != ''
-        run: docker compose -f compose/compose.yaml logs --no-log-prefix fuseki | tail -100
+        run: |
+          docker compose -f compose/compose.yaml logs --no-log-prefix fuseki | tail -100
+          docker compose -f compose/compose.yaml logs --no-log-prefix semantic | tail -100
       - name: Stop the stack
         if: always() && hashFiles('fuseki/Dockerfile') != ''
         run: docker compose -f compose/compose.yaml down -v
