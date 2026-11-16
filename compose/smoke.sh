@@ -2,9 +2,11 @@
 # Builds the images, starts the stack, waits for the vocabulary to be loaded and runs the milestone 1
 # checks: the store from the host, then the acceptance of roadmap F.3 through the semantic service
 # (the SmartConnect manifest accepted, the two queries with either prefix returning the same signal,
-# the kilogram copy core-only with one error); then the milestone 2 checks of the inference view
+# the kilogram copy core-only with one error); then the milestone 2 checks: the inference view
 # /dwis-inf (a write through /dwis is seen without a restart, a subclass entailment appears, the
-# quarantine stays out, timings and memory noted for decision D-15). Used by CI and by hand.
+# quarantine stays out, timings and memory noted for decision D-15) and the demo of roadmap F.2 (the
+# kilogram report, asserted versus inferred by GRAPH, a vocabulary swap through PUT /vocabulary that
+# re-derives the live manifest and is rolled back). Used by CI and by hand.
 #   ./smoke.sh              keep the stack running afterwards
 #   ./smoke.sh --down       stop it and remove the volume at the end
 #   ./smoke.sh --no-build   use the images at hand (behind a proxy that breaks image builds)
@@ -76,7 +78,7 @@ curl -sS --fail "${SEMANTIC}/vocabulary"; echo
 
 # A field of the indented report JSON, by name: "accepted": true, "errors": 1, "manifestId": "x/y".
 field() {
-  printf '%s' "$1" | grep -o "\"$2\": *[^,}]*" | head -n 1 | sed 's/^[^:]*: *//; s/^"//; s/"$//'
+  grep -o -m 1 "\"$2\": *[^,}]*" <<< "$1" | sed 's/^[^:]*: *//; s/^"//; s/"$//'
 }
 
 host_query() {
@@ -110,8 +112,11 @@ legacy="$(query 'ASK { ?s ?p ?o . FILTER (STRSTARTS(STR(?s), "http://ddhub.no/")
 [ "$legacy" = "false" ] || { echo "ddhub.no IRIs found after the ingest (T-SEM-4)"; exit 1; }
 
 # 3. The kilogram copy: one error, core-only, the whole manifest in quarantine (T-SEM-9, T-SEM-10).
+# Demo of milestone 2: the report says what is wrong, where, and what is live.
 report="$(inject ../fixtures/manifests/smartconnect-kilogram.manifest.json)"
-echo "injected $(field "$report" manifestId): accepted $(field "$report" accepted), errors $(field "$report" errors)"
+kilogram_id="$(field "$report" manifestId)"
+echo "injected ${kilogram_id}: accepted $(field "$report" accepted), errors $(field "$report" errors), live core $(grep -o -m 1 '"core": *[a-z]*' <<< "$report" | sed 's/.*: *//'), rest $(grep -o -m 1 '"rest": *[a-z]*' <<< "$report" | sed 's/.*: *//')"
+grep -o -m 1 '"message": "[^"]*"' <<< "$report" | sed 's/^/  the error: /'
 [ "$(field "$report" accepted)" = "false" ] || { echo "the kilogram copy was accepted"; exit 1; }
 [ "$(field "$report" errors)" = "1" ] || { echo "the kilogram copy should have exactly one error"; exit 1; }
 quarantined="$(curl -sS --fail -G "${FUSEKI}/dwis-quarantine/sparql" -H 'Accept: text/csv' --data-urlencode 'query=SELECT (COUNT(*) AS ?n) WHERE { GRAPH ?g { ?s ?p ?o } }' | tail -n 1 | tr -d '\r')"
@@ -142,6 +147,52 @@ for _ in 1 2 3 4 5 6 7 8 9 10; do inf_query "PREFIX dwis: <http://d-wis.org/> SE
 repeat_ms=$(( ($(date +%s%N) - start) / 10000000 ))
 memory="$(docker stats --no-stream --format '{{.MemUsage}}' "$(docker compose ps -q fuseki)")"
 echo "inference view: ten repeated queries, ${repeat_ms} ms each on average; Fuseki memory ${memory}"
+
+# 5. Demo of milestone 2: GRAPH separates asserted from inferred (T-SEM-6); the data point is a
+# PrototypeData in the inferred graph only.
+asserted_graph='<http://d-wis.org/manifests/SmartConnect/smartconnect-rig-signals>'
+inferred_graph='<http://d-wis.org/manifests/SmartConnect/smartconnect-rig-signals/inferred>'
+n_asserted="$(query "SELECT (COUNT(*) AS ?n) WHERE { GRAPH ${asserted_graph} { ?s ?p ?o } }")"
+n_inferred="$(query "SELECT (COUNT(*) AS ?n) WHERE { GRAPH ${inferred_graph} { ?s ?p ?o } }")"
+in_asserted="$(query "PREFIX dwis: <http://d-wis.org/> ASK { GRAPH ${asserted_graph} { ${spp_dp} a dwis:PrototypeData } }")"
+in_inferred="$(query "PREFIX dwis: <http://d-wis.org/> ASK { GRAPH ${inferred_graph} { ${spp_dp} a dwis:PrototypeData } }")"
+shared="$(query "ASK { GRAPH ${asserted_graph} { ?s ?p ?o } GRAPH ${inferred_graph} { ?s ?p ?o } }")"
+echo "SmartConnect by GRAPH: ${n_asserted} asserted triples, ${n_inferred} inferred; the SPP data point is a PrototypeData in the asserted graph: ${in_asserted}, in the inferred graph: ${in_inferred}; a triple in both: ${shared}"
+[ "$n_inferred" -gt 0 ] && [ "$in_asserted" = "false" ] && [ "$in_inferred" = "true" ] && [ "$shared" = "false" ] || { echo "asserted and inferred are not separated as expected (T-SEM-5, T-SEM-6)"; exit 1; }
+
+# 6. Demo of milestone 2: a vocabulary swap re-derives the live manifests (T-SEM-8, Appendix C.7).
+# The second version is the same vocabulary plus one project shape on an inferred property
+# (fixtures/shapes/after-reasoning.ttl), loaded next to the first one; PUT /vocabulary switches to it,
+# drops the first version's graphs and re-derives: the SmartConnect manifest becomes core-only. Then the
+# first version is loaded again and put back: the manifest is whole again.
+version="${VOCABULARY_VERSION:-2026-10-14}"
+shaped="${version}-shaped"
+graph_param() { printf '%s' "$1" | sed 's#:#%3A#g; s#/#%2F#g'; }
+copy_graph() { # from-IRI to-IRI
+  curl -sS --fail -G "${FUSEKI}/dwis/data" -H 'Accept: application/n-triples' --data-urlencode "graph=$1" \
+    | curl -sS --fail -X PUT -H 'Content-Type: application/n-triples' --data-binary @- "${FUSEKI}/dwis/data?graph=$(graph_param "$2")" > /dev/null
+}
+vocabulary_graph="http://d-wis.org/vocabulary/${version}"
+units_graph="http://d-wis.org/units/${version}"
+work="$(mktemp -d)"
+curl -sS --fail -G "${FUSEKI}/dwis/data" -H 'Accept: application/n-triples' --data-urlencode "graph=${vocabulary_graph}" > "$work/vocabulary.nt"
+curl -sS --fail -G "${FUSEKI}/dwis/data" -H 'Accept: application/n-triples' --data-urlencode "graph=${units_graph}" > "$work/units.nt"
+copy_graph "$vocabulary_graph" "http://d-wis.org/vocabulary/${shaped}"
+copy_graph "$units_graph" "http://d-wis.org/units/${shaped}"
+sed 's#http://ddhub\.no/#http://d-wis.org/#g' ../fixtures/shapes/after-reasoning.ttl \
+  | curl -sS --fail -X POST -H 'Content-Type: text/turtle' --data-binary @- "${FUSEKI}/dwis/data?graph=$(graph_param "http://d-wis.org/vocabulary/${shaped}")" > /dev/null
+swap="$(curl -sS --fail -X PUT "${SEMANTIC}/vocabulary" -H 'Content-Type: application/json' --data "{\"version\": \"${shaped}\"}")"
+echo "vocabulary swapped to ${shaped}: $(grep -o '"manifestId":"[^"]*","acceptedBefore":[a-z]*,"accepted":[a-z]*,"errors":[0-9]*' <<< "$swap" | sed 's/"manifestId"://; s/,"acceptedBefore":/ was whole: /; s/,"accepted":/, is whole: /; s/,"errors":/, errors: /' | tr '\n' ';')"
+grep -q '"becameCoreOnly":\["SmartConnect/smartconnect-rig-signals"\]' <<< "$swap" || { echo "the swap should have turned the SmartConnect manifest core-only"; printf '%s\n' "$swap"; exit 1; }
+curl -sS --fail "${SEMANTIC}/vocabulary" | grep -q "\"version\":\"${shaped}\"" || { echo "the version in force is not ${shaped}"; exit 1; }
+# Roll back: load the first version again (the loader did it the first time; here from the copies), put it back.
+curl -sS --fail -X PUT -H 'Content-Type: application/n-triples' --data-binary "@$work/vocabulary.nt" "${FUSEKI}/dwis/data?graph=$(graph_param "$vocabulary_graph")" > /dev/null
+curl -sS --fail -X PUT -H 'Content-Type: application/n-triples' --data-binary "@$work/units.nt" "${FUSEKI}/dwis/data?graph=$(graph_param "$units_graph")" > /dev/null
+back="$(curl -sS --fail -X PUT "${SEMANTIC}/vocabulary" -H 'Content-Type: application/json' --data "{\"version\": \"${version}\"}")"
+grep -q '"becameCoreOnly":\[\]' <<< "$back" || { echo "the rollback should have made every manifest whole again"; printf '%s\n' "$back"; exit 1; }
+curl -sS --fail "${SEMANTIC}/manifests" | grep -o '"value":"SmartConnect/smartconnect-rig-signals"[^}]*}[^}]*"accepted":[a-z]*' | grep -q '"accepted":true' || { echo "the SmartConnect manifest is not whole after the rollback"; exit 1; }
+rm -rf "$work"
+echo "vocabulary rolled back to ${version}: the SmartConnect manifest is whole again"
 
 echo "smoke test passed"
 if $down; then
