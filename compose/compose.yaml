@@ -1,11 +1,16 @@
-# DWIS Blackboard Rig Edition: the store alone (milestone 1, issue M1.3).
-# The semantic service joins in M1.7, the real-time process in M4.
+# DWIS Blackboard Rig Edition: the store and the semantic service (milestone 1, issues M1.3 and M1.7).
+# The real-time process joins in M4.
 #
-#   docker compose up -d          build the image, start Fuseki, load the vocabulary
+#   docker compose up -d             build the images, start Fuseki, load the vocabulary, start the service
 #   docker compose wait vocabulary   exit code 0 once the vocabulary is loaded and checked
-#   ./smoke.sh                    all of the above plus the checks of roadmap F.3
+#   ./smoke.sh                       all of the above plus the checks of roadmap F.3 through the service
 #
-# Port 3030 is published on localhost only, for inspection in the lab profile (specification 7).
+# Ports 3030 (Fuseki) and 8080 (the service's internal API, specification 3.4) are published on
+# localhost only, for inspection in the lab profile (specification 7).
+#
+# The semantic image is digiwells/dwis.blackboard.semantic (SEMANTIC_TAG, default edge). When it is not
+# at hand, `docker compose build` builds it from a checkout of DWIS-Blackboard-Semantic at
+# SEMANTIC_SOURCE (default: the sibling folder of this repository); CI checks that repository out.
 
 name: dwis-blackboard
 
@@ -47,6 +52,28 @@ services:
       - ./load-vocabulary.sh:/load-vocabulary.sh:ro
     entrypoint: ["/bin/sh", "/load-vocabulary.sh"]
     restart: "no"
+
+  semantic:
+    # The semantic service (DWIS-Blackboard-Semantic): reads the vocabulary and the units from the store
+    # at start-up, so it starts after the loader; its health says why until both graphs are there.
+    build:
+      context: ${SEMANTIC_SOURCE:-../../DWIS-Blackboard-Semantic}
+    image: digiwells/dwis.blackboard.semantic:${SEMANTIC_TAG:-edge}
+    depends_on:
+      fuseki:
+        condition: service_healthy
+      vocabulary:
+        condition: service_completed_successfully
+    environment:
+      # Specification section 8, layer 4: DWIS__Section__Key.
+      DWIS__Store__BaseUrl: http://fuseki:3030/
+      DWIS__Vocabulary__Version: ${VOCABULARY_VERSION:-2026-10-14}
+      DWIS__Validation__PolicyFile: /config/validation-policy.json
+    volumes:
+      - ../fixtures/vocabulary/validation-policy.json:/config/validation-policy.json:ro
+    ports:
+      - "127.0.0.1:8080:8080"
+    restart: unless-stopped
 
 volumes:
   fuseki-databases:

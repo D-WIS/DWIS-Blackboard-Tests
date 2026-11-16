@@ -1,21 +1,42 @@
 #!/usr/bin/env bash
-# Builds the Fuseki image, starts the stack, waits for the vocabulary to be loaded and runs the
-# milestone 1 checks against /dwis from the host. Used by CI and by hand.
-#   ./smoke.sh            keep the stack running afterwards
-#   ./smoke.sh --down     stop it and remove the volume at the end
+# Builds the images, starts the stack, waits for the vocabulary to be loaded and runs the milestone 1
+# checks: the store from the host, then the acceptance of roadmap F.3 through the semantic service
+# (the SmartConnect manifest accepted, the two queries with either prefix returning the same signal,
+# the kilogram copy core-only with one error). Used by CI and by hand.
+#   ./smoke.sh              keep the stack running afterwards
+#   ./smoke.sh --down       stop it and remove the volume at the end
+#   ./smoke.sh --no-build   use the images at hand (behind a proxy that breaks image builds)
+# Needs curl; no jq (the JSON checks are plain greps on the indented report).
 set -euo pipefail
 cd "$(dirname "$0")"
 
-docker compose build
-docker compose up -d
+down=false
+build=true
+for arg in "$@"; do
+  case "$arg" in
+    --down) down=true ;;
+    --no-build) build=false ;;
+    *) echo "unknown option: $arg"; exit 2 ;;
+  esac
+done
+
+if $build; then
+  docker compose build
+  docker compose up -d
+else
+  docker compose up -d --no-build
+fi
 echo "waiting for the vocabulary loader"
 status=0
 docker compose wait vocabulary || status=$?
 docker compose logs --no-log-prefix vocabulary
 [ "$status" -eq 0 ] || { echo "vocabulary loader failed with $status"; docker compose logs fuseki | tail -40; exit 1; }
 
+FUSEKI=http://127.0.0.1:3030
+SEMANTIC=http://127.0.0.1:8080/api/v1
+
 query() {
-  curl -sS --fail -G http://127.0.0.1:3030/dwis/sparql -H 'Accept: text/csv' --data-urlencode "query=$1" | tail -n 1 | tr -d '\r'
+  curl -sS --fail -G "${FUSEKI}/dwis/sparql" -H 'Accept: text/csv' --data-urlencode "query=$1" | tail -n 1 | tr -d '\r'
 }
 
 # Union default graph: a plain query sees the vocabulary graph.
@@ -35,10 +56,65 @@ pressure="$(query 'PREFIX dwis: <http://d-wis.org/> PREFIX uq: <http://d-wis.org
 [ "$pressure" = "true" ] || { echo "unit and quantity individuals not found in the union"; exit 1; }
 
 # The quarantine dataset exists and is empty.
-quarantine="$(curl -sS --fail -G http://127.0.0.1:3030/dwis-quarantine/sparql -H 'Accept: text/csv' --data-urlencode 'query=SELECT (COUNT(*) AS ?n) WHERE { GRAPH ?g { ?s ?p ?o } }' | tail -n 1 | tr -d '\r')"
+quarantine="$(curl -sS --fail -G "${FUSEKI}/dwis-quarantine/sparql" -H 'Accept: text/csv' --data-urlencode 'query=SELECT (COUNT(*) AS ?n) WHERE { GRAPH ?g { ?s ?p ?o } }' | tail -n 1 | tr -d '\r')"
 [ "$quarantine" = "0" ] || { echo "quarantine is not empty: ${quarantine}"; exit 1; }
+echo "store checks passed"
+
+# The semantic service: healthy once it has read the vocabulary and the units from the store.
+echo "waiting for the semantic service"
+i=0
+until curl -sf "${SEMANTIC}/health" > /dev/null; do
+  i=$((i + 1))
+  [ "$i" -lt 45 ] || { echo "the semantic service did not become healthy in time"; curl -s "${SEMANTIC}/health" || true; docker compose logs --no-log-prefix semantic | tail -60; exit 1; }
+  sleep 2
+done
+curl -sS --fail "${SEMANTIC}/vocabulary"; echo
+
+# A field of the indented report JSON, by name: "accepted": true, "errors": 1, "manifestId": "x/y".
+field() {
+  printf '%s' "$1" | grep -o "\"$2\": *[^,}]*" | head -n 1 | sed 's/^[^:]*: *//; s/^"//; s/"$//'
+}
+
+host_query() {
+  curl -sS --fail -G "${SEMANTIC}/sparql" -H 'Accept: text/csv' --data-urlencode "query=$1" | tail -n +2 | tr -d '\r' | sort
+}
+
+inject() {
+  curl -sS --fail -X POST "${SEMANTIC}/manifests" -H 'Content-Type: application/json' --data-binary "@$1"
+}
+
+# 1. The SmartConnect manifest goes live whole: accepted, no error (the warnings are explained by the policy).
+report="$(inject ../fixtures/manifests/smartconnect.manifest.json)"
+id="$(field "$report" manifestId)"
+echo "injected ${id}: accepted $(field "$report" accepted), errors $(field "$report" errors), warnings $(field "$report" warnings), asserted $(field "$report" asserted) triples"
+[ "$(field "$report" accepted)" = "true" ] || { echo "the SmartConnect manifest was not accepted"; printf '%s\n' "$report" | head -60; exit 1; }
+[ "$(field "$report" errors)" = "0" ] || { echo "the SmartConnect manifest has errors"; exit 1; }
+curl -sS --fail "${SEMANTIC}/manifests" | grep -q "\"${id}\"" || { echo "the manifest is not listed"; exit 1; }
+
+# 2. The two queries of roadmap F.3, one per prefix, return the same signal.
+by_class="$(host_query 'PREFIX dwis: <http://d-wis.org/>
+SELECT ?signal WHERE { ?dp a dwis:SPP ; dwis:HasDynamicValue ?signal . }')"
+by_quantity="$(host_query 'PREFIX ddhub: <http://ddhub.no/>
+SELECT ?signal WHERE { ?dp ddhub:IsOfMeasurableQuantity ?q ; ddhub:HasDynamicValue ?signal .
+                       ?q a ddhub:PressureDrillingQuantity . ?dp ddhub:IsLocatedAtEquipment ?e . ?e a ddhub:MudStandpipe . }')"
+echo "SPP by class: ${by_class}"
+echo "SPP by quantity and place: ${by_quantity}"
+[ -n "$by_class" ] || { echo "the first F.3 query returned nothing"; exit 1; }
+[ "$(printf '%s\n' "$by_class" | wc -l)" -eq 1 ] || { echo "the first F.3 query returned more than one signal"; exit 1; }
+[ "$by_class" = "$by_quantity" ] || { echo "the two F.3 queries disagree"; exit 1; }
+legacy="$(query 'ASK { ?s ?p ?o . FILTER (STRSTARTS(STR(?s), "http://ddhub.no/") || STRSTARTS(STR(?p), "http://ddhub.no/") || (isIRI(?o) && STRSTARTS(STR(?o), "http://ddhub.no/"))) }')"
+[ "$legacy" = "false" ] || { echo "ddhub.no IRIs found after the ingest (T-SEM-4)"; exit 1; }
+
+# 3. The kilogram copy: one error, core-only, the whole manifest in quarantine (T-SEM-9, T-SEM-10).
+report="$(inject ../fixtures/manifests/smartconnect-kilogram.manifest.json)"
+echo "injected $(field "$report" manifestId): accepted $(field "$report" accepted), errors $(field "$report" errors)"
+[ "$(field "$report" accepted)" = "false" ] || { echo "the kilogram copy was accepted"; exit 1; }
+[ "$(field "$report" errors)" = "1" ] || { echo "the kilogram copy should have exactly one error"; exit 1; }
+quarantined="$(curl -sS --fail -G "${FUSEKI}/dwis-quarantine/sparql" -H 'Accept: text/csv' --data-urlencode 'query=SELECT (COUNT(*) AS ?n) WHERE { GRAPH ?g { ?s ?p ?o } }' | tail -n 1 | tr -d '\r')"
+[ "$quarantined" -gt 0 ] || { echo "the quarantine dataset is empty after the kilogram copy"; exit 1; }
+echo "quarantine holds ${quarantined} triples, invisible to /dwis"
 
 echo "smoke test passed"
-if [ "${1:-}" = "--down" ]; then
+if $down; then
   docker compose down -v
 fi
