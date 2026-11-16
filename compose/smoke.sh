@@ -26,9 +26,11 @@ if $build; then
 else
   docker compose up -d --no-build
 fi
-echo "waiting for the vocabulary loader"
-status=0
-docker compose wait vocabulary || status=$?
+# The service depends on the loader having completed, so `up -d` returns once the loader has exited;
+# `docker compose wait` would then find no running container (and some versions answer 1), so the
+# exit code is read from the container itself.
+echo "checking the vocabulary loader"
+status="$(docker inspect -f '{{.State.ExitCode}}' "$(docker compose ps -aq vocabulary)")"
 docker compose logs --no-log-prefix vocabulary
 [ "$status" -eq 0 ] || { echo "vocabulary loader failed with $status"; docker compose logs fuseki | tail -40; exit 1; }
 
