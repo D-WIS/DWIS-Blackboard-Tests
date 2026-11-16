@@ -2,7 +2,9 @@
 # Builds the images, starts the stack, waits for the vocabulary to be loaded and runs the milestone 1
 # checks: the store from the host, then the acceptance of roadmap F.3 through the semantic service
 # (the SmartConnect manifest accepted, the two queries with either prefix returning the same signal,
-# the kilogram copy core-only with one error). Used by CI and by hand.
+# the kilogram copy core-only with one error); then the milestone 2 checks of the inference view
+# /dwis-inf (a write through /dwis is seen without a restart, a subclass entailment appears, the
+# quarantine stays out, timings and memory noted for decision D-15). Used by CI and by hand.
 #   ./smoke.sh              keep the stack running afterwards
 #   ./smoke.sh --down       stop it and remove the volume at the end
 #   ./smoke.sh --no-build   use the images at hand (behind a proxy that breaks image builds)
@@ -115,6 +117,31 @@ echo "injected $(field "$report" manifestId): accepted $(field "$report" accepte
 quarantined="$(curl -sS --fail -G "${FUSEKI}/dwis-quarantine/sparql" -H 'Accept: text/csv' --data-urlencode 'query=SELECT (COUNT(*) AS ?n) WHERE { GRAPH ?g { ?s ?p ?o } }' | tail -n 1 | tr -d '\r')"
 [ "$quarantined" -gt 0 ] || { echo "the quarantine dataset is empty after the kilogram copy"; exit 1; }
 echo "quarantine holds ${quarantined} triples, invisible to /dwis"
+
+# 4. The inference view (milestone 2, M2.1): the same store under the OWL micro reasoner.
+inf_query() {
+  curl -sS --fail -G "${FUSEKI}/dwis-inf/sparql" -H 'Accept: text/csv' --data-urlencode "query=$1" | tail -n 1 | tr -d '\r'
+}
+spp_dp='<http://d-wis.org/SmartConnect/mainwellCirculationCommon_pressureStandPipe#01>'
+# The data point was written through /dwis after Fuseki started: the view must see it, and type it
+# with the superclasses of SPP (rdfs:subClassOf closure) that /dwis itself does not hold.
+start=$(date +%s%N)
+superclasses="$(inf_query "PREFIX dwis: <http://d-wis.org/> SELECT (COUNT(DISTINCT ?c) AS ?n) WHERE { ${spp_dp} a ?c . ?c a <http://www.w3.org/2002/07/owl#Class> . FILTER (?c != dwis:SPP) }")"
+first_ms=$(( ($(date +%s%N) - start) / 1000000 ))
+asserted="$(query "PREFIX dwis: <http://d-wis.org/> SELECT (COUNT(DISTINCT ?c) AS ?n) WHERE { ${spp_dp} a ?c . FILTER (?c != dwis:SPP) }")"
+echo "inference view: the SPP data point has ${superclasses} inferred classes besides SPP (asserted in /dwis: ${asserted}); first query ${first_ms} ms"
+[ "$superclasses" -gt "$asserted" ] || { echo "the inference view adds no class to the data point (no entailment, or /dwis writes not visible)"; docker compose logs --no-log-prefix fuseki | tail -40; exit 1; }
+prototype="$(inf_query "PREFIX dwis: <http://d-wis.org/> ASK { ${spp_dp} a dwis:PrototypeData }")"
+[ "$prototype" = "true" ] || { echo "the SPP data point is not inferred to be PrototypeData"; exit 1; }
+# The quarantine dataset is not part of the view.
+kilo="$(inf_query 'PREFIX dwis: <http://d-wis.org/> PREFIX uq: <http://d-wis.org/UnitAndQuantity/> ASK { ?s dwis:HasUnitOfMeasure uq:Kilogram }')"
+[ "$kilo" = "false" ] || { echo "the quarantine leaks into the inference view"; exit 1; }
+# Repeated queries: time and the container's memory, for the record (decision D-15, roadmap F.4).
+start=$(date +%s%N)
+for _ in 1 2 3 4 5 6 7 8 9 10; do inf_query "PREFIX dwis: <http://d-wis.org/> SELECT (COUNT(*) AS ?n) WHERE { ?dp a dwis:PrototypeData }" > /dev/null; done
+repeat_ms=$(( ($(date +%s%N) - start) / 10000000 ))
+memory="$(docker stats --no-stream --format '{{.MemUsage}}' "$(docker compose ps -q fuseki)")"
+echo "inference view: ten repeated queries, ${repeat_ms} ms each on average; Fuseki memory ${memory}"
 
 echo "smoke test passed"
 if $down; then
