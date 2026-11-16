@@ -11,7 +11,7 @@ Part of DWIS Blackboard Rig Edition (GitHub topic `dwis-blackboard-rig-edition`)
 ## Layout
 
 - `compose/`: `compose.yaml` for the stack (Fuseki, the vocabulary loader and the semantic service; the real-time process joins in M4), `load-vocabulary.sh`, `smoke.sh`.
-- `fuseki/`: the image `digiwells/dwis.blackboard.fuseki` built from the Apache Jena Docker build kit at Jena 6.2.0 (decision D-28) and the dataset configuration `config/dwis.ttl` (`/dwis` with union default graph, `/dwis-quarantine`). See [fuseki/README.md](fuseki/README.md).
+- `fuseki/`: the image `digiwells/dwis.blackboard.fuseki` built from the Apache Jena Docker build kit at Jena 6.2.0 (decision D-28) and the dataset configuration `config/dwis.ttl` (`/dwis` with union default graph, `/dwis-quarantine`, the inference view `/dwis-inf`). See [fuseki/README.md](fuseki/README.md).
 - `fixtures/`: the pinned vocabulary and shapes, the SmartConnect manifest, later edited copies and recorded hub sessions. Provenance in [fixtures/README.md](fixtures/README.md).
 - `tests/` (planned): the test projects. `conformance/` (M4): the conformance suite and tool. `models/` (optional): the TLA+ models.
 
@@ -29,7 +29,7 @@ The semantic image is `digiwells/dwis.blackboard.semantic:${SEMANTIC_TAG:-edge}`
 compose/smoke.sh --down
 ```
 
-Does the same from a clean state, runs the milestone 1 checks and stops the stack: the store (vocabulary visible in the union default graph, `dwis:SPP` found, no `ddhub.no` subject, units typed, quarantine empty), then the acceptance of roadmap F.3 through the service (the SmartConnect manifest injected and accepted with no error, the two queries with either prefix returning the same signal, no legacy IRI stored, the kilogram copy core-only with one error and its graph in quarantine). The pull request workflow runs it on every pull request. Behind a proxy that breaks image builds (the Fuseki build's `apk add`), `compose/smoke.sh --no-build --down` uses the images at hand: tag any Fuseki 6.2.0 image with the Rig Edition configuration as `digiwells/dwis.blackboard.fuseki:dev` and set `SEMANTIC_TAG` to a semantic image you have.
+Does the same from a clean state, runs the milestone 1 checks and stops the stack: the store (vocabulary visible in the union default graph, `dwis:SPP` found, no `ddhub.no` subject, units typed, quarantine empty), then the acceptance of roadmap F.3 through the service (the SmartConnect manifest injected and accepted with no error, the two queries with either prefix returning the same signal, no legacy IRI stored, the kilogram copy core-only with one error and its graph in quarantine), then the inference view `/dwis-inf` (the data point written through `/dwis` is typed with the superclasses of `SPP` there, the quarantine stays out, query times and memory printed). The pull request workflow runs it on every pull request. Behind a proxy that breaks image builds (the Fuseki build's `apk add`), `compose/smoke.sh --no-build --down` uses the images at hand: tag any Fuseki 6.2.0 image with the Rig Edition configuration as `digiwells/dwis.blackboard.fuseki:dev` and set `SEMANTIC_TAG` to a semantic image you have.
 
 ## How to work here
 

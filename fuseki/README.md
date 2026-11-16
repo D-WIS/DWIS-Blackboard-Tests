@@ -4,7 +4,7 @@ Apache Jena Fuseki with TDB2, the store of the semantic service (decision D-03),
 
 The four files `Dockerfile` (above the marked line), `entrypoint.sh`, `download.sh` and `log4j2.properties` are the build kit `jena-fuseki2/jena-fuseki-docker` of Apache Jena at tag `jena-6.2.0`, unchanged, under the Apache License 2.0 (their headers say so). The build downloads `jena-fuseki-server-6.2.0.jar` from Maven Central and checks its SHA1. To move to a newer Jena, replace the four files with the kit of that tag and change `JENA_VERSION` in `compose/compose.yaml` and the workflows.
 
-Ours: the lines after the marker in `Dockerfile` and `config/dwis.ttl`, which declares the datasets `/dwis` (TDB2, union default graph; endpoints `sparql`, `query`, `update`, `data`, `shacl`) and `/dwis-quarantine` (TDB2). The inference view `/dwis-inf` is added in milestone 2.
+Ours: the lines after the marker in `Dockerfile` and `config/dwis.ttl`, which declares the datasets `/dwis` (TDB2, union default graph; endpoints `sparql`, `query`, `update`, `data`, `shacl`), `/dwis-quarantine` (TDB2) and `/dwis-inf` (query only: a Jena `InfModel` over the union graph of the same TDB2 store as `/dwis`, with the OWL micro rule reasoner; milestone 2, decision D-15). The view computes on demand and stores nothing; the semantic service reads one manifest's consequences from it and writes them into that manifest's inferred graph in `/dwis` (Appendix C.6). A write through `/dwis` is visible in the view without a restart; `compose/smoke.sh` checks that and notes the query times and memory.
 
 Build alone:
 
