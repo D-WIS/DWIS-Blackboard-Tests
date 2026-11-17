@@ -1,0 +1,790 @@
+{
+  "ManifestName": "SmartConnect rig signals, part 24",
+  "Provider": {
+    "Name": "SmartConnect-24",
+    "Company": "Equinor"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "Variables",
+    "InjectedNodesNamespaceAlias": "Nodes",
+    "ProvidedVariablesNamespaceAlias": "ProvidedVariables",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": [],
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "BHAMechanicalLogicalElement",
+      "BrowseName": "bha",
+      "UniqueName": "bha",
+      "DisplayName": "bha",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "GravityHighSideAngleLocation",
+      "BrowseName": "gravityHighSide",
+      "UniqueName": "gravityHighSide",
+      "DisplayName": "gravityHighSide",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MagneticNorthAzimuthLocation",
+      "BrowseName": "magneticNorth",
+      "UniqueName": "magneticNorth",
+      "DisplayName": "magneticNorth",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG#01",
+      "UniqueName": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG#01",
+      "DisplayName": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_trpo2DepthCaliper_C4DECCTRPO2#01",
+      "UniqueName": "caliper4D_trpo2DepthCaliper_C4DECCTRPO2#01",
+      "DisplayName": "caliper4D_trpo2DepthCaliper_C4DECCTRPO2#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_trpo3DepthCaliper_C4DDEPTHTRPO3#01",
+      "UniqueName": "caliper4D_trpo3DepthCaliper_C4DDEPTHTRPO3#01",
+      "DisplayName": "caliper4D_trpo3DepthCaliper_C4DDEPTHTRPO3#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_trpo3DepthCaliper_C4DDIAAVGTRPO3#01",
+      "UniqueName": "caliper4D_trpo3DepthCaliper_C4DDIAAVGTRPO3#01",
+      "DisplayName": "caliper4D_trpo3DepthCaliper_C4DDIAAVGTRPO3#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3#01",
+      "UniqueName": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3#01",
+      "DisplayName": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3#01",
+      "UniqueName": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3#01",
+      "DisplayName": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_trpo3DepthCaliper_C4DDIAMAXTRPO3#01",
+      "UniqueName": "caliper4D_trpo3DepthCaliper_C4DDIAMAXTRPO3#01",
+      "DisplayName": "caliper4D_trpo3DepthCaliper_C4DDIAMAXTRPO3#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3#01",
+      "UniqueName": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3#01",
+      "DisplayName": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3#01",
+      "UniqueName": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3#01",
+      "DisplayName": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_trpo3DepthCaliper_C4DDIAMINTRPO3#01",
+      "UniqueName": "caliper4D_trpo3DepthCaliper_C4DDIAMINTRPO3#01",
+      "DisplayName": "caliper4D_trpo3DepthCaliper_C4DDIAMINTRPO3#01",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCTRPO2#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDEPTHTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAAVGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "magneticNorth"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCTRPO2#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCTRPO2"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCTRPO2#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDEPTHTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDEPTHTRPO3"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDEPTHTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAAVGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAAVGTRPO3"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAAVGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "gravityHighSide"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "magneticNorth"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXTRPO3"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "gravityHighSide"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "magneticNorth"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINTRPO3"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCTRPO2#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "LengthStandardQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo2DepthCaliper_C4DECCTRPO2"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Inch"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDEPTHTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "DepthDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDEPTHTRPO3"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Metre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAAVGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "LengthStandardQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAAVGTRPO3"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Inch"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "LengthStandardQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXTRPO3"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Inch"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINTRPO3#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "LengthStandardQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_trpo3DepthCaliper_C4DDIAMINTRPO3"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Inch"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "caliper4D_trpo2DepthCaliper_C4DECCAZTRPO2MG",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_trpo2DepthCaliper_C4DECCTRPO2",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_trpo3DepthCaliper_C4DDEPTHTRPO3",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_trpo3DepthCaliper_C4DDIAAVGTRPO3",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZHSTRPO3",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXAZMGTRPO3",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_trpo3DepthCaliper_C4DDIAMAXTRPO3",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZHSTRPO3",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_trpo3DepthCaliper_C4DDIAMINAZMGTRPO3",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_trpo3DepthCaliper_C4DDIAMINTRPO3",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    }
+  ],
+  "InjectedVocabulary": null
+}

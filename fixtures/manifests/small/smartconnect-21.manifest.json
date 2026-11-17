@@ -1,0 +1,845 @@
+{
+  "ManifestName": "SmartConnect rig signals, part 21",
+  "Provider": {
+    "Name": "SmartConnect-21",
+    "Company": "Equinor"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "Variables",
+    "InjectedNodesNamespaceAlias": "Nodes",
+    "ProvidedVariablesNamespaceAlias": "ProvidedVariables",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": [],
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "BHAMechanicalLogicalElement",
+      "BrowseName": "bha",
+      "UniqueName": "bha",
+      "DisplayName": "bha",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MagneticNorthAzimuthLocation",
+      "BrowseName": "magneticNorth",
+      "UniqueName": "magneticNorth",
+      "DisplayName": "magneticNorth",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_timeEnv_C4DENVBORETEMP#01",
+      "UniqueName": "caliper4D_timeEnv_C4DENVBORETEMP#01",
+      "DisplayName": "caliper4D_timeEnv_C4DENVBORETEMP#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_timeEnv_C4DGAMMA10S#01",
+      "UniqueName": "caliper4D_timeEnv_C4DGAMMA10S#01",
+      "DisplayName": "caliper4D_timeEnv_C4DGAMMA10S#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_timeEnv_C4DGAMMA1S#01",
+      "UniqueName": "caliper4D_timeEnv_C4DGAMMA1S#01",
+      "DisplayName": "caliper4D_timeEnv_C4DGAMMA1S#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_timeEnv_C4DGAMMA30S#01",
+      "UniqueName": "caliper4D_timeEnv_C4DGAMMA30S#01",
+      "DisplayName": "caliper4D_timeEnv_C4DGAMMA30S#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_timeImu_C4DACCX_MAX#01",
+      "UniqueName": "caliper4D_timeImu_C4DACCX_MAX#01",
+      "DisplayName": "caliper4D_timeImu_C4DACCX_MAX#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MovingMax",
+      "BrowseName": "movingMaxAccX",
+      "UniqueName": "movingMaxAccX",
+      "DisplayName": "movingMaxAccX",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "TimeWindow",
+      "BrowseName": "accWindow200ms",
+      "UniqueName": "accWindow200ms",
+      "DisplayName": "accWindow200ms",
+      "Fields": [
+        {
+          "FieldName": "Duration",
+          "FieldValue": "0.2"
+        }
+      ]
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_timeImu_C4DACCX_MIN#01",
+      "UniqueName": "caliper4D_timeImu_C4DACCX_MIN#01",
+      "DisplayName": "caliper4D_timeImu_C4DACCX_MIN#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MovingMin",
+      "BrowseName": "movingMinAccX",
+      "UniqueName": "movingMinAccX",
+      "DisplayName": "movingMinAccX",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_timeImu_C4DACCY_MAX#01",
+      "UniqueName": "caliper4D_timeImu_C4DACCY_MAX#01",
+      "DisplayName": "caliper4D_timeImu_C4DACCY_MAX#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MovingMax",
+      "BrowseName": "movingMaxAccY",
+      "UniqueName": "movingMaxAccY",
+      "DisplayName": "movingMaxAccY",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_timeImu_C4DACCY_MIN#01",
+      "UniqueName": "caliper4D_timeImu_C4DACCY_MIN#01",
+      "DisplayName": "caliper4D_timeImu_C4DACCY_MIN#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MovingMin",
+      "BrowseName": "movingMinAccY",
+      "UniqueName": "movingMinAccY",
+      "DisplayName": "movingMinAccY",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_timeRpm_C4DMAGRPM#01",
+      "UniqueName": "caliper4D_timeRpm_C4DMAGRPM#01",
+      "DisplayName": "caliper4D_timeRpm_C4DMAGRPM#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_timeRpm_C4DMAGTF#01",
+      "UniqueName": "caliper4D_timeRpm_C4DMAGTF#01",
+      "DisplayName": "caliper4D_timeRpm_C4DMAGTF#01",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVBORETEMP#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA10S#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DiscreteDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA1S#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DiscreteDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA30S#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DiscreteDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCX_MAX#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCX_MIN#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCY_MAX#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCY_MIN#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeRpm_C4DMAGRPM#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeRpm_C4DMAGRPM#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DownholeRPM"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeRpm_C4DMAGTF#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVBORETEMP#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DENVBORETEMP"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVBORETEMP#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA10S#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DGAMMA10S"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA10S#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA1S#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DGAMMA1S"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA1S#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA30S#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DGAMMA30S"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA30S#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCX_MAX#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeImu_C4DACCX_MAX"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "movingMaxAccX"
+      },
+      "VerbURI": "http://ddhub.no/HasTimeWindow",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "accWindow200ms"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCX_MAX#01"
+      },
+      "VerbURI": "http://ddhub.no/IsTransformationOutput",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "movingMaxAccX"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCX_MAX#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCX_MIN#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeImu_C4DACCX_MIN"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "movingMinAccX"
+      },
+      "VerbURI": "http://ddhub.no/HasTimeWindow",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "accWindow200ms"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCX_MIN#01"
+      },
+      "VerbURI": "http://ddhub.no/IsTransformationOutput",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "movingMinAccX"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCX_MIN#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCY_MAX#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeImu_C4DACCY_MAX"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "movingMaxAccY"
+      },
+      "VerbURI": "http://ddhub.no/HasTimeWindow",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "accWindow200ms"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCY_MAX#01"
+      },
+      "VerbURI": "http://ddhub.no/IsTransformationOutput",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "movingMaxAccY"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCY_MAX#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCY_MIN#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeImu_C4DACCY_MIN"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "movingMinAccY"
+      },
+      "VerbURI": "http://ddhub.no/HasTimeWindow",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "accWindow200ms"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCY_MIN#01"
+      },
+      "VerbURI": "http://ddhub.no/IsTransformationOutput",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "movingMinAccY"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCY_MIN#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeRpm_C4DMAGRPM#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeRpm_C4DMAGRPM"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeRpm_C4DMAGRPM#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeRpm_C4DMAGTF#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeRpm_C4DMAGTF"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeRpm_C4DMAGTF#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "magneticNorth"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeRpm_C4DMAGTF#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVBORETEMP#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "TemperatureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DENVBORETEMP"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Fahrenheit"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA10S#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GammaRayIndexDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA1S#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GammaRayIndexDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DGAMMA30S#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GammaRayIndexDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCX_MAX#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "AccelerationDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeImu_C4DACCX_MAX"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GravityStandard"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCX_MIN#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "AccelerationDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeImu_C4DACCX_MIN"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GravityStandard"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCY_MAX#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "AccelerationDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeImu_C4DACCY_MAX"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GravityStandard"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeImu_C4DACCY_MIN#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "AccelerationDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeImu_C4DACCY_MIN"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GravityStandard"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeRpm_C4DMAGRPM#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "AngularVelocityDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeRpm_C4DMAGRPM"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "RevolutionPerMinute"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeRpm_C4DMAGTF#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeRpm_C4DMAGTF"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "caliper4D_timeEnv_C4DENVBORETEMP",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeEnv_C4DGAMMA10S",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeEnv_C4DGAMMA1S",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeEnv_C4DGAMMA30S",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeImu_C4DACCX_MAX",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeImu_C4DACCX_MIN",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeImu_C4DACCY_MAX",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeImu_C4DACCY_MIN",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeRpm_C4DMAGRPM",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeRpm_C4DMAGTF",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    }
+  ],
+  "InjectedVocabulary": null
+}

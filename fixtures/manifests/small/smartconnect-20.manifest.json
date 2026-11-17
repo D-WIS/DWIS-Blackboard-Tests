@@ -1,0 +1,757 @@
+{
+  "ManifestName": "SmartConnect rig signals, part 20",
+  "Provider": {
+    "Name": "SmartConnect-20",
+    "Company": "Equinor"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "Variables",
+    "InjectedNodesNamespaceAlias": "Nodes",
+    "ProvidedVariablesNamespaceAlias": "ProvidedVariables",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": [],
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "BHAMechanicalLogicalElement",
+      "BrowseName": "bha",
+      "UniqueName": "bha",
+      "DisplayName": "bha",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "BHAAnnular",
+      "BrowseName": "bhaAnnulus",
+      "UniqueName": "bhaAnnulus",
+      "DisplayName": "bhaAnnulus",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "GravityHighSideAngleLocation",
+      "BrowseName": "gravityHighSide",
+      "UniqueName": "gravityHighSide",
+      "DisplayName": "gravityHighSide",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_depthEnv_C4DENVBORETEMPMD#01",
+      "UniqueName": "caliper4D_depthEnv_C4DENVBORETEMPMD#01",
+      "DisplayName": "caliper4D_depthEnv_C4DENVBORETEMPMD#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_depthEnv_C4DENVDEPTH#01",
+      "UniqueName": "caliper4D_depthEnv_C4DENVDEPTH#01",
+      "DisplayName": "caliper4D_depthEnv_C4DENVDEPTH#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_depthEnv_C4DGAMMA10SMD#01",
+      "UniqueName": "caliper4D_depthEnv_C4DGAMMA10SMD#01",
+      "DisplayName": "caliper4D_depthEnv_C4DGAMMA10SMD#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_depthEnv_C4DGAMMA1SMD#01",
+      "UniqueName": "caliper4D_depthEnv_C4DGAMMA1SMD#01",
+      "DisplayName": "caliper4D_depthEnv_C4DGAMMA1SMD#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_depthEnv_C4DGAMMA30SMD#01",
+      "UniqueName": "caliper4D_depthEnv_C4DGAMMA30SMD#01",
+      "DisplayName": "caliper4D_depthEnv_C4DGAMMA30SMD#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_timeCaliper_C4DDEPTHTD#01",
+      "UniqueName": "caliper4D_timeCaliper_C4DDEPTHTD#01",
+      "DisplayName": "caliper4D_timeCaliper_C4DDEPTHTD#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_timeCaliper_C4DHSOFFSETTD#01",
+      "UniqueName": "caliper4D_timeCaliper_C4DHSOFFSETTD#01",
+      "DisplayName": "caliper4D_timeCaliper_C4DHSOFFSETTD#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_timeEnv_C4DENVANNPRESS#01",
+      "UniqueName": "caliper4D_timeEnv_C4DENVANNPRESS#01",
+      "DisplayName": "caliper4D_timeEnv_C4DENVANNPRESS#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_timeEnv_C4DENVANTEMP#01",
+      "UniqueName": "caliper4D_timeEnv_C4DENVANTEMP#01",
+      "DisplayName": "caliper4D_timeEnv_C4DENVANTEMP#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_timeEnv_C4DENVBOREPRESS#01",
+      "UniqueName": "caliper4D_timeEnv_C4DENVBOREPRESS#01",
+      "DisplayName": "caliper4D_timeEnv_C4DENVBOREPRESS#01",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DENVBORETEMPMD#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DENVDEPTH#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA10SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DiscreteDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA1SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DiscreteDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA30SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DiscreteDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeCaliper_C4DDEPTHTD#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeCaliper_C4DHSOFFSETTD#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANNPRESS#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANNPRESS#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DownholePressure"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANTEMP#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANTEMP#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DownholeTemperature"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVBOREPRESS#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DENVBORETEMPMD#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthEnv_C4DENVBORETEMPMD"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DENVBORETEMPMD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DENVDEPTH#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthEnv_C4DENVDEPTH"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DENVDEPTH#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA10SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthEnv_C4DGAMMA10SMD"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA10SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA1SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthEnv_C4DGAMMA1SMD"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA1SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA30SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthEnv_C4DGAMMA30SMD"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA30SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeCaliper_C4DDEPTHTD#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeCaliper_C4DDEPTHTD"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeCaliper_C4DDEPTHTD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeCaliper_C4DHSOFFSETTD#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeCaliper_C4DHSOFFSETTD"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeCaliper_C4DHSOFFSETTD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "gravityHighSide"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeCaliper_C4DHSOFFSETTD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANNPRESS#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DENVANNPRESS"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANNPRESS#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPressureAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bhaAnnulus"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANNPRESS#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANTEMP#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DENVANTEMP"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANTEMP#01"
+      },
+      "VerbURI": "http://ddhub.no/IsFluidTemperatureAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bhaAnnulus"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANTEMP#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVBOREPRESS#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DENVBOREPRESS"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVBOREPRESS#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DENVBORETEMPMD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "TemperatureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthEnv_C4DENVBORETEMPMD"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Fahrenheit"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DENVDEPTH#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "DepthDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthEnv_C4DENVDEPTH"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Metre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA10SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GammaRayIndexDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA1SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GammaRayIndexDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthEnv_C4DGAMMA30SMD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GammaRayIndexDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeCaliper_C4DDEPTHTD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "DepthDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeCaliper_C4DDEPTHTD"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Metre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeCaliper_C4DHSOFFSETTD#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeCaliper_C4DHSOFFSETTD"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANNPRESS#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PressureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DENVANNPRESS"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Bar"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVANTEMP#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "TemperatureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DENVANTEMP"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Fahrenheit"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_timeEnv_C4DENVBOREPRESS#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PressureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_timeEnv_C4DENVBOREPRESS"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Bar"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "caliper4D_depthEnv_C4DENVBORETEMPMD",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_depthEnv_C4DENVDEPTH",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_depthEnv_C4DGAMMA10SMD",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_depthEnv_C4DGAMMA1SMD",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_depthEnv_C4DGAMMA30SMD",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeCaliper_C4DDEPTHTD",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeCaliper_C4DHSOFFSETTD",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeEnv_C4DENVANNPRESS",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeEnv_C4DENVANTEMP",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_timeEnv_C4DENVBOREPRESS",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    }
+  ],
+  "InjectedVocabulary": null
+}
