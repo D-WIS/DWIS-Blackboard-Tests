@@ -15,6 +15,9 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
+        with:
+          # The whole history, so that the Fuseki step below can diff against the base branch.
+          fetch-depth: 0
       - uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 10.0.x
@@ -47,25 +50,47 @@ jobs:
           files=(compose/*.yaml compose/*.yml ./compose.y*ml)
           if [ ${#files[@]} -eq 0 ]; then echo "No compose files yet."; exit 0; fi
           for f in "${files[@]}"; do echo "== $f"; docker compose -f "$f" config --quiet; done
-      - name: Check out the semantic service sources (DWIS-Blackboard-Semantic)
+      - name: Decide whether the Fuseki image is built here or pulled
+        id: fuseki
         if: hashFiles('fuseki/Dockerfile') != ''
-        uses: actions/checkout@v7
-        with:
-          repository: D-WIS/DWIS-Blackboard-Semantic
-          ref: main
-          path: semantic-source
-      - name: Build the images, start the stack, load the vocabulary, run the checks through the service
+        run: |
+          # A pull request that touches the image sources tests its own build (tag ci). Any other run
+          # pulls the edge image that the merge workflow pushed to Docker Hub, so the Fuseki jar is not
+          # downloaded from Maven Central on every run.
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            changed=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" -- fuseki/ || echo fuseki/)
+          else
+            changed=fuseki/
+          fi
+          if [ -n "$changed" ]; then
+            echo "tag=ci" >> "$GITHUB_OUTPUT"; echo "The Fuseki image sources changed: the image is built here."
+          else
+            echo "tag=edge" >> "$GITHUB_OUTPUT"; echo "The Fuseki image sources are unchanged: digiwells/dwis.blackboard.fuseki:edge is pulled."
+          fi
+      - name: Build the Fuseki image when its sources changed
+        if: steps.fuseki.outputs.tag == 'ci'
+        env:
+          FUSEKI_TAG: ci
+        run: docker compose -f compose/compose.yaml build fuseki
+      - name: Pull the semantic edge image, and the Fuseki edge image when it is not built here
         if: hashFiles('fuseki/Dockerfile') != ''
         env:
-          # The semantic image is built from the checkout above until the edge image is on Docker Hub.
-          SEMANTIC_SOURCE: ${{ github.workspace }}/semantic-source
-          SEMANTIC_TAG: ci
-        run: ./compose/smoke.sh
-      - name: Scan the Fuseki image
+          SEMANTIC_TAG: edge
+          FUSEKI_TAG: ${{ steps.fuseki.outputs.tag }}
+        run: |
+          docker compose -f compose/compose.yaml pull semantic
+          if [ "$FUSEKI_TAG" != "ci" ]; then docker compose -f compose/compose.yaml pull fuseki; fi
+      - name: Start the stack, load the vocabulary, run the checks through the service
         if: hashFiles('fuseki/Dockerfile') != ''
+        env:
+          SEMANTIC_TAG: edge
+          FUSEKI_TAG: ${{ steps.fuseki.outputs.tag }}
+        run: ./compose/smoke.sh --no-build
+      - name: Scan the Fuseki image built here
+        if: steps.fuseki.outputs.tag == 'ci'
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: digiwells/dwis.blackboard.fuseki:dev
+          image-ref: digiwells/dwis.blackboard.fuseki:ci
           severity: CRITICAL,HIGH
           ignore-unfixed: true
           exit-code: "1"
