@@ -113,7 +113,7 @@ jobs:
           distribution: temurin
           java-version: "21"
       - name: Check the models with TLC (T-TST-1 to T-TST-3)
-        run: ./models/check.sh
+        run: bash ./models/check.sh
   scan:
     name: Trivy filesystem scan
     runs-on: ubuntu-latest
