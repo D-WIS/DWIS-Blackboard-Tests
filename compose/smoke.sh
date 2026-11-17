@@ -7,8 +7,9 @@
 # quarantine stays out, timings and memory noted for decision D-15) and the demo of roadmap F.2 (the
 # kilogram report, asserted versus inferred by GRAPH, a vocabulary swap through PUT /vocabulary that
 # re-derives the live manifests and is rolled back). From the F.3 queries on, the small manifests of
-# M3.F (fixtures/manifests/small/) are live next to the big one, with their times printed. Used by CI
-# and by hand.
+# M3.F (fixtures/manifests/small/) are live next to the big one, with their times printed. Then the
+# milestone 3 demo (M3.5): two watch consoles over gRPC see the diffs of a remove and a re-add, and come
+# back after a restart of the service. Used by CI and by hand.
 #   ./smoke.sh              keep the stack running afterwards
 #   ./smoke.sh --down       stop it and remove the volume at the end
 #   ./smoke.sh --no-build   use the images at hand (behind a proxy that breaks image builds)
@@ -226,8 +227,68 @@ back="$(curl -sS --fail -X PUT "${SEMANTIC}/vocabulary" -H 'Content-Type: applic
 back_ms=$(( ($(date +%s%N) - start) / 1000000 ))
 grep -q '"becameCoreOnly":\[\]' <<< "$back" || { echo "the rollback should have made every manifest whole again"; printf '%s\n' "$back"; exit 1; }
 curl -sS --fail "${SEMANTIC}/manifests" | grep -o '"value":"SmartConnect/smartconnect-rig-signals"[^}]*}[^}]*"accepted":[a-z]*' | grep -q '"accepted":true' || { echo "the SmartConnect manifest is not whole after the rollback"; exit 1; }
-rm -rf "$work"
 echo "vocabulary rolled back to ${version} in ${back_ms} ms: the SmartConnect manifest is whole again"
+
+# 7. Demo of milestone 3 (roadmap F.2, M3.5): two subscribers over gRPC see the diff when the SmartConnect
+# manifest is removed and re-added, and come back with a full snapshot after a restart of the service
+# (T-QR-2, the client side of T-QR-4). The subscribers are the watch console of tools/watch, run on the
+# host against the published gRPC port 8081; each registers the F.3 "SPP by quantity and place" query (two
+# rows: the big manifest and part 07; the kilogram copy, live core-only under the same provider, has no
+# quantity and no place, so the big manifest's row goes when it is removed; the plain "SPP by class" row
+# would survive, since the copy shares the data point IRIs) and exits once it has seen four diffs: -1 and
+# +1 for the first remove and re-add, then, after the restart, -1 and +1 again.
+echo "milestone 3 demo: two subscribers, a remove, a re-add, a restart, a remove, a re-add"
+watch_project=../tools/watch/DWIS.Blackboard.Watch.csproj
+dotnet build "$watch_project" -c Release -v q --nologo > "$work/watch-build.log" 2>&1 || { echo "the watch console does not build"; cat "$work/watch-build.log"; exit 1; }
+watch_dll=../tools/watch/bin/Release/net10.0/DWIS.Blackboard.Watch.dll
+spp_query='PREFIX ddhub: <http://ddhub.no/> SELECT ?signal WHERE { ?dp ddhub:IsOfMeasurableQuantity ?q ; ddhub:HasDynamicValue ?signal . ?q a ddhub:PressureDrillingQuantity . ?dp ddhub:IsLocatedAtEquipment ?e . ?e a ddhub:MudStandpipe . }'
+for n in 1 2; do
+  dotnet "$watch_dll" --address http://127.0.0.1:8081 --owner "subscriber-$n" --query "$spp_query" --until-diffs 4 --timeout 420 > "$work/subscriber-$n.log" 2>&1 &
+  eval "subscriber_$n=\$!"
+done
+for n in 1 2; do
+  i=0
+  until grep -q "^snapshot q" "$work/subscriber-$n.log"; do
+    i=$((i + 1)); [ "$i" -lt 60 ] || { echo "subscriber $n got no snapshot"; cat "$work/subscriber-$n.log"; exit 1; }; sleep 1
+  done
+done
+echo "  both subscribers hold the snapshot: $(grep -m 1 '^snapshot' "$work/subscriber-1.log")"
+remove_and_readd() { # label
+  start=$(date +%s%N)
+  curl -sS --fail -X DELETE "${SEMANTIC}/manifests/SmartConnect/smartconnect-rig-signals" > /dev/null
+  removed_ms=$(( ($(date +%s%N) - start) / 1000000 ))
+  start=$(date +%s%N)
+  inject ../fixtures/manifests/smartconnect.manifest.json > /dev/null
+  readded_ms=$(( ($(date +%s%N) - start) / 1000000 ))
+  echo "  $1: removed in ${removed_ms} ms, re-added in ${readded_ms} ms"
+}
+remove_and_readd "first round"
+for n in 1 2; do
+  i=0
+  until [ "$(grep -c '^diff q' "$work/subscriber-$n.log")" -ge 2 ]; do
+    i=$((i + 1)); [ "$i" -lt 120 ] || { echo "subscriber $n did not see two diffs"; cat "$work/subscriber-$n.log"; exit 1; }; sleep 1
+  done
+done
+echo "  the service restarts: the streams end, the subscribers register again"
+docker compose restart semantic > /dev/null 2>&1
+i=0
+until curl -sf "${SEMANTIC}/health" > /dev/null; do i=$((i + 1)); [ "$i" -lt 60 ] || { echo "the semantic service did not come back"; exit 1; }; sleep 2; done
+for n in 1 2; do
+  i=0
+  until [ "$(grep -c '^snapshot q' "$work/subscriber-$n.log")" -ge 2 ]; do
+    i=$((i + 1)); [ "$i" -lt 60 ] || { echo "subscriber $n did not register again after the restart"; cat "$work/subscriber-$n.log"; exit 1; }; sleep 1
+  done
+done
+remove_and_readd "second round"
+for n in 1 2; do
+  wait "$(eval "echo \$subscriber_$n")" || { echo "subscriber $n failed"; cat "$work/subscriber-$n.log"; exit 1; }
+  diffs="$(grep '^diff q' "$work/subscriber-$n.log" | sed 's/ at .*//' | sed 's/^diff q[0-9]* //' | tr '\n' ' ')"
+  echo "  subscriber $n saw: ${diffs}"
+  [ "$diffs" = "+0 -1 +1 -0 +0 -1 +1 -0 " ] || { echo "subscriber $n did not see -1, +1, -1, +1"; cat "$work/subscriber-$n.log"; exit 1; }
+  grep -q '^stream ended' "$work/subscriber-$n.log" || { echo "subscriber $n did not notice the restart"; cat "$work/subscriber-$n.log"; exit 1; }
+done
+echo "milestone 3 demo passed: $(grep -m 1 'done:' "$work/subscriber-1.log")"
+rm -rf "$work"
 
 echo "smoke test passed"
 if $down; then

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- The watch console (M3.5): a subscriber over gRPC for the tests and the smoke demo, on the published
+       contract package. Owner's direction of 17 November 2026: for gRPC testing, a small .NET console. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <AssemblyName>DWIS.Blackboard.Watch</AssemblyName>
+    <RootNamespace>DWIS.Blackboard.Watch</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DWIS.Blackboard.Contracts.Grpc" Version="1.0.0-edge.7" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.85.0" />
+  </ItemGroup>
+
+</Project>
