@@ -480,3 +480,9 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# TLA+ model checking (models/check.sh): the tools jar is downloaded, TLC writes its state files and traces
+models/tla2tools.jar
+models/states/
+models/*.log
+models/*_TTrace_*.tla

@@ -102,6 +102,18 @@ jobs:
       - name: Stop the stack
         if: always() && hashFiles('fuseki/Dockerfile') != ''
         run: docker compose -f compose/compose.yaml down -v
+  models:
+    name: TLC model checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Check the models with TLC (T-TST-1 to T-TST-3)
+        run: ./models/check.sh
   scan:
     name: Trivy filesystem scan
     runs-on: ubuntu-latest
