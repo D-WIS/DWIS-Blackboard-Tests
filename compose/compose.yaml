@@ -8,9 +8,12 @@
 # Ports 3030 (Fuseki) and 8080 (the service's internal API, specification 3.4) are published on
 # localhost only, for inspection in the lab profile (specification 7).
 #
-# The semantic image is digiwells/dwis.blackboard.semantic (SEMANTIC_TAG, default edge). When it is not
-# at hand, `docker compose build` builds it from a checkout of DWIS-Blackboard-Semantic at
-# SEMANTIC_SOURCE (default: the sibling folder of this repository); CI checks that repository out.
+# The semantic image is digiwells/dwis.blackboard.semantic (SEMANTIC_TAG, default edge, pushed by the
+# merge workflow of DWIS-Blackboard-Semantic). When it is not at hand, `docker compose build` builds it
+# from a checkout of DWIS-Blackboard-Semantic at SEMANTIC_SOURCE (default: the sibling folder of this
+# repository). The Fuseki image is digiwells/dwis.blackboard.fuseki (FUSEKI_TAG, default dev, built
+# from ../fuseki; the merge workflow of this repository pushes edge). `docker compose pull` fetches
+# the published tags instead of building.
 
 name: dwis-blackboard
 
@@ -22,7 +25,7 @@ services:
         JENA_VERSION: "6.2.0"
         # The runtime base; keep it on the Alpine release of eclipse-temurin:21-alpine (3.24 in November 2026).
         ALPINE_VERSION: "3.24"
-    image: digiwells/dwis.blackboard.fuseki:dev
+    image: digiwells/dwis.blackboard.fuseki:${FUSEKI_TAG:-dev}
     environment:
       JAVA_OPTIONS: -Xmx2g -Xms512m
     ports:
