@@ -5,8 +5,8 @@
 #   docker compose wait vocabulary   exit code 0 once the vocabulary is loaded and checked
 #   ./smoke.sh                       all of the above plus the checks of roadmap F.3 through the service
 #
-# Ports 3030 (Fuseki) and 8080 (the service's internal API, specification 3.4) are published on
-# localhost only, for inspection in the lab profile (specification 7).
+# Ports 3030 (Fuseki), 8080 (the service's internal API, specification 3.4) and 8081 (its gRPC service,
+# specification 3.3) are published on localhost only, for inspection in the lab profile (specification 7).
 #
 # The semantic image is digiwells/dwis.blackboard.semantic (SEMANTIC_TAG, default edge, pushed by the
 # merge workflow of DWIS-Blackboard-Semantic). When it is not at hand, `docker compose build` builds it
@@ -76,6 +76,7 @@ services:
       - ../fixtures/vocabulary/validation-policy.json:/config/validation-policy.json:ro
     ports:
       - "127.0.0.1:8080:8080"
+      - "127.0.0.1:8081:8081"
     restart: unless-stopped
 
 volumes:
