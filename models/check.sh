@@ -44,5 +44,5 @@ echo "   rejected as expected: $(grep -c "^State" broken.log) states in the shor
 
 # TLC reports a passing run with an exit code of 0 and a violation with 12; the design runs above would
 # have ended the script (set -e) on anything but success.
-rm -rf states ./*.log *_TTrace_*.tla
+rm -rf states ./*.log ./*_TTrace_*
 echo "models checked"

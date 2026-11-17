@@ -485,4 +485,4 @@ $RECYCLE.BIN/
 models/tla2tools.jar
 models/states/
 models/*.log
-models/*_TTrace_*.tla
+models/*_TTrace_*
