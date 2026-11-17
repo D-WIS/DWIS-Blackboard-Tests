@@ -1,0 +1,974 @@
+{
+  "ManifestName": "SmartConnect rig signals, part 04",
+  "Provider": {
+    "Name": "SmartConnect-04",
+    "Company": "Equinor"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "Variables",
+    "InjectedNodesNamespaceAlias": "Nodes",
+    "ProvidedVariablesNamespaceAlias": "ProvidedVariables",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": [],
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "OdfjellDrilling",
+      "BrowseName": "odfjellDrilling",
+      "UniqueName": "odfjellDrilling",
+      "DisplayName": "odfjellDrilling",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MudPump",
+      "BrowseName": "mudPump4",
+      "UniqueName": "mudPump4",
+      "DisplayName": "mudPump4",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "PhysicalData",
+      "BrowseName": "circulationMudpump4_linerSize#01",
+      "UniqueName": "circulationMudpump4_linerSize#01",
+      "DisplayName": "circulationMudpump4_linerSize#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Liner",
+      "BrowseName": "mudPump4Liner",
+      "UniqueName": "mudPump4Liner",
+      "DisplayName": "mudPump4Liner",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationMudpump4_pressureDischarge#01",
+      "UniqueName": "circulationMudpump4_pressureDischarge#01",
+      "DisplayName": "circulationMudpump4_pressureDischarge#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationMudpump4_speedActual#01",
+      "UniqueName": "circulationMudpump4_speedActual#01",
+      "DisplayName": "circulationMudpump4_speedActual#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "SetPoint",
+      "BrowseName": "circulationMudpump4_speedSetpoint#01",
+      "UniqueName": "circulationMudpump4_speedSetpoint#01",
+      "DisplayName": "circulationMudpump4_speedSetpoint#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationMudpump4_strokes#01",
+      "UniqueName": "circulationMudpump4_strokes#01",
+      "DisplayName": "circulationMudpump4_strokes#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPit13sBrine_volume#01",
+      "UniqueName": "circulationPit13sBrine_volume#01",
+      "DisplayName": "circulationPit13sBrine_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "StorageTank",
+      "BrowseName": "pit13sBrine",
+      "UniqueName": "pit13sBrine",
+      "DisplayName": "pit13sBrine",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "TankLogical",
+      "BrowseName": "pit13sBrineLogical",
+      "UniqueName": "pit13sBrineLogical",
+      "DisplayName": "pit13sBrineLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPit14sBrine_volume#01",
+      "UniqueName": "circulationPit14sBrine_volume#01",
+      "DisplayName": "circulationPit14sBrine_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "StorageTank",
+      "BrowseName": "pit14sBrine",
+      "UniqueName": "pit14sBrine",
+      "DisplayName": "pit14sBrine",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "TankLogical",
+      "BrowseName": "pit14sBrineLogical",
+      "UniqueName": "pit14sBrineLogical",
+      "DisplayName": "pit14sBrineLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPitActiveBrine_volume#01",
+      "UniqueName": "circulationPitActiveBrine_volume#01",
+      "DisplayName": "circulationPitActiveBrine_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ActivePitLogical",
+      "BrowseName": "pitActiveBrineLogical",
+      "UniqueName": "pitActiveBrineLogical",
+      "DisplayName": "pitActiveBrineLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPitMixingBrine_volume#01",
+      "UniqueName": "circulationPitMixingBrine_volume#01",
+      "DisplayName": "circulationPitMixingBrine_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MixingTank",
+      "BrowseName": "pitMixingBrine",
+      "UniqueName": "pitMixingBrine",
+      "DisplayName": "pitMixingBrine",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "TankLogical",
+      "BrowseName": "pitMixingBrineLogical",
+      "UniqueName": "pitMixingBrineLogical",
+      "DisplayName": "pitMixingBrineLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPitMixingObm_volume#01",
+      "UniqueName": "circulationPitMixingObm_volume#01",
+      "DisplayName": "circulationPitMixingObm_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MixingTank",
+      "BrowseName": "pitMixingObm",
+      "UniqueName": "pitMixingObm",
+      "DisplayName": "pitMixingObm",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "TankLogical",
+      "BrowseName": "pitMixingObmLogical",
+      "UniqueName": "pitMixingObmLogical",
+      "DisplayName": "pitMixingObmLogical",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_linerSize#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_pressureDischarge#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/PumpRate"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_strokes#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DiscreteDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit13sBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit14sBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitActiveBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_linerSize#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationMudpump4_linerSize"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mudPump4Liner"
+      },
+      "VerbURI": "http://ddhub.no/IsSubPartOf",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "mudPump4"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_linerSize#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "mudPump4Liner"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_linerSize#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_pressureDischarge#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationMudpump4_pressureDischarge"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_pressureDischarge#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "mudPump4"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_pressureDischarge#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationMudpump4_speedActual"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "mudPump4"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationMudpump4_speedSetpoint"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "mudPump4"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_strokes#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationMudpump4_strokes"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_strokes#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "mudPump4"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_strokes#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit13sBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit13sBrine_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "pit13sBrineLogical"
+      },
+      "VerbURI": "http://ddhub.no/IsAHydraulicRepresentationFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pit13sBrine"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit13sBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pit13sBrineLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit13sBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit14sBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit14sBrine_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "pit14sBrineLogical"
+      },
+      "VerbURI": "http://ddhub.no/IsAHydraulicRepresentationFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pit14sBrine"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit14sBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pit14sBrineLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit14sBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitActiveBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitActiveBrine_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitActiveBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pitActiveBrineLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitActiveBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitMixingBrine_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "pitMixingBrineLogical"
+      },
+      "VerbURI": "http://ddhub.no/IsAHydraulicRepresentationFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pitMixingBrine"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pitMixingBrineLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitMixingObm_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "pitMixingObmLogical"
+      },
+      "VerbURI": "http://ddhub.no/IsAHydraulicRepresentationFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pitMixingObm"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pitMixingObmLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_linerSize#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "LengthStandardQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationMudpump4_linerSize"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Inch"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_pressureDischarge#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PressureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationMudpump4_pressureDischarge"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Bar"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "StrokeFrequencyQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationMudpump4_speedActual"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "StrokePerMinute"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_speedSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "StrokeFrequencyQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationMudpump4_speedSetpoint"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "StrokePerMinute"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationMudpump4_strokes#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "DimensionLessStandardQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationMudpump4_strokes"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Dimensionless"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit13sBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit13sBrine_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit14sBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit14sBrine_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitActiveBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitActiveBrine_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitMixingBrine_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitMixingObm_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "circulationMudpump4_linerSize",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationMudpump4_pressureDischarge",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationMudpump4_speedActual",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationMudpump4_speedSetpoint",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationMudpump4_strokes",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPit13sBrine_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPit14sBrine_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPitActiveBrine_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPitMixingBrine_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPitMixingObm_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    }
+  ],
+  "InjectedVocabulary": null
+}

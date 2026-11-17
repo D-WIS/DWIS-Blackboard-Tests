@@ -93,7 +93,7 @@ CHKSUM_FILE="${ARTIFACT_NAME}${CHKSUM_EXT}"
 CHKSUMPROG="${CHKSUM_TYPE}sum"
 # --------
 
-CURL_FETCH_OPTS="-s -S --fail --location --max-redirs 3"
+CURL_FETCH_OPTS="-s -S --fail --location --max-redirs 3 --retry 5 --retry-delay 15 --retry-all-errors"
 if false
 then
     echo "ARTIFACT_URL=$ARTIFACT_URL"

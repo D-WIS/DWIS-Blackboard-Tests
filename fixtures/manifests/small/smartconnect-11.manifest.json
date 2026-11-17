@@ -1,0 +1,913 @@
+{
+  "ManifestName": "SmartConnect rig signals, part 11",
+  "Provider": {
+    "Name": "SmartConnect-11",
+    "Company": "Equinor"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "Variables",
+    "InjectedNodesNamespaceAlias": "Nodes",
+    "ProvidedVariablesNamespaceAlias": "ProvidedVariables",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": [],
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "OdfjellDrilling",
+      "BrowseName": "odfjellDrilling",
+      "UniqueName": "odfjellDrilling",
+      "DisplayName": "odfjellDrilling",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "BottomOfStringReferenceLocation",
+      "BrowseName": "bottomOfString",
+      "UniqueName": "bottomOfString",
+      "DisplayName": "bottomOfString",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "RelativePressureReference",
+      "BrowseName": "differentialPressureReference",
+      "UniqueName": "differentialPressureReference",
+      "DisplayName": "differentialPressureReference",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ControllerFunction",
+      "BrowseName": "autoDriller",
+      "UniqueName": "autoDriller",
+      "DisplayName": "autoDriller",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MaximumLimit",
+      "BrowseName": "mainwellDrillingAutoDriller_overpullMax#01",
+      "UniqueName": "mainwellDrillingAutoDriller_overpullMax#01",
+      "DisplayName": "mainwellDrillingAutoDriller_overpullMax#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Overpull",
+      "BrowseName": "overpull",
+      "UniqueName": "overpull",
+      "DisplayName": "overpull",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MaximumLimit",
+      "BrowseName": "mainwellDrillingAutoDriller_ropMax#01",
+      "UniqueName": "mainwellDrillingAutoDriller_ropMax#01",
+      "DisplayName": "mainwellDrillingAutoDriller_ropMax#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MinimumLimit",
+      "BrowseName": "mainwellDrillingAutoDriller_ropMin#01",
+      "UniqueName": "mainwellDrillingAutoDriller_ropMin#01",
+      "DisplayName": "mainwellDrillingAutoDriller_ropMin#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MaximumLimit",
+      "BrowseName": "mainwellDrillingAutoDriller_wobMax#01",
+      "UniqueName": "mainwellDrillingAutoDriller_wobMax#01",
+      "DisplayName": "mainwellDrillingAutoDriller_wobMax#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ActivationState",
+      "BrowseName": "mainwellDrillingAutoDriller_constantDiffpOn#01",
+      "UniqueName": "mainwellDrillingAutoDriller_constantDiffpOn#01",
+      "DisplayName": "mainwellDrillingAutoDriller_constantDiffpOn#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ControllerFunction",
+      "BrowseName": "autoDrillerDiffPControl",
+      "UniqueName": "autoDrillerDiffPControl",
+      "DisplayName": "autoDrillerDiffPControl",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ActivationState",
+      "BrowseName": "mainwellDrillingAutoDriller_constantRopOn#01",
+      "UniqueName": "mainwellDrillingAutoDriller_constantRopOn#01",
+      "DisplayName": "mainwellDrillingAutoDriller_constantRopOn#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ControllerFunction",
+      "BrowseName": "autoDrillerROPControl",
+      "UniqueName": "autoDrillerROPControl",
+      "DisplayName": "autoDrillerROPControl",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ActivationState",
+      "BrowseName": "mainwellDrillingAutoDriller_constantWobOn#01",
+      "UniqueName": "mainwellDrillingAutoDriller_constantWobOn#01",
+      "DisplayName": "mainwellDrillingAutoDriller_constantWobOn#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ControllerFunction",
+      "BrowseName": "autoDrillerWOBControl",
+      "UniqueName": "autoDrillerWOBControl",
+      "DisplayName": "autoDrillerWOBControl",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellDrillingAutoDriller_diffpActual#01",
+      "UniqueName": "mainwellDrillingAutoDriller_diffpActual#01",
+      "DisplayName": "mainwellDrillingAutoDriller_diffpActual#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "SetPoint",
+      "BrowseName": "mainwellDrillingAutoDriller_diffpSetpoint#01",
+      "UniqueName": "mainwellDrillingAutoDriller_diffpSetpoint#01",
+      "DisplayName": "mainwellDrillingAutoDriller_diffpSetpoint#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellDrillingAutoDriller_ropActual#01",
+      "UniqueName": "mainwellDrillingAutoDriller_ropActual#01",
+      "DisplayName": "mainwellDrillingAutoDriller_ropActual#01",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "autoDriller"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/Controller"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_overpullMax#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_overpullMax#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/AxialLoadLimit"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMax#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMax#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ROPLimit"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMin#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMin#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ROPLimit"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMax#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMax#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/WOBLimit"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantDiffpOn#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/BooleanDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantRopOn#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/BooleanDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantWobOn#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/BooleanDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ROP"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_overpullMax#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_overpullMax"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_overpullMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMaximumLimitFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "autoDriller"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_overpullMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsRelatedToDrillingIncident",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "overpull"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_overpullMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMax#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_ropMax"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bottomOfString"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMaximumLimitFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "autoDriller"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMin#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_ropMin"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMin#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bottomOfString"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMin#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMinimumLimitFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "autoDriller"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMin#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMax#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_wobMax"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bottomOfString"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMaximumLimitFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "autoDriller"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantDiffpOn#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_constantDiffpOn"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantDiffpOn#01"
+      },
+      "VerbURI": "http://ddhub.no/IsActivatedSignalFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "autoDrillerDiffPControl"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantDiffpOn#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantRopOn#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_constantRopOn"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantRopOn#01"
+      },
+      "VerbURI": "http://ddhub.no/IsActivatedSignalFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "autoDrillerROPControl"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantRopOn#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantWobOn#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_constantWobOn"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantWobOn#01"
+      },
+      "VerbURI": "http://ddhub.no/IsActivatedSignalFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "autoDrillerWOBControl"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_constantWobOn#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpActual#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_diffpActual"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpActual#01"
+      },
+      "VerbURI": "http://ddhub.no/HasPressureReferenceType",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "differentialPressureReference"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_diffpSetpoint"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/HasPressureReferenceType",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "differentialPressureReference"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsSetPointFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "autoDriller"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropActual#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_ropActual"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bottomOfString"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_overpullMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "ForceDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "RateOfPenetrationDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_ropMax"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "MetrePerHour"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropMin#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "RateOfPenetrationDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_ropMin"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "MetrePerHour"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMax#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "WeightOnBitDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PressureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_diffpActual"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Bar"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_diffpSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PressureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_diffpSetpoint"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Bar"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "RateOfPenetrationDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_ropActual"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "MetrePerHour"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "mainwellDrillingAutoDriller_overpullMax",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_ropMax",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_ropMin",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_wobMax",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_constantDiffpOn",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "bool",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_constantRopOn",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "bool",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_constantWobOn",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "bool",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_diffpActual",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_diffpSetpoint",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_ropActual",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    }
+  ],
+  "InjectedVocabulary": null
+}

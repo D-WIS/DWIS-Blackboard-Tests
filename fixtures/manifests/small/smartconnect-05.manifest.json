@@ -1,0 +1,919 @@
+{
+  "ManifestName": "SmartConnect rig signals, part 05",
+  "Provider": {
+    "Name": "SmartConnect-05",
+    "Company": "Equinor"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "Variables",
+    "InjectedNodesNamespaceAlias": "Nodes",
+    "ProvidedVariablesNamespaceAlias": "ProvidedVariables",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": [],
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "OdfjellDrilling",
+      "BrowseName": "odfjellDrilling",
+      "UniqueName": "odfjellDrilling",
+      "DisplayName": "odfjellDrilling",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPitMixingWbm_volume#01",
+      "UniqueName": "circulationPitMixingWbm_volume#01",
+      "DisplayName": "circulationPitMixingWbm_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MixingTank",
+      "BrowseName": "pitMixingWbm",
+      "UniqueName": "pitMixingWbm",
+      "DisplayName": "pitMixingWbm",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "TankLogical",
+      "BrowseName": "pitMixingWbmLogical",
+      "UniqueName": "pitMixingWbmLogical",
+      "DisplayName": "pitMixingWbmLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPitReserveBrine_volume#01",
+      "UniqueName": "circulationPitReserveBrine_volume#01",
+      "DisplayName": "circulationPitReserveBrine_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ReservePitLogical",
+      "BrowseName": "pitReserveBrineLogical",
+      "UniqueName": "pitReserveBrineLogical",
+      "DisplayName": "pitReserveBrineLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPitSlugObm_volume#01",
+      "UniqueName": "circulationPitSlugObm_volume#01",
+      "DisplayName": "circulationPitSlugObm_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "SlugPitLogical",
+      "BrowseName": "pitSlugObmLogical",
+      "UniqueName": "pitSlugObmLogical",
+      "DisplayName": "pitSlugObmLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPitSlugWbm_volume#01",
+      "UniqueName": "circulationPitSlugWbm_volume#01",
+      "DisplayName": "circulationPitSlugWbm_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "SlugPitLogical",
+      "BrowseName": "pitSlugWbmLogical",
+      "UniqueName": "pitSlugWbmLogical",
+      "DisplayName": "pitSlugWbmLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPit1ActiveObm_volume#01",
+      "UniqueName": "circulationPit1ActiveObm_volume#01",
+      "DisplayName": "circulationPit1ActiveObm_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ActivePitLogical",
+      "BrowseName": "pit1ActiveObmLogical",
+      "UniqueName": "pit1ActiveObmLogical",
+      "DisplayName": "pit1ActiveObmLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPit1ActiveWbm_volume#01",
+      "UniqueName": "circulationPit1ActiveWbm_volume#01",
+      "DisplayName": "circulationPit1ActiveWbm_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ActivePitLogical",
+      "BrowseName": "pit1ActiveWbmLogical",
+      "UniqueName": "pit1ActiveWbmLogical",
+      "DisplayName": "pit1ActiveWbmLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPit1ReserveObm_volume#01",
+      "UniqueName": "circulationPit1ReserveObm_volume#01",
+      "DisplayName": "circulationPit1ReserveObm_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ReservePitLogical",
+      "BrowseName": "pit1ReserveObmLogical",
+      "UniqueName": "pit1ReserveObmLogical",
+      "DisplayName": "pit1ReserveObmLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPit1ReserveWbm_volume#01",
+      "UniqueName": "circulationPit1ReserveWbm_volume#01",
+      "DisplayName": "circulationPit1ReserveWbm_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ReservePitLogical",
+      "BrowseName": "pit1ReserveWbmLogical",
+      "UniqueName": "pit1ReserveWbmLogical",
+      "DisplayName": "pit1ReserveWbmLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPit2ActiveObm_volume#01",
+      "UniqueName": "circulationPit2ActiveObm_volume#01",
+      "DisplayName": "circulationPit2ActiveObm_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ActivePitLogical",
+      "BrowseName": "pit2ActiveObmLogical",
+      "UniqueName": "pit2ActiveObmLogical",
+      "DisplayName": "pit2ActiveObmLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "circulationPit2ActiveWbm_volume#01",
+      "UniqueName": "circulationPit2ActiveWbm_volume#01",
+      "DisplayName": "circulationPit2ActiveWbm_volume#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ActivePitLogical",
+      "BrowseName": "pit2ActiveWbmLogical",
+      "UniqueName": "pit2ActiveWbmLogical",
+      "DisplayName": "pit2ActiveWbmLogical",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitReserveBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitSlugObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitSlugWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ActiveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ActiveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ReserveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ReserveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit2ActiveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit2ActiveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitMixingWbm_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "pitMixingWbmLogical"
+      },
+      "VerbURI": "http://ddhub.no/IsAHydraulicRepresentationFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pitMixingWbm"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pitMixingWbmLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitReserveBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitReserveBrine_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitReserveBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pitReserveBrineLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitReserveBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitSlugObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitSlugObm_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitSlugObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pitSlugObmLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitSlugObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitSlugWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitSlugWbm_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitSlugWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pitSlugWbmLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitSlugWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ActiveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit1ActiveObm_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ActiveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pit1ActiveObmLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ActiveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ActiveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit1ActiveWbm_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ActiveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pit1ActiveWbmLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ActiveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ReserveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit1ReserveObm_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ReserveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pit1ReserveObmLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ReserveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ReserveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit1ReserveWbm_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ReserveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pit1ReserveWbmLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ReserveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit2ActiveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit2ActiveObm_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit2ActiveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pit2ActiveObmLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit2ActiveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit2ActiveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit2ActiveWbm_volume"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit2ActiveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "pit2ActiveWbmLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit2ActiveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitMixingWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitMixingWbm_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitReserveBrine_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitReserveBrine_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitSlugObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitSlugObm_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPitSlugWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPitSlugWbm_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ActiveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit1ActiveObm_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ActiveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit1ActiveWbm_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ReserveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit1ReserveObm_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit1ReserveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit1ReserveWbm_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit2ActiveObm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit2ActiveObm_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "circulationPit2ActiveWbm_volume#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "circulationPit2ActiveWbm_volume"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "circulationPitMixingWbm_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPitReserveBrine_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPitSlugObm_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPitSlugWbm_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPit1ActiveObm_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPit1ActiveWbm_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPit1ReserveObm_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPit1ReserveWbm_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPit2ActiveObm_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "circulationPit2ActiveWbm_volume",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    }
+  ],
+  "InjectedVocabulary": null
+}

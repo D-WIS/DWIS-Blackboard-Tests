@@ -1,0 +1,891 @@
+{
+  "ManifestName": "SmartConnect rig signals, part 07",
+  "Provider": {
+    "Name": "SmartConnect-07",
+    "Company": "Equinor"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "Variables",
+    "InjectedNodesNamespaceAlias": "Nodes",
+    "ProvidedVariablesNamespaceAlias": "ProvidedVariables",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": [],
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "OdfjellDrilling",
+      "BrowseName": "odfjellDrilling",
+      "UniqueName": "odfjellDrilling",
+      "DisplayName": "odfjellDrilling",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Degasser",
+      "BrowseName": "mudGasSeparator",
+      "UniqueName": "mudGasSeparator",
+      "DisplayName": "mudGasSeparator",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ReturnFlowLine",
+      "BrowseName": "returnFlowLine",
+      "UniqueName": "returnFlowLine",
+      "DisplayName": "returnFlowLine",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ComputedData",
+      "BrowseName": "mainwellCirculationCommon_gainLossActive#01",
+      "UniqueName": "mainwellCirculationCommon_gainLossActive#01",
+      "DisplayName": "mainwellCirculationCommon_gainLossActive#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ActivePitLogical",
+      "BrowseName": "activePitLogical",
+      "UniqueName": "activePitLogical",
+      "DisplayName": "activePitLogical",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "mainwellCirculationCommon_gasInMudH2s#01",
+      "UniqueName": "mainwellCirculationCommon_gasInMudH2s#01",
+      "DisplayName": "mainwellCirculationCommon_gasInMudH2s#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "mainwellCirculationCommon_gasInMud#01",
+      "UniqueName": "mainwellCirculationCommon_gasInMud#01",
+      "DisplayName": "mainwellCirculationCommon_gasInMud#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "mainwellCirculationCommon_levelLiquidSeal#01",
+      "UniqueName": "mainwellCirculationCommon_levelLiquidSeal#01",
+      "DisplayName": "mainwellCirculationCommon_levelLiquidSeal#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "mainwellCirculationCommon_pressureCement#01",
+      "UniqueName": "mainwellCirculationCommon_pressureCement#01",
+      "DisplayName": "mainwellCirculationCommon_pressureCement#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "CementLines",
+      "BrowseName": "cementLine",
+      "UniqueName": "cementLine",
+      "DisplayName": "cementLine",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "mainwellCirculationCommon_pressureChoke#01",
+      "UniqueName": "mainwellCirculationCommon_pressureChoke#01",
+      "DisplayName": "mainwellCirculationCommon_pressureChoke#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ChokeManifold",
+      "BrowseName": "chokeManifold",
+      "UniqueName": "chokeManifold",
+      "DisplayName": "chokeManifold",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "mainwellCirculationCommon_pressureKill#01",
+      "UniqueName": "mainwellCirculationCommon_pressureKill#01",
+      "DisplayName": "mainwellCirculationCommon_pressureKill#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "KillLine",
+      "BrowseName": "killLine",
+      "UniqueName": "killLine",
+      "DisplayName": "killLine",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "mainwellCirculationCommon_pressureLiquidSeal#01",
+      "UniqueName": "mainwellCirculationCommon_pressureLiquidSeal#01",
+      "DisplayName": "mainwellCirculationCommon_pressureLiquidSeal#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "mainwellCirculationCommon_pressureStandPipe#01",
+      "UniqueName": "mainwellCirculationCommon_pressureStandPipe#01",
+      "DisplayName": "mainwellCirculationCommon_pressureStandPipe#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MudStandpipe",
+      "BrowseName": "standpipe",
+      "UniqueName": "standpipe",
+      "DisplayName": "standpipe",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellCirculationCommon_speedActual#01",
+      "UniqueName": "mainwellCirculationCommon_speedActual#01",
+      "DisplayName": "mainwellCirculationCommon_speedActual#01",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gainLossActive#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gasInMudH2s#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gasInMud#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_levelLiquidSeal#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureCement#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureChoke#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureKill#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureLiquidSeal#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureStandPipe#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureStandPipe#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/SPP"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/PumpRate"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gainLossActive#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_gainLossActive"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gainLossActive#01"
+      },
+      "VerbURI": "http://ddhub.no/IsVolumeAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "activePitLogical"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gainLossActive#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gasInMudH2s#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_gasInMudH2s"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gasInMudH2s#01"
+      },
+      "VerbURI": "http://ddhub.no/IsHydraulicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "returnFlowLine"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gasInMudH2s#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gasInMud#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_gasInMud"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gasInMud#01"
+      },
+      "VerbURI": "http://ddhub.no/IsHydraulicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "returnFlowLine"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gasInMud#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_levelLiquidSeal#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_levelLiquidSeal"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_levelLiquidSeal#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "mudGasSeparator"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_levelLiquidSeal#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureCement#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_pressureCement"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureCement#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "cementLine"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureCement#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureChoke#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_pressureChoke"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureChoke#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "chokeManifold"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureChoke#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureKill#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_pressureKill"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureKill#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "killLine"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureKill#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureLiquidSeal#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_pressureLiquidSeal"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureLiquidSeal#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "mudGasSeparator"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureLiquidSeal#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureStandPipe#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_pressureStandPipe"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureStandPipe#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "standpipe"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureStandPipe#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_speedActual"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gainLossActive#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "VolumeDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_gainLossActive"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "CubicMetre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gasInMudH2s#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GasShowDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_gasInMudH2s"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Percent"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_gasInMud#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "GasShowDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_gasInMud"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Percent"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_levelLiquidSeal#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "ProportionStandardQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_levelLiquidSeal"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Percent"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureCement#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PressureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_pressureCement"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Bar"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureChoke#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PressureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_pressureChoke"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Bar"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureKill#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PressureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_pressureKill"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Bar"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureLiquidSeal#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PressureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_pressureLiquidSeal"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Bar"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_pressureStandPipe#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PressureDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_pressureStandPipe"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Bar"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellCirculationCommon_speedActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "StrokeFrequencyQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellCirculationCommon_speedActual"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "StrokePerMinute"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "mainwellCirculationCommon_gainLossActive",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellCirculationCommon_gasInMudH2s",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellCirculationCommon_gasInMud",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellCirculationCommon_levelLiquidSeal",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellCirculationCommon_pressureCement",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellCirculationCommon_pressureChoke",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellCirculationCommon_pressureKill",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellCirculationCommon_pressureLiquidSeal",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellCirculationCommon_pressureStandPipe",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellCirculationCommon_speedActual",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    }
+  ],
+  "InjectedVocabulary": null
+}

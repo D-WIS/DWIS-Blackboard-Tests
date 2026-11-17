@@ -5,13 +5,17 @@
 # Each cycle re-injects the SmartConnect manifest with a changed publishing interval (same id, new content
 # hash, so the commit drops and rewrites the asserted, inferred and provenance graphs), while a reader
 # runs queries on the service's /sparql and on /dwis-inf and counts answers, errors and empty answers.
-# Prints per cycle: commit ms, inferred triples, Fuseki memory; at the end: the reader's counts.
+# Each cycle also re-injects one small manifest of M3.F (fixtures/manifests/small/, the part that holds
+# the standpipe pressure) the same way, so the numbers cover one big and one small.
+# Prints per cycle: commit ms and inferred triples of the big one and of the small one, Fuseki memory;
+# at the end: the reader's counts.
 set -euo pipefail
 cd "$(dirname "$0")"
 cycles="${1:-6}"
 SEMANTIC=http://127.0.0.1:8080/api/v1
 FUSEKI=http://127.0.0.1:3030
 manifest=../fixtures/manifests/smartconnect.manifest.json
+small=../fixtures/manifests/small/smartconnect-07.manifest.json
 work="$(mktemp -d)"
 trap 'rm -rf "$work"; kill "${reader:-0}" 2>/dev/null || true' EXIT
 
@@ -35,12 +39,14 @@ reader_log="$work/reader.log"
 ) &
 reader=$!
 
-echo "cycle,commitMs,inferred,fusekiMemory"
+echo "cycle,bigCommitMs,bigInferred,smallCommitMs,smallInferred,fusekiMemory"
 for i in $(seq 1 "$cycles"); do
   sed "s/\"PublishingIntervalInMS\": [0-9.]*/\"PublishingIntervalInMS\": $i.0/" "$manifest" > "$work/m.json"
   report="$(curl -s -m 900 -X POST "$SEMANTIC/manifests" -H 'Content-Type: application/json' --data-binary "@$work/m.json")"
+  sed "s/\"PublishingIntervalInMS\": [0-9.]*/\"PublishingIntervalInMS\": $i.0/" "$small" > "$work/s.json"
+  small_report="$(curl -s -m 900 -X POST "$SEMANTIC/manifests" -H 'Content-Type: application/json' --data-binary "@$work/s.json")"
   mem="$(docker stats --no-stream --format '{{.MemUsage}}' "$(docker compose ps -q fuseki)" | cut -d/ -f1 | tr -d ' ')"
-  echo "$i,$(field "$report" commitMs),$(field "$report" inferred),$mem"
+  echo "$i,$(field "$report" commitMs),$(field "$report" inferred),$(field "$small_report" commitMs),$(field "$small_report" inferred),$mem"
 done
 touch "$work/stop"; wait "$reader" 2>/dev/null || true
 read -r ok empty errors < "$reader_log"

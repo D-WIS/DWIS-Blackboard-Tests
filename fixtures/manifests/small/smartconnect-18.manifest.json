@@ -1,0 +1,913 @@
+{
+  "ManifestName": "SmartConnect rig signals, part 18",
+  "Provider": {
+    "Name": "SmartConnect-18",
+    "Company": "Equinor"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "Variables",
+    "InjectedNodesNamespaceAlias": "Nodes",
+    "ProvidedVariablesNamespaceAlias": "ProvidedVariables",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": [],
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "OdfjellDrilling",
+      "BrowseName": "odfjellDrilling",
+      "UniqueName": "odfjellDrilling",
+      "DisplayName": "odfjellDrilling",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "BHAMechanicalLogicalElement",
+      "BrowseName": "bha",
+      "UniqueName": "bha",
+      "DisplayName": "bha",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "WellheadXmasTree",
+      "BrowseName": "wellhead",
+      "UniqueName": "wellhead",
+      "DisplayName": "wellhead",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "mainwellWellHeadStrain4_strain#01",
+      "UniqueName": "mainwellWellHeadStrain4_strain#01",
+      "DisplayName": "mainwellWellHeadStrain4_strain#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MeasurementDevice",
+      "BrowseName": "wellheadStrainSensor4",
+      "UniqueName": "wellheadStrainSensor4",
+      "DisplayName": "wellheadStrainSensor4",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DirectMeasurement",
+      "BrowseName": "marineMotionDrillFloor_heave#01",
+      "UniqueName": "marineMotionDrillFloor_heave#01",
+      "DisplayName": "marineMotionDrillFloor_heave#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DrillFloorStructure",
+      "BrowseName": "drillFloor",
+      "UniqueName": "drillFloor",
+      "DisplayName": "drillFloor",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MeasurementDevice",
+      "BrowseName": "rigMotionReferenceUnit",
+      "UniqueName": "rigMotionReferenceUnit",
+      "DisplayName": "rigMotionReferenceUnit",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DirectMeasurement",
+      "BrowseName": "marineMotionDrillFloor_pitch#01",
+      "UniqueName": "marineMotionDrillFloor_pitch#01",
+      "DisplayName": "marineMotionDrillFloor_pitch#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DirectMeasurement",
+      "BrowseName": "marineMotionDrillFloor_roll#01",
+      "UniqueName": "marineMotionDrillFloor_roll#01",
+      "DisplayName": "marineMotionDrillFloor_roll#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DirectMeasurement",
+      "BrowseName": "marinePositionDrillFloor_latitude#01",
+      "UniqueName": "marinePositionDrillFloor_latitude#01",
+      "DisplayName": "marinePositionDrillFloor_latitude#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MeasurementDevice",
+      "BrowseName": "rigGpsReceiver",
+      "UniqueName": "rigGpsReceiver",
+      "DisplayName": "rigGpsReceiver",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DirectMeasurement",
+      "BrowseName": "marinePositionDrillFloor_longitude#01",
+      "UniqueName": "marinePositionDrillFloor_longitude#01",
+      "DisplayName": "marinePositionDrillFloor_longitude#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "caliper4D_depthCaliper_C4DDEPTH#01",
+      "UniqueName": "caliper4D_depthCaliper_C4DDEPTH#01",
+      "DisplayName": "caliper4D_depthCaliper_C4DDEPTH#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_depthCaliper_C4DDIAAVG#01",
+      "UniqueName": "caliper4D_depthCaliper_C4DDIAAVG#01",
+      "DisplayName": "caliper4D_depthCaliper_C4DDIAAVG#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_depthCaliper_C4DDIAMAX#01",
+      "UniqueName": "caliper4D_depthCaliper_C4DDIAMAX#01",
+      "DisplayName": "caliper4D_depthCaliper_C4DDIAMAX#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "caliper4D_depthCaliper_C4DDIAMAXAZHS#01",
+      "UniqueName": "caliper4D_depthCaliper_C4DDIAMAXAZHS#01",
+      "DisplayName": "caliper4D_depthCaliper_C4DDIAMAXAZHS#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "GravityHighSideAngleLocation",
+      "BrowseName": "gravityHighSide",
+      "UniqueName": "gravityHighSide",
+      "DisplayName": "gravityHighSide",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellWellHeadStrain4_strain#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_heave#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_pitch#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_roll#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_latitude#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_longitude#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDEPTH#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAAVG#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAX#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAXAZHS#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellWellHeadStrain4_strain#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellWellHeadStrain4_strain"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellWellHeadStrain4_strain#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "wellhead"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellWellHeadStrain4_strain#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMeasuredBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "wellheadStrainSensor4"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellWellHeadStrain4_strain#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_heave#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "marineMotionDrillFloor_heave"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_heave#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "drillFloor"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_heave#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMeasuredBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "rigMotionReferenceUnit"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_heave#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_pitch#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "marineMotionDrillFloor_pitch"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_pitch#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "drillFloor"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_pitch#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMeasuredBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "rigMotionReferenceUnit"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_pitch#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_roll#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "marineMotionDrillFloor_roll"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_roll#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "drillFloor"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_roll#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMeasuredBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "rigMotionReferenceUnit"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_roll#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_latitude#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "marinePositionDrillFloor_latitude"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_latitude#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "drillFloor"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_latitude#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMeasuredBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "rigGpsReceiver"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_latitude#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_longitude#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "marinePositionDrillFloor_longitude"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_longitude#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "drillFloor"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_longitude#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMeasuredBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "rigGpsReceiver"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_longitude#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDEPTH#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthCaliper_C4DDEPTH"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDEPTH#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAAVG#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthCaliper_C4DDIAAVG"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAAVG#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAX#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAX"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAX#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAXAZHS#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAXAZHS"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAXAZHS#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "gravityHighSide"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAXAZHS#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMechanicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bha"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellWellHeadStrain4_strain#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "DimensionLessStandardQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellWellHeadStrain4_strain"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Dimensionless"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_heave#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PositionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "marineMotionDrillFloor_heave"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Metre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_pitch#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "marineMotionDrillFloor_pitch"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marineMotionDrillFloor_roll#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "marineMotionDrillFloor_roll"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_latitude#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleGeodesicQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "marinePositionDrillFloor_latitude"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "marinePositionDrillFloor_longitude#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleGeodesicQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "marinePositionDrillFloor_longitude"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDEPTH#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "DepthDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthCaliper_C4DDEPTH"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Metre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAAVG#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "LengthStandardQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthCaliper_C4DDIAAVG"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Inch"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAX#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "LengthStandardQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAX"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Inch"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAXAZHS#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PlaneAngleDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "caliper4D_depthCaliper_C4DDIAMAXAZHS"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Degree"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "mainwellWellHeadStrain4_strain",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "marineMotionDrillFloor_heave",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "marineMotionDrillFloor_pitch",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "marineMotionDrillFloor_roll",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "marinePositionDrillFloor_latitude",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "marinePositionDrillFloor_longitude",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_depthCaliper_C4DDEPTH",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_depthCaliper_C4DDIAAVG",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_depthCaliper_C4DDIAMAX",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "caliper4D_depthCaliper_C4DDIAMAXAZHS",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    }
+  ],
+  "InjectedVocabulary": null
+}

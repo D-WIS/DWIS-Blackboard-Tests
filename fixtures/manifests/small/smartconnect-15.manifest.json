@@ -1,0 +1,818 @@
+{
+  "ManifestName": "SmartConnect rig signals, part 15",
+  "Provider": {
+    "Name": "SmartConnect-15",
+    "Company": "Equinor"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "Variables",
+    "InjectedNodesNamespaceAlias": "Nodes",
+    "ProvidedVariablesNamespaceAlias": "ProvidedVariables",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": [],
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "OdfjellDrilling",
+      "BrowseName": "odfjellDrilling",
+      "UniqueName": "odfjellDrilling",
+      "DisplayName": "odfjellDrilling",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "RiserTensioners",
+      "BrowseName": "riserTensioner1",
+      "UniqueName": "riserTensioner1",
+      "DisplayName": "riserTensioner1",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellRiserTensionTensioner1_tension#01",
+      "UniqueName": "mainwellRiserTensionTensioner1_tension#01",
+      "DisplayName": "mainwellRiserTensionTensioner1_tension#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DirectMeasurement",
+      "BrowseName": "mainwellRiserTensionTensioner2_position#01",
+      "UniqueName": "mainwellRiserTensionTensioner2_position#01",
+      "DisplayName": "mainwellRiserTensionTensioner2_position#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "RiserTensioners",
+      "BrowseName": "riserTensioner2",
+      "UniqueName": "riserTensioner2",
+      "DisplayName": "riserTensioner2",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellRiserTensionTensioner2_tension#01",
+      "UniqueName": "mainwellRiserTensionTensioner2_tension#01",
+      "DisplayName": "mainwellRiserTensionTensioner2_tension#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DirectMeasurement",
+      "BrowseName": "mainwellRiserTensionTensioner3_position#01",
+      "UniqueName": "mainwellRiserTensionTensioner3_position#01",
+      "DisplayName": "mainwellRiserTensionTensioner3_position#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "RiserTensioners",
+      "BrowseName": "riserTensioner3",
+      "UniqueName": "riserTensioner3",
+      "DisplayName": "riserTensioner3",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellRiserTensionTensioner3_tension#01",
+      "UniqueName": "mainwellRiserTensionTensioner3_tension#01",
+      "DisplayName": "mainwellRiserTensionTensioner3_tension#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DirectMeasurement",
+      "BrowseName": "mainwellRiserTensionTensioner4_position#01",
+      "UniqueName": "mainwellRiserTensionTensioner4_position#01",
+      "DisplayName": "mainwellRiserTensionTensioner4_position#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "RiserTensioners",
+      "BrowseName": "riserTensioner4",
+      "UniqueName": "riserTensioner4",
+      "DisplayName": "riserTensioner4",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellRiserTensionTensioner4_tension#01",
+      "UniqueName": "mainwellRiserTensionTensioner4_tension#01",
+      "DisplayName": "mainwellRiserTensionTensioner4_tension#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DirectMeasurement",
+      "BrowseName": "mainwellRiserTensionTensioner5_position#01",
+      "UniqueName": "mainwellRiserTensionTensioner5_position#01",
+      "DisplayName": "mainwellRiserTensionTensioner5_position#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "RiserTensioners",
+      "BrowseName": "riserTensioner5",
+      "UniqueName": "riserTensioner5",
+      "DisplayName": "riserTensioner5",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellRiserTensionTensioner5_tension#01",
+      "UniqueName": "mainwellRiserTensionTensioner5_tension#01",
+      "DisplayName": "mainwellRiserTensionTensioner5_tension#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DirectMeasurement",
+      "BrowseName": "mainwellRiserTensionTensioner6_position#01",
+      "UniqueName": "mainwellRiserTensionTensioner6_position#01",
+      "DisplayName": "mainwellRiserTensionTensioner6_position#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "RiserTensioners",
+      "BrowseName": "riserTensioner6",
+      "UniqueName": "riserTensioner6",
+      "DisplayName": "riserTensioner6",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner1_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner2_position#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner2_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner3_position#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner3_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner4_position#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner4_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner5_position#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner5_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner6_position#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner1_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner1_tension"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner1_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "riserTensioner1"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner1_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner2_position#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner2_position"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner2_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "riserTensioner2"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner2_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner2_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner2_tension"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner2_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "riserTensioner2"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner2_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner3_position#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner3_position"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner3_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "riserTensioner3"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner3_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner3_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner3_tension"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner3_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "riserTensioner3"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner3_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner4_position#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner4_position"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner4_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "riserTensioner4"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner4_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner4_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner4_tension"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner4_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "riserTensioner4"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner4_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner5_position#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner5_position"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner5_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "riserTensioner5"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner5_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner5_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner5_tension"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner5_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "riserTensioner5"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner5_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner6_position#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner6_position"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner6_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "riserTensioner6"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner6_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner1_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "TensionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner2_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PositionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner2_position"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Metre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner2_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "TensionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner3_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PositionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner3_position"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Metre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner3_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "TensionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner4_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PositionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner4_position"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Metre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner4_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "TensionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner5_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PositionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner5_position"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Metre"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner5_tension#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "TensionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellRiserTensionTensioner6_position#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "PositionDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellRiserTensionTensioner6_position"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "Metre"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "mainwellRiserTensionTensioner1_tension",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellRiserTensionTensioner2_position",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellRiserTensionTensioner2_tension",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellRiserTensionTensioner3_position",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellRiserTensionTensioner3_tension",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellRiserTensionTensioner4_position",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellRiserTensionTensioner4_tension",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellRiserTensionTensioner5_position",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellRiserTensionTensioner5_tension",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellRiserTensionTensioner6_position",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    }
+  ],
+  "InjectedVocabulary": null
+}

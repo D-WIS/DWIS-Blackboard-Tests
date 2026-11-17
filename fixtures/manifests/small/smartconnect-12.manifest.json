@@ -1,0 +1,979 @@
+{
+  "ManifestName": "SmartConnect rig signals, part 12",
+  "Provider": {
+    "Name": "SmartConnect-12",
+    "Company": "Equinor"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "Variables",
+    "InjectedNodesNamespaceAlias": "Nodes",
+    "ProvidedVariablesNamespaceAlias": "ProvidedVariables",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": [],
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "OdfjellDrilling",
+      "BrowseName": "odfjellDrilling",
+      "UniqueName": "odfjellDrilling",
+      "DisplayName": "odfjellDrilling",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "BottomOfStringReferenceLocation",
+      "BrowseName": "bottomOfString",
+      "UniqueName": "bottomOfString",
+      "DisplayName": "bottomOfString",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ControllerFunction",
+      "BrowseName": "autoDriller",
+      "UniqueName": "autoDriller",
+      "DisplayName": "autoDriller",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "SetPoint",
+      "BrowseName": "mainwellDrillingAutoDriller_ropSetpoint#01",
+      "UniqueName": "mainwellDrillingAutoDriller_ropSetpoint#01",
+      "DisplayName": "mainwellDrillingAutoDriller_ropSetpoint#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellDrillingAutoDriller_wobActual#01",
+      "UniqueName": "mainwellDrillingAutoDriller_wobActual#01",
+      "DisplayName": "mainwellDrillingAutoDriller_wobActual#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellDrillingAutoDriller_wobMaxLast3Min#01",
+      "UniqueName": "mainwellDrillingAutoDriller_wobMaxLast3Min#01",
+      "DisplayName": "mainwellDrillingAutoDriller_wobMaxLast3Min#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MovingMax",
+      "BrowseName": "movingMaxWob",
+      "UniqueName": "movingMaxWob",
+      "DisplayName": "movingMaxWob",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "TimeWindow",
+      "BrowseName": "wobMaxWindow",
+      "UniqueName": "wobMaxWindow",
+      "DisplayName": "wobMaxWindow",
+      "Fields": [
+        {
+          "FieldName": "Duration",
+          "FieldValue": "180.0"
+        }
+      ]
+    },
+    {
+      "TypeDictionaryURI": "SetPoint",
+      "BrowseName": "mainwellDrillingAutoDriller_wobSetpoint#01",
+      "UniqueName": "mainwellDrillingAutoDriller_wobSetpoint#01",
+      "DisplayName": "mainwellDrillingAutoDriller_wobSetpoint#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellDrillingCommon_ropAverage#01",
+      "UniqueName": "mainwellDrillingCommon_ropAverage#01",
+      "DisplayName": "mainwellDrillingCommon_ropAverage#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MovingAverage",
+      "BrowseName": "movingAverageRop",
+      "UniqueName": "movingAverageRop",
+      "DisplayName": "movingAverageRop",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "EnablementState",
+      "BrowseName": "mainwellDrillingDrillingAutomation_novosEnabled#01",
+      "UniqueName": "mainwellDrillingDrillingAutomation_novosEnabled#01",
+      "DisplayName": "mainwellDrillingDrillingAutomation_novosEnabled#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ActivableFunction",
+      "BrowseName": "novosDrillingAutomation",
+      "UniqueName": "novosDrillingAutomation",
+      "DisplayName": "novosDrillingAutomation",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellHoistingCommon_loadActual#01",
+      "UniqueName": "mainwellHoistingCommon_loadActual#01",
+      "DisplayName": "mainwellHoistingCommon_loadActual#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Hook",
+      "BrowseName": "hook",
+      "UniqueName": "hook",
+      "DisplayName": "hook",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "ProcessData",
+      "BrowseName": "mainwellHoistingCommon_loadAddedWeightTravelingBlock#01",
+      "UniqueName": "mainwellHoistingCommon_loadAddedWeightTravelingBlock#01",
+      "DisplayName": "mainwellHoistingCommon_loadAddedWeightTravelingBlock#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "TravellingBlock",
+      "BrowseName": "travellingBlock",
+      "UniqueName": "travellingBlock",
+      "DisplayName": "travellingBlock",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DerivedMeasurement",
+      "BrowseName": "mainwellHoistingCommon_loadDeadlineAnchor#01",
+      "UniqueName": "mainwellHoistingCommon_loadDeadlineAnchor#01",
+      "DisplayName": "mainwellHoistingCommon_loadDeadlineAnchor#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "DeadLineAnchor",
+      "BrowseName": "deadLineAnchor",
+      "UniqueName": "deadLineAnchor",
+      "DisplayName": "deadLineAnchor",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MeasurementDevice",
+      "BrowseName": "deadLineAnchorPressureSensor",
+      "UniqueName": "deadLineAnchorPressureSensor",
+      "DisplayName": "deadLineAnchorPressureSensor",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "Measurement",
+      "BrowseName": "mainwellHoistingCommon_loadTravelingBlock#01",
+      "UniqueName": "mainwellHoistingCommon_loadTravelingBlock#01",
+      "DisplayName": "mainwellHoistingCommon_loadTravelingBlock#01",
+      "Fields": null
+    },
+    {
+      "TypeDictionaryURI": "MeasurementDevice",
+      "BrowseName": "travellingBlockLoadPins",
+      "UniqueName": "travellingBlockLoadPins",
+      "DisplayName": "travellingBlockLoadPins",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "autoDriller"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/Controller"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ROP"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/WOB"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/DrillingDataPoint"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMaxLast3Min#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/WOB"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingCommon_ropAverage#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingCommon_ropAverage#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ROP"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingDrillingAutomation_novosEnabled#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/BooleanDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadActual#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/HookLoad"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadAddedWeightTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadDeadlineAnchor#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/BelongsToClass",
+      "Object": {
+        "NameSpace": "http://ddhub.no/",
+        "ID": "http://ddhub.no/ContinuousDataType"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_ropSetpoint"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bottomOfString"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsSetPointFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "autoDriller"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobActual#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_wobActual"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bottomOfString"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMaxLast3Min#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_wobMaxLast3Min"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "movingMaxWob"
+      },
+      "VerbURI": "http://ddhub.no/HasTimeWindow",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "wobMaxWindow"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMaxLast3Min#01"
+      },
+      "VerbURI": "http://ddhub.no/IsTransformationOutput",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "movingMaxWob"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsTransformationInput",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "movingMaxWob"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMaxLast3Min#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bottomOfString"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMaxLast3Min#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_wobSetpoint"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bottomOfString"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsSetPointFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "autoDriller"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingCommon_ropAverage#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingCommon_ropAverage"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingCommon_ropAverage#01"
+      },
+      "VerbURI": "http://ddhub.no/IsTransformationOutput",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "movingAverageRop"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingCommon_ropAverage#01"
+      },
+      "VerbURI": "http://ddhub.no/IsPhysicallyLocatedAt",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "bottomOfString"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingCommon_ropAverage#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingDrillingAutomation_novosEnabled#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingDrillingAutomation_novosEnabled"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingDrillingAutomation_novosEnabled#01"
+      },
+      "VerbURI": "http://ddhub.no/IsEnablingSignalFor",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "novosDrillingAutomation"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingDrillingAutomation_novosEnabled#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadActual#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellHoistingCommon_loadActual"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "hook"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadAddedWeightTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellHoistingCommon_loadAddedWeightTravelingBlock"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadAddedWeightTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "travellingBlock"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadAddedWeightTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadDeadlineAnchor#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellHoistingCommon_loadDeadlineAnchor"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadDeadlineAnchor#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "deadLineAnchor"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadDeadlineAnchor#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMeasuredBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "deadLineAnchorPressureSensor"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadDeadlineAnchor#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellHoistingCommon_loadTravelingBlock"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/IsLocatedAtEquipment",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "travellingBlock"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/IsMeasuredBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "travellingBlockLoadPins"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/IsProvidedBy",
+      "Object": {
+        "NameSpace": "Nodes",
+        "ID": "odfjellDrilling"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_ropSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "RateOfPenetrationDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingAutoDriller_ropSetpoint"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "MetrePerHour"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "WeightOnBitDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobMaxLast3Min#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "WeightOnBitDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingAutoDriller_wobSetpoint#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "WeightOnBitDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellDrillingCommon_ropAverage#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "RateOfPenetrationDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "ProvidedVariables",
+        "ID": "mainwellDrillingCommon_ropAverage"
+      },
+      "VerbURI": "http://ddhub.no/HasUnitOfMeasure",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "MetrePerHour"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadActual#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "HookLoadDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadAddedWeightTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "ForceDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadDeadlineAnchor#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "HookLoadDrillingQuantity"
+      }
+    },
+    {
+      "Subject": {
+        "NameSpace": "Nodes",
+        "ID": "mainwellHoistingCommon_loadTravelingBlock#01"
+      },
+      "VerbURI": "http://ddhub.no/IsOfMeasurableQuantity",
+      "Object": {
+        "NameSpace": "http://ddhub.no/UnitAndQuantity/",
+        "ID": "HookLoadDrillingQuantity"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "mainwellDrillingAutoDriller_ropSetpoint",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_wobActual",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_wobMaxLast3Min",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingAutoDriller_wobSetpoint",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingCommon_ropAverage",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellDrillingDrillingAutomation_novosEnabled",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "bool",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellHoistingCommon_loadActual",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellHoistingCommon_loadAddedWeightTravelingBlock",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellHoistingCommon_loadDeadlineAnchor",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    },
+    {
+      "VariableID": "mainwellHoistingCommon_loadTravelingBlock",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": ""
+    }
+  ],
+  "InjectedVocabulary": null
+}
