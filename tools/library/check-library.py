@@ -33,6 +33,8 @@ STABLE_FINDING_FIELDS = ("stage", "severity", "code", "message", "focus", "path"
 def trim(status, body):
     """The stable part of an answer: a report, or an error body when the service refused the manifest."""
     if not isinstance(body, dict) or "findings" not in body:
+        if isinstance(body, dict):
+            body = {k: v for k, v in body.items() if k != "traceId"}  # the trace id of a problem answer changes per run
         return {"status": status, "answer": body}
     findings = [{k: f.get(k) for k in STABLE_FINDING_FIELDS if f.get(k) is not None} for f in body.get("findings", [])]
     findings.sort(key=lambda f: json.dumps(f, sort_keys=True))
