@@ -141,6 +141,15 @@ by_class_both="$(host_query 'PREFIX dwis: <http://d-wis.org/>
 SELECT ?signal WHERE { ?dp a dwis:SPP ; dwis:HasDynamicValue ?signal . }')"
 [ "$(printf '%s\n' "$by_class_both" | wc -l)" -eq 2 ] || { echo "expected the SPP signal from the big manifest and from one small one"; printf '%s\n' "$by_class_both"; exit 1; }
 
+# 2c. The manifest library (M4.F, Tests #21): real manifests from the projects that wrote them, one
+# folder each under fixtures/manifests/library/ with the validation report the service is expected to
+# return. tools/library/check-library.py injects each one, compares the stable part of the report
+# with expected-report.json, prints the timings, and removes the manifest again, so the steps below
+# see the same store as before. A difference is a failure; a missing expected report prints the
+# report to record.
+echo "manifest library:"
+python3 ../tools/library/check-library.py --semantic "${SEMANTIC}" ../fixtures/manifests/library
+
 # 3. The kilogram copy: one error, core-only, the whole manifest in quarantine (T-SEM-9, T-SEM-10).
 # Demo of milestone 2: the report says what is wrong, where, and what is live.
 report="$(inject ../fixtures/manifests/smartconnect-kilogram.manifest.json)"
