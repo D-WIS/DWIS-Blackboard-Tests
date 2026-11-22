@@ -72,18 +72,27 @@ jobs:
         env:
           FUSEKI_TAG: ci
         run: docker compose -f compose/compose.yaml build fuseki
-      - name: Pull the semantic edge image, and the Fuseki edge image when it is not built here
+      - name: Pull the semantic and real-time edge images, and the Fuseki edge image when it is not built here
         if: hashFiles('fuseki/Dockerfile') != ''
         env:
           SEMANTIC_TAG: edge
+          REALTIME_TAG: edge
           FUSEKI_TAG: ${{ steps.fuseki.outputs.tag }}
         run: |
           docker compose -f compose/compose.yaml pull semantic
           if [ "$FUSEKI_TAG" != "ci" ]; then docker compose -f compose/compose.yaml pull fuseki; fi
-      - name: Start the stack, load the vocabulary, run the checks through the service
+          # The real-time edge image is pushed by the merge workflow of DWIS-Blackboard-RealTime once the
+          # organisation secrets reach that repository; until then it is built here from that repository's main.
+          if ! docker compose -f compose/compose.yaml pull realtime; then
+            echo "::notice::digiwells/dwis.blackboard.realtime:edge is not on Docker Hub; building it from DWIS-Blackboard-RealTime main."
+            git clone --depth 1 https://github.com/D-WIS/DWIS-Blackboard-RealTime ../DWIS-Blackboard-RealTime
+            docker compose -f compose/compose.yaml build realtime
+          fi
+      - name: Start the stack, load the vocabulary, run the checks and the demos
         if: hashFiles('fuseki/Dockerfile') != ''
         env:
           SEMANTIC_TAG: edge
+          REALTIME_TAG: edge
           FUSEKI_TAG: ${{ steps.fuseki.outputs.tag }}
         run: ./compose/smoke.sh --no-build
       - name: Scan the Fuseki image built here
@@ -99,6 +108,7 @@ jobs:
         run: |
           docker compose -f compose/compose.yaml logs --no-log-prefix fuseki | tail -100
           docker compose -f compose/compose.yaml logs --no-log-prefix semantic | tail -100
+          docker compose -f compose/compose.yaml logs --no-log-prefix realtime | tail -100
       - name: Stop the stack
         if: always() && hashFiles('fuseki/Dockerfile') != ''
         run: docker compose -f compose/compose.yaml down -v

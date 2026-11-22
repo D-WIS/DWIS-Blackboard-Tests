@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- The consumer console (M4.4, Tests #22): a provider and a consumer of the real-time process over OPC UA
+       only, on the published C# client 2.2.x (R-BC-1, T-EP-1). Nothing here knows the Rig Edition: the client
+       is the one every DWIS application uses against the old server. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AssemblyName>DWIS.Blackboard.Consumer</AssemblyName>
+    <RootNamespace>DWIS.Blackboard.Consumer</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- The package ships a copy of the client's configuration file as content; this project carries its own
+         (config/, with certificate stores a CI runner can write), so the package's copy is left out. -->
+    <PackageReference Include="DWIS.Client.ReferenceImplementation.OPCFoundation" Version="2.2.56" ExcludeAssets="contentFiles" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config\Quickstarts.ReferenceClient.Config.xml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
