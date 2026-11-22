@@ -59,7 +59,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      SEMANTIC_IMAGE: ${{ github.event.client_payload.image || 'digiwells/dwis.blackboard.semantic:edge' }}
+      # A dispatch names the image that was just pushed (sha tag); a push, the nightly run and a run by hand
+      # take the edge tags. The other image stays on edge.
+      SEMANTIC_IMAGE: ${{ github.event.action == 'semantic-edge' && github.event.client_payload.image || 'digiwells/dwis.blackboard.semantic:edge' }}
+      REALTIME_IMAGE: ${{ github.event.action == 'realtime-edge' && github.event.client_payload.image || 'digiwells/dwis.blackboard.realtime:edge' }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-dotnet@v6
@@ -88,6 +91,28 @@ jobs:
           path: TestResults
           if-no-files-found: ignore
 
+      - name: Pull the images of the stack (the Fuseki edge image, the semantic and real-time images named above)
+        run: |
+          echo "FUSEKI_TAG=edge" >> "$GITHUB_ENV"
+          echo "SEMANTIC_TAG=${SEMANTIC_IMAGE##*:}" >> "$GITHUB_ENV"
+          echo "REALTIME_TAG=${REALTIME_IMAGE##*:}" >> "$GITHUB_ENV"
+          docker pull digiwells/dwis.blackboard.fuseki:edge
+          docker pull "$SEMANTIC_IMAGE"
+          # The real-time edge image is pushed by the merge workflow of DWIS-Blackboard-RealTime once the
+          # organisation secrets reach that repository; until then it is built here from that repository's main.
+          if ! docker pull "$REALTIME_IMAGE"; then
+            echo "::notice::$REALTIME_IMAGE is not on Docker Hub; building it from DWIS-Blackboard-RealTime main."
+            git clone --depth 1 https://github.com/D-WIS/DWIS-Blackboard-RealTime ../DWIS-Blackboard-RealTime
+            REALTIME_TAG="${REALTIME_IMAGE##*:}" docker compose -f compose/compose.yaml build realtime
+          fi
+      - name: Run the checks and the demos of milestones 1 to 4 against those images (M4.4)
+        run: ./compose/smoke.sh --no-build --down
+      - name: Stack logs on failure
+        if: failure()
+        run: |
+          docker compose -f compose/compose.yaml logs --no-log-prefix semantic | tail -100
+          docker compose -f compose/compose.yaml logs --no-log-prefix realtime | tail -100
+          docker compose -f compose/compose.yaml down -v
       - name: Performance suite (nightly only)
         if: github.event_name == 'schedule' && steps.sln.outputs.file != ''
         run: echo "Performance suite arrives in milestone 5."

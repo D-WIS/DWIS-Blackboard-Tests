@@ -1,19 +1,23 @@
-# DWIS Blackboard Rig Edition: the store and the semantic service (milestone 1, issues M1.3 and M1.7).
-# The real-time process joins in M4.
+# DWIS Blackboard Rig Edition: the store, the semantic service (milestone 1, issues M1.3 and M1.7) and the
+# real-time process (milestone 4, Tests #22).
 #
-#   docker compose up -d             build the images, start Fuseki, load the vocabulary, start the service
+#   docker compose up -d             build the images, start Fuseki, load the vocabulary, start the services
 #   docker compose wait vocabulary   exit code 0 once the vocabulary is loaded and checked
-#   ./smoke.sh                       all of the above plus the checks of roadmap F.3 through the service
+#   ./smoke.sh                       all of the above plus the checks and demos of milestones 1 to 4
 #
 # Ports 3030 (Fuseki), 8080 (the service's internal API, specification 3.4) and 8081 (its gRPC service,
-# specification 3.3) are published on localhost only, for inspection in the lab profile (specification 7).
+# specification 3.3) are published on localhost only, for inspection in the lab profile (specification 7,
+# T-EP-2). Port 48030 is the OPC UA endpoint of the real-time process, the old server's address, published
+# on localhost too: the applications on this machine connect to opc.tcp://localhost:48030 as they always did.
 #
 # The semantic image is digiwells/dwis.blackboard.semantic (SEMANTIC_TAG, default edge, pushed by the
 # merge workflow of DWIS-Blackboard-Semantic). When it is not at hand, `docker compose build` builds it
 # from a checkout of DWIS-Blackboard-Semantic at SEMANTIC_SOURCE (default: the sibling folder of this
-# repository). The Fuseki image is digiwells/dwis.blackboard.fuseki (FUSEKI_TAG, default dev, built
-# from ../fuseki; the merge workflow of this repository pushes edge). `docker compose pull` fetches
-# the published tags instead of building.
+# repository). The real-time image is digiwells/dwis.blackboard.realtime (REALTIME_TAG, default edge,
+# pushed by the merge workflow of DWIS-Blackboard-RealTime), built from REALTIME_SOURCE the same way.
+# The Fuseki image is digiwells/dwis.blackboard.fuseki (FUSEKI_TAG, default dev, built from ../fuseki;
+# the merge workflow of this repository pushes edge). `docker compose pull` fetches the published tags
+# instead of building.
 
 name: dwis-blackboard
 
@@ -79,5 +83,31 @@ services:
       - "127.0.0.1:8081:8081"
     restart: unless-stopped
 
+  realtime:
+    # The real-time process (DWIS-Blackboard-RealTime): the OPC UA server with the DDHubServer object the old
+    # clients call. It talks to the semantic service over gRPC on the stack's network, keeps retrying until the
+    # service answers its list of manifests, then creates the folders and variables of every live manifest
+    # (R-RT-6). Its endpoint names localhost, as the old server did, so that a client on this machine matches
+    # the endpoint it asked for; a client inside the network reaches it as opc.tcp://realtime:48030.
+    # The host name is fixed: the application certificate kept in the realtime-pki volume names the host it was
+    # made on, and the process refuses to start with a certificate for another host, so a container recreated
+    # from a new image must have the same name as the one that made the certificate.
+    build:
+      context: ${REALTIME_SOURCE:-../../DWIS-Blackboard-RealTime}
+    image: digiwells/dwis.blackboard.realtime:${REALTIME_TAG:-edge}
+    hostname: realtime
+    depends_on:
+      semantic:
+        condition: service_started
+    environment:
+      DWIS__RealTime__SemanticAddress: http://semantic:8081
+      DWIS__RealTime__EndpointUrl: opc.tcp://localhost:48030
+    ports:
+      - "127.0.0.1:48030:48030"
+    volumes:
+      - realtime-pki:/app/pki
+    restart: unless-stopped
+
 volumes:
   fuseki-databases:
+  realtime-pki:

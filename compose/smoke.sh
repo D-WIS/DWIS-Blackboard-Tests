@@ -297,6 +297,45 @@ for n in 1 2; do
   grep -q '^stream ended' "$work/subscriber-$n.log" || { echo "subscriber $n did not notice the restart"; cat "$work/subscriber-$n.log"; exit 1; }
 done
 echo "milestone 3 demo passed: $(grep -m 1 'done:' "$work/subscriber-1.log")"
+
+# 8. Demo of milestone 4 (M4.4, Tests #22): the real-time process in the stack, used through OPC UA only by
+# the unchanged C# client 2.2.x from nuget.org (tools/consumer; R-BC-1, T-EP-1). The manifests injected over
+# HTTP above have no OPC UA nodes until the process reads the service's list, which it does at start-up: so
+# it is restarted first and rebuilds the folders and variables of every live manifest (R-RT-6). Then a
+# provider injects the SmartConnect manifest through DDHubServer.Inject (identical content: already live,
+# the nodes answer) and writes a value to every variable every half second, while a consumer resolves the
+# two F.3 queries through ResolveQuery, registers the first through RegisterQuery, subscribes to the signals
+# it returned and prints the live values it sees.
+echo "milestone 4 demo: the real-time process restarts, a provider writes over OPC UA, a consumer reads"
+REALTIME=opc.tcp://127.0.0.1:48030
+rebuilds_before="$(docker compose logs --no-log-prefix realtime 2>/dev/null | grep -c 'Rebuild 2 from the semantic service' || true)"
+docker compose restart realtime > /dev/null 2>&1
+i=0
+until [ "$(docker compose logs --no-log-prefix realtime 2>/dev/null | grep -c 'Rebuild 2 from the semantic service' || true)" -gt "$rebuilds_before" ]; do
+  i=$((i + 1)); [ "$i" -lt 60 ] || { echo "the real-time process did not rebuild after the restart"; docker compose logs --no-log-prefix realtime | tail -40; exit 1; }; sleep 2
+done
+echo "  $(docker compose logs --no-log-prefix realtime | grep 'Rebuild 2 from the semantic service' | tail -1 | sed 's/^ *//')"
+consumer_project=../tools/consumer/DWIS.Blackboard.Consumer.csproj
+dotnet build "$consumer_project" -c Release -v q --nologo > "$work/consumer-build.log" 2>&1 || { echo "the consumer console does not build"; cat "$work/consumer-build.log"; exit 1; }
+consumer_dll=../tools/consumer/bin/Release/net10.0/DWIS.Blackboard.Consumer.dll
+dotnet "$consumer_dll" write --address "$REALTIME" --manifest ../fixtures/manifests/smartconnect.manifest.json --seconds 90 > "$work/provider.log" 2>&1 &
+provider=$!
+i=0
+until grep -q '^injected' "$work/provider.log"; do
+  i=$((i + 1)); [ "$i" -lt 60 ] || { echo "the provider did not inject over OPC UA"; cat "$work/provider.log"; exit 1; }; sleep 1
+done
+echo "  $(grep -m 1 '^injected' "$work/provider.log")"
+grep -q '^injected.*success True' "$work/provider.log" || { echo "the injection over OPC UA did not succeed"; cat "$work/provider.log"; exit 1; }
+if dotnet "$consumer_dll" consume --address "$REALTIME" --until-values 6 --timeout 60 > "$work/consumer.log" 2>&1; then
+  grep -E '^(query|  =|registered|diff|value|done)' "$work/consumer.log" | head -24 | sed 's/^/  /'
+else
+  echo "the consumer did not see live values over OPC UA"; cat "$work/consumer.log"; exit 1
+fi
+grep -q '^registered q1' "$work/consumer.log" || { echo "the consumer did not register its query"; cat "$work/consumer.log"; exit 1; }
+grep -q '^value .* = [1-9]' "$work/consumer.log" || { echo "the consumer saw no written value, only initial ones"; cat "$work/consumer.log"; exit 1; }
+kill "$provider" 2> /dev/null || true
+wait "$provider" 2> /dev/null || true
+echo "milestone 4 demo passed: $(grep -m 1 '^done' "$work/consumer.log"); the provider $(grep -m 1 '^wrote' "$work/provider.log" | sed 's/, round.*//')"
 rm -rf "$work"
 
 echo "smoke test passed"
