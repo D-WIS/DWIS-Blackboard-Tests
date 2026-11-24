@@ -106,13 +106,22 @@ jobs:
             REALTIME_TAG="${REALTIME_IMAGE##*:}" docker compose -f compose/compose.yaml build realtime
           fi
       - name: Run the checks and the demos of milestones 1 to 4 against those images (M4.4)
-        run: ./compose/smoke.sh --no-build --down
+        run: ./compose/smoke.sh --no-build
+      - name: Compatibility tests against the stack (M4.4; T-BC-4, T-EP-1, T-RT-3, T-RT-4, T-RT-6)
+        if: steps.sln.outputs.file != ''
+        env:
+          DWIS_REALTIME_ENDPOINT: opc.tcp://127.0.0.1:48030
+          DWIS_SEMANTIC_API: http://127.0.0.1:8080/api/v1
+          DWIS_COMPOSE_FILE: compose/compose.yaml
+        run: dotnet test "${{ steps.sln.outputs.file }}" -c Release --no-build --report-trx --results-directory TestResults/stack
       - name: Stack logs on failure
         if: failure()
         run: |
           docker compose -f compose/compose.yaml logs --no-log-prefix semantic | tail -100
           docker compose -f compose/compose.yaml logs --no-log-prefix realtime | tail -100
-          docker compose -f compose/compose.yaml down -v
+      - name: Stop the stack
+        if: always()
+        run: docker compose -f compose/compose.yaml down -v
       - name: Performance suite (nightly only)
         if: github.event_name == 'schedule' && steps.sln.outputs.file != ''
         run: echo "Performance suite arrives in milestone 5."
