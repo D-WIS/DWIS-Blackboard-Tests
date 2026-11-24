@@ -67,7 +67,10 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: 10.0.x
+          # 10 builds and runs everything here; 8 runs the samples of DWIS-Blackboard-Samples as published (net8.0).
+          dotnet-version: |
+            10.0.x
+            8.0.x
       - name: Find the solution
         id: sln
         run: |
@@ -114,6 +117,8 @@ jobs:
           DWIS_SEMANTIC_API: http://127.0.0.1:8080/api/v1
           DWIS_COMPOSE_FILE: compose/compose.yaml
         run: dotnet test "${{ steps.sln.outputs.file }}" -c Release --no-build --report-trx --results-directory TestResults/stack
+      - name: The samples of DWIS-Blackboard-Samples run unchanged against the stack (M4.4, T-BC-1)
+        run: ./compose/samples.sh
       - name: Stack logs on failure
         if: failure()
         run: |
