@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- The compatibility tests (M4.4, Tests #22; test plan G.2): the unchanged C# client 2.2.x from nuget.org against
+       the compose stack. They run only when DWIS_REALTIME_ENDPOINT names the real-time process (and DWIS_SEMANTIC_API
+       the semantic service's HTTP API, DWIS_COMPOSE_FILE the compose file for the restart test); skipped otherwise,
+       so that a plain dotnet test needs no stack. xUnit v3 on the Microsoft Testing Platform (global.json),
+       FluentAssertions 7, as in the other repositories (Appendix G). -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- CA1707: underscores in test names; CS0618: the stack's synchronous client API; xUnit1051: no cancellation token needed here. -->
+    <NoWarn>$(NoWarn);CA1707;CS0618;xUnit1051</NoWarn>
+    <RootNamespace>DWIS.Blackboard.Compatibility.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- The package ships a copy of the client's configuration file as content; the consumer console's copy is used instead. -->
+    <PackageReference Include="DWIS.Client.ReferenceImplementation.OPCFoundation" Version="2.2.56" ExcludeAssets="contentFiles" />
+    <PackageReference Include="xunit.v3" Version="4.0.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" Version="2.5.3" />
+    <PackageReference Include="FluentAssertions" Version="7.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../tools/consumer/config/Quickstarts.ReferenceClient.Config.xml" Link="config/Quickstarts.ReferenceClient.Config.xml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="FluentAssertions" />
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

@@ -95,6 +95,20 @@ jobs:
           REALTIME_TAG: edge
           FUSEKI_TAG: ${{ steps.fuseki.outputs.tag }}
         run: ./compose/smoke.sh --no-build
+      - name: Compatibility tests against the stack (M4.4; T-BC-4, T-EP-1, T-RT-3, T-RT-4, T-RT-6)
+        if: hashFiles('fuseki/Dockerfile') != '' && steps.sln.outputs.file != ''
+        env:
+          DWIS_REALTIME_ENDPOINT: opc.tcp://127.0.0.1:48030
+          DWIS_SEMANTIC_API: http://127.0.0.1:8080/api/v1
+          DWIS_COMPOSE_FILE: compose/compose.yaml
+        run: dotnet test "${{ steps.sln.outputs.file }}" -c Release --no-build --report-trx --results-directory TestResults/stack
+      - name: Upload the stack test results
+        if: always() && hashFiles('fuseki/Dockerfile') != '' && steps.sln.outputs.file != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-results-stack
+          path: TestResults/stack
+          if-no-files-found: ignore
       - name: Scan the Fuseki image built here
         if: steps.fuseki.outputs.tag == 'ci'
         uses: aquasecurity/trivy-action@v0.36.0

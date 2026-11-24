@@ -1,17 +1,17 @@
 // The consumer console (M4.4, Tests #22): a DWIS application that talks to the blackboard over OPC UA only,
 // with the unchanged C# client 2.2.x from nuget.org, the one every application uses against the old server
-// (R-BC-1, T-EP-1). Four modes, one per run:
+// (R-BC-1, T-EP-1). Three modes, one per run:
 //
 //   dotnet run --project tools/consumer -- inject  --manifest FILE [--address opc.tcp://host:48030]
 //   dotnet run --project tools/consumer -- write   --manifest FILE [--seconds N] [--period MILLISECONDS]
 //   dotnet run --project tools/consumer -- consume [--query "SELECT …"]... [--until-values N] [--timeout SECONDS]
-//   dotnet run --project tools/consumer -- delete  --manifest FILE
 //
 // inject calls DDHubServer.Inject with the manifest file and prints the answer. write injects, then writes a
 // value to every provided variable of the manifest every period (half a second by default) for N seconds
 // (60 by default). consume resolves the queries (the two of roadmap F.3 without --query) through ResolveQuery,
 // registers the first one through RegisterQuery, subscribes to the signals it returned and prints every value
-// it sees; it exits with 0 once N values were seen (5 by default), 1 at the timeout (60 s). delete calls Delete.
+// it sees; it exits with 0 once N values were seen (5 by default), 1 at the timeout (60 s). There is no delete:
+// the client's Delete and Update are stubs that throw (the compatibility tests call Delete with a plain session).
 // Output, one line per event, so that a script can read it:
 //   injected <manifest> by <provider>: success <bool>, <n> provided variables in <namespace>
 //   wrote <n> variables, round <k>
@@ -26,7 +26,7 @@ using DWIS.Client.ReferenceImplementation.OPCFoundation;
 
 if (args.Length == 0 || args[0] is "--help" or "-h")
 {
-    Console.WriteLine("dotnet run --project tools/consumer -- inject|write|consume|delete [--address opc.tcp://host:48030] [--manifest FILE] [--seconds N] [--period MS] [--query \"SELECT …\"]... [--until-values N] [--timeout S]");
+    Console.WriteLine("dotnet run --project tools/consumer -- inject|write|consume [--address opc.tcp://host:48030] [--manifest FILE] [--seconds N] [--period MS] [--query \"SELECT …\"]... [--until-values N] [--timeout S]");
     return 0;
 }
 
@@ -55,9 +55,9 @@ for (var i = 1; i < args.Length; i++)
     }
 }
 
-if (mode is not ("inject" or "write" or "consume" or "delete"))
+if (mode is not ("inject" or "write" or "consume"))
 {
-    Console.Error.WriteLine($"unknown mode {mode}: inject, write, consume or delete");
+    Console.Error.WriteLine($"unknown mode {mode}: inject, write or consume");
     return 2;
 }
 if (mode is not "consume" && manifestPath is null)
@@ -80,13 +80,6 @@ switch (mode)
 {
     case "inject":
         return Inject(client, manifestPath!) is not null ? 0 : 1;
-    case "delete":
-    {
-        var manifest = ManifestFile.FromJsonString(File.ReadAllText(manifestPath!));
-        var removed = client.Delete(manifest);
-        Console.WriteLine($"deleted {manifest.ManifestName} by {manifest.Provider.Name}: {removed}");
-        return removed ? 0 : 1;
-    }
     case "write":
         return Write(client, manifestPath!, seconds, period);
     default:
