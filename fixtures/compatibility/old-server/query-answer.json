@@ -1,0 +1,19 @@
+{
+  "VariablesHeader": [
+    "?SIGNAL"
+  ],
+  "Results": [
+    {
+      "Items": [
+        {
+          "NameSpace": "http://ddhub.no/CompatOld/Variables/",
+          "ID": "CompatOld.SPP"
+        }
+      ],
+      "Count": 1,
+      "IsReadOnly": false
+    }
+  ],
+  "Count": 1,
+  "IsReadOnly": false
+}

@@ -1,0 +1,32 @@
+{
+  "Success": true,
+  "InjectedVariableNamespace": null,
+  "InjectedNodesNamespace": "http://ddhub.no/CompatOld/",
+  "ProvidedVariablesNamespace": "http://ddhub.no/CompatOld/Variables/",
+  "InjectedVariables": null,
+  "InjectedNodes": [
+    {
+      "ManifestItemID": "SPPPoint",
+      "InjectedID": {
+        "NameSpaceIndex": 5,
+        "ID": "SPPPoint"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "ManifestItemID": "SPP",
+      "InjectedID": {
+        "NameSpaceIndex": 6,
+        "ID": "CompatOld.SPP"
+      }
+    },
+    {
+      "ManifestItemID": "WOB",
+      "InjectedID": {
+        "NameSpaceIndex": 6,
+        "ID": "CompatOld.WOB"
+      }
+    }
+  ]
+}
