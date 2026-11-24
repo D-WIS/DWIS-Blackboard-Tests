@@ -119,14 +119,17 @@ jobs:
         run: dotnet test "${{ steps.sln.outputs.file }}" -c Release --no-build --report-trx --results-directory TestResults/stack
       - name: The samples of DWIS-Blackboard-Samples run unchanged against the stack (M4.4, T-BC-1)
         run: ./compose/samples.sh
+      - name: The SmartConnect bridge image injects and writes through the stack (M4.4, T-BC-2)
+        run: ./compose/bridge.sh
       - name: Stack logs on failure
         if: failure()
         run: |
           docker compose -f compose/compose.yaml logs --no-log-prefix semantic | tail -100
           docker compose -f compose/compose.yaml logs --no-log-prefix realtime | tail -100
+          docker compose -f compose/compose.yaml --profile bridge logs --no-log-prefix bridge | tail -60
       - name: Stop the stack
         if: always()
-        run: docker compose -f compose/compose.yaml down -v
+        run: docker compose -f compose/compose.yaml --profile bridge down -v
       - name: Performance suite (nightly only)
         if: github.event_name == 'schedule' && steps.sln.outputs.file != ''
         run: echo "Performance suite arrives in milestone 5."
