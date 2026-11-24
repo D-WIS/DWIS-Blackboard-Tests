@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using DWIS.API.DTO;
 using DWIS.Client.ReferenceImplementation;
 using Opc.Ua;
@@ -159,5 +160,59 @@ public sealed class CompatibilityTests(StackFixture stack)
         {
             stack.Delete(manifest).Should().BeTrue();
         }
+    }
+
+    [Fact]
+    public void T_BC_3_Inject_and_ResolveQuery_answer_the_same_json_as_the_old_server()
+    {
+        // The old server's answers were recorded once from digiwells/ddhubserver:latest (fixtures/compatibility/old-server,
+        // its README says how); with DWIS_RECORD_OLD_ANSWERS=1 this test records them again from DWIS_REALTIME_ENDPOINT
+        // instead of comparing. Two known differences are taken out on both sides: the InjectedNodes list (the old server
+        // created nodes for injected nodes and listed them; the Rig Edition creates none, D-21) and the namespace index
+        // values (they depend on what was injected before on that server). Everything else must match byte for byte.
+        Assert.SkipWhen(StackFixture.NoStack, StackFixture.NoStackReason);
+        var recording = Environment.GetEnvironmentVariable("DWIS_RECORD_OLD_ANSWERS") == "1";
+        var folder = Path.Combine(StackFixture.RepositoryRoot(), "fixtures", "compatibility", "old-server");
+        var manifest = StackFixture.Manifest("CompatOld");
+        var manifestJson = recording ? ManifestFile.ToJsonString(manifest) : File.ReadAllText(Path.Combine(folder, "manifest.json"));
+        var query = recording ? StackFixture.SignalQuery("CompatOld") : File.ReadAllText(Path.Combine(folder, "query.sparql"));
+        var session = stack.Session;
+
+        var injectAnswer = (string)session.Call(StackFixture.ServerObject, StackFixture.Method("Inject"), new object[] { new[] { manifestJson } })[0];
+        var queryAnswer = (string)session.Call(StackFixture.ServerObject, StackFixture.Method("ResolveQuery"), new object[] { new[] { query } })[0];
+
+        if (recording)
+        {
+            // The old server reasons after the injection, in the background: ask again until the row is there.
+            StackFixture.Eventually(() =>
+            {
+                queryAnswer = (string)session.Call(StackFixture.ServerObject, StackFixture.Method("ResolveQuery"), new object[] { new[] { query } })[0];
+                return queryAnswer.Contains("CompatOld.SPP", StringComparison.Ordinal);
+            }, TimeSpan.FromSeconds(60)).Should().BeTrue("the recorded answer must hold the row");
+            File.WriteAllText(Path.Combine(folder, "manifest.json"), manifestJson);
+            File.WriteAllText(Path.Combine(folder, "query.sparql"), query);
+            File.WriteAllText(Path.Combine(folder, "inject-answer.json"), injectAnswer);
+            File.WriteAllText(Path.Combine(folder, "query-answer.json"), queryAnswer);
+            File.WriteAllText(Path.Combine(folder, "recorded.txt"), $"recorded from {StackFixture.Endpoint} on {DateTime.UtcNow:yyyy-MM-dd}; see the README for the image\n");
+            return;
+        }
+        try
+        {
+            var expectedInject = File.ReadAllText(Path.Combine(folder, "inject-answer.json"));
+            var expectedQuery = File.ReadAllText(Path.Combine(folder, "query-answer.json"));
+            WithoutKnownDifferences(injectAnswer).Should().Be(WithoutKnownDifferences(expectedInject),
+                "the ManifestInjectionResult must be the old server's, byte for byte, but for the injected nodes (D-21) and the namespace index values");
+            queryAnswer.Should().Be(expectedQuery, "the QueryResult must be the old server's, byte for byte");
+        }
+        finally
+        {
+            stack.Delete(manifest).Should().BeTrue();
+        }
+    }
+
+    private static string WithoutKnownDifferences(string injectionResult)
+    {
+        var withoutNodes = Regex.Replace(injectionResult, @"""InjectedNodes"": \[[^\]]*\]", @"""InjectedNodes"": []", RegexOptions.Singleline);
+        return Regex.Replace(withoutNodes, @"""NameSpaceIndex"": \d+", @"""NameSpaceIndex"": N");
     }
 }

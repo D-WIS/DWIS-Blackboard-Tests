@@ -1,0 +1,56 @@
+{
+  "ManifestName": "Compatibility signals",
+  "Provider": {
+    "Name": "CompatOld",
+    "Company": "D-WIS"
+  },
+  "InjectionInformation": {
+    "ServerName": null,
+    "EndPointURL": null,
+    "PublishingIntervalInMS": 0.0,
+    "InjectedVariablesNamespaceAlias": "variables",
+    "InjectedNodesNamespaceAlias": "nodes",
+    "ProvidedVariablesNamespaceAlias": "pv",
+    "InjectedVocabularyNamespaceAlias": "Vocabulary"
+  },
+  "InjectedVariables": null,
+  "InjectedNodes": [
+    {
+      "TypeDictionaryURI": "DrillingDataPoint",
+      "BrowseName": "SPPPoint",
+      "UniqueName": "SPPPoint",
+      "DisplayName": "SPPPoint",
+      "Fields": null
+    }
+  ],
+  "InjectedReferences": [
+    {
+      "Subject": {
+        "NameSpace": "nodes",
+        "ID": "SPPPoint"
+      },
+      "VerbURI": "http://ddhub.no/HasDynamicValue",
+      "Object": {
+        "NameSpace": "pv",
+        "ID": "SPP"
+      }
+    }
+  ],
+  "ProvidedVariables": [
+    {
+      "VariableID": "SPP",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": "12.5"
+    },
+    {
+      "VariableID": "WOB",
+      "Rank": 0,
+      "Dimensions": null,
+      "DataType": "double",
+      "InitialValue": "3"
+    }
+  ],
+  "InjectedVocabulary": null
+}

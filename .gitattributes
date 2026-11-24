@@ -3,3 +3,5 @@
 *.ttl text eol=lf
 *.properties text eol=lf
 Dockerfile text eol=lf
+# The recorded answers of the old server are compared byte for byte: no line-ending conversion, ever (T-BC-3).
+fixtures/compatibility/old-server/* -text
