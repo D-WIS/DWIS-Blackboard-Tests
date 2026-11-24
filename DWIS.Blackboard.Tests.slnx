@@ -3,6 +3,7 @@
     <Project Path="tests/DWIS.Blackboard.Compatibility.Tests/DWIS.Blackboard.Compatibility.Tests.csproj" />
   </Folder>
   <Folder Name="/tools/">
+    <Project Path="tools/conformance/DWIS.Blackboard.Conformance.csproj" />
     <Project Path="tools/consumer/DWIS.Blackboard.Consumer.csproj" />
     <Project Path="tools/watch/DWIS.Blackboard.Watch.csproj" />
   </Folder>
