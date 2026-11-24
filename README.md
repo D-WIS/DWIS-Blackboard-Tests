@@ -10,7 +10,7 @@ Part of DWIS Blackboard Rig Edition (GitHub topic `dwis-blackboard-rig-edition`)
 
 ## Layout
 
-- `compose/`: `compose.yaml` for the stack (Fuseki, the vocabulary loader, the semantic service and, since M4.4, the real-time process on `opc.tcp://localhost:48030`), `load-vocabulary.sh`, `smoke.sh`, `inference-evidence.sh` (decision D-15: repeated commits with concurrent queries against the inference view; time, memory, consistency).
+- `compose/`: `compose.yaml` for the stack (Fuseki, the vocabulary loader, the semantic service and, since M4.4, the real-time process on `opc.tcp://localhost:48030`), `load-vocabulary.sh`, `smoke.sh`, `inference-evidence.sh` (decision D-15: repeated commits with concurrent queries against the inference view; time, memory, consistency), `samples.sh` (T-BC-1: the three samples of `DWIS-Blackboard-Samples`, built from a shallow clone or from `SAMPLES_SOURCE`, run unchanged against the stack: the writer injects and writes, the reader subscribes and prints values, the query console prints rows; both workflows run it after the compatibility tests).
 - `tools/inference/`: `owlrl-compare.py` (T-SEM-7: a manifest's inferred graph compared with the OWL 2 RL closure computed outside the store by owlrl; needs `pip install owlrl rdflib`).
 - `tools/split/`: `split-manifest.py` (M3.F: cuts the SmartConnect manifest into the small self-contained manifests of `fixtures/manifests/small/`, about 10 variables each; plain Python 3, no packages).
 - `models/`: the TLA+ models of the two-phase injection and the query lifecycle (M3.0, decision D-41), checked with TLC on every pull request (`models/check.sh`, T-TST-1 to T-TST-3); `models/README.md` lists the invariants and what TLC found.
