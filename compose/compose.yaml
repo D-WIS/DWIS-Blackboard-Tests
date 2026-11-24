@@ -108,6 +108,39 @@ services:
       - realtime-pki:/app/pki
     restart: unless-stopped
 
+  # The "bridge" profile (M4.4, T-BC-2): the MQTT broker the SmartConnect bridge expects (mutual TLS, a password) and
+  # the bridge image of the old demo, unchanged, talking to the real-time process by its service name. Started by
+  # bridge.sh, which makes the certificates first: docker compose --profile bridge up -d mosquitto bridge.
+  mosquitto:
+    profiles: [bridge]
+    image: eclipse-mosquitto:2.0
+    volumes:
+      - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mqtt/certs:/mosquitto/config/certs:ro
+    # Nothing published: the bridge reaches 8883 on the network, the test publisher 1883 inside the container.
+
+  bridge:
+    profiles: [bridge]
+    image: digiwells/dwis.smartconnect.bridge:${BRIDGE_TAG:-latest}
+    depends_on:
+      mosquitto:
+        condition: service_started
+      realtime:
+        condition: service_started
+    environment:
+      DWIS_Mqtt__Host: mosquitto
+      DWIS_Mqtt__Port: "8883"
+      DWIS_Mqtt__Username: bridge
+      DWIS_Mqtt__Password: bridge-secret # the test broker's; see mqtt/make-certs.sh
+      DWIS_Mqtt__CaCertificatePath: /certs/ca.crt
+      DWIS_Mqtt__ClientCertificatePath: /certs/client.crt
+      DWIS_Mqtt__ClientKeyPath: /certs/client.key
+      DWIS_Output__Enabled: "false"
+      BLACKBOARD_URL: opc.tcp://realtime:48030
+    volumes:
+      - ./mqtt/certs:/certs:ro
+    restart: unless-stopped
+
 volumes:
   fuseki-databases:
   realtime-pki:

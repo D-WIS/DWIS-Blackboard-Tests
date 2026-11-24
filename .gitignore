@@ -486,3 +486,6 @@ models/tla2tools.jar
 models/states/
 models/*.log
 models/*_TTrace_*
+
+# The test broker's certificates and password file, made by compose/mqtt/make-certs.sh on every run.
+compose/mqtt/certs/
