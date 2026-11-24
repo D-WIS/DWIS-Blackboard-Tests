@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- T-MOD-7 (M4.5, Tests #23): the conformance suite against deliberately broken endpoints, small OPC Foundation
+       servers started in-process, each with one flaw; the matching check must fail and the others may pass. Needs
+       no stack. xUnit v3 on the Microsoft Testing Platform (global.json), FluentAssertions 7. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CA1707;CS0618;xUnit1051</NoWarn>
+    <RootNamespace>DWIS.Blackboard.Conformance.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../tools/conformance/DWIS.Blackboard.Conformance.csproj" />
+    <PackageReference Include="xunit.v3" Version="4.0.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" Version="2.5.3" />
+    <PackageReference Include="FluentAssertions" Version="7.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="FluentAssertions" />
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>
