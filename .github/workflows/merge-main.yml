@@ -119,6 +119,17 @@ jobs:
         run: dotnet test "${{ steps.sln.outputs.file }}" -c Release --no-build --report-trx --results-directory TestResults/stack
       - name: The samples of DWIS-Blackboard-Samples run unchanged against the stack (M4.4, T-BC-1)
         run: ./compose/samples.sh
+      - name: The conformance suite against the stack (M4.5, T-MOD-1)
+        if: steps.sln.outputs.file != ''
+        run: dotnet tools/conformance/bin/Release/net10.0/DWIS.Blackboard.Conformance.dll --endpoint opc.tcp://127.0.0.1:48030 --manifests fixtures/manifests/library --report-json TestResults/conformance/report.json --report TestResults/conformance/report.txt
+      - name: Upload the conformance report
+        if: always() && steps.sln.outputs.file != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: conformance-report-${{ github.run_number }}
+          path: TestResults/conformance
+          retention-days: 30
+          if-no-files-found: ignore
       - name: The SmartConnect bridge image injects and writes through the stack (M4.4, T-BC-2)
         run: ./compose/bridge.sh
       - name: Stack logs on failure

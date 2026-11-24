@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- The conformance suite, first version (M4.5, Tests #23; R-MOD-3, Appendix H.5): a console tool that checks, against
+       any Blackboard endpoint, the behaviour the clients depend on. On the published C# client 2.2.x and a plain OPC UA
+       session of the same stack, so that it sees what an application sees. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS0618</NoWarn> <!-- the stack's synchronous client API -->
+    <AssemblyName>DWIS.Blackboard.Conformance</AssemblyName>
+    <RootNamespace>DWIS.Blackboard.Conformance</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DWIS.Client.ReferenceImplementation.OPCFoundation" Version="2.2.56" ExcludeAssets="contentFiles" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../consumer/config/Quickstarts.ReferenceClient.Config.xml" Link="config/Quickstarts.ReferenceClient.Config.xml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
