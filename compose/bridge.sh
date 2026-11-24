@@ -17,7 +17,9 @@ work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
 ./mqtt/make-certs.sh
-docker compose --profile bridge up -d --no-build mosquitto bridge > /dev/null 2>&1
+# The stack's tags (FUSEKI_TAG, SEMANTIC_TAG, REALTIME_TAG) must be the running stack's: compose resolves every
+# service the bridge depends on.
+docker compose --profile bridge up -d --no-build mosquitto bridge > "$work/up.log" 2>&1 || { echo "the broker and the bridge did not start"; cat "$work/up.log"; exit 1; }
 echo "T-BC-2: the SmartConnect bridge connects to the broker, then to the real-time process, and injects"
 i=0
 until docker compose --profile bridge logs --no-log-prefix bridge 2> /dev/null | grep -q -E "provided variables created|Manifest .* injected|ProvidedVariablesNamespace|injected"; do

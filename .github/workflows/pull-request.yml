@@ -117,6 +117,11 @@ jobs:
         run: ./compose/samples.sh
       - name: The SmartConnect bridge image injects and writes through the stack (M4.4, T-BC-2)
         if: hashFiles('fuseki/Dockerfile') != ''
+        env:
+          # The same tags as the smoke: compose resolves every service of the file, the bridge's dependencies included.
+          SEMANTIC_TAG: edge
+          REALTIME_TAG: edge
+          FUSEKI_TAG: ${{ steps.fuseki.outputs.tag }}
         run: ./compose/bridge.sh
       - name: Scan the Fuseki image built here
         if: steps.fuseki.outputs.tag == 'ci'
