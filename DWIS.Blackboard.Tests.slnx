@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/tests/">
     <Project Path="tests/DWIS.Blackboard.Compatibility.Tests/DWIS.Blackboard.Compatibility.Tests.csproj" />
+    <Project Path="tests/DWIS.Blackboard.Conformance.Tests/DWIS.Blackboard.Conformance.Tests.csproj" />
   </Folder>
   <Folder Name="/tools/">
     <Project Path="tools/conformance/DWIS.Blackboard.Conformance.csproj" />

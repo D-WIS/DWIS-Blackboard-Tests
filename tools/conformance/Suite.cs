@@ -135,8 +135,9 @@ public sealed class Suite
             return null;
         });
 
-        string? diffNode = null;
-        Record("C-06", "RegisterQuery answers the initial diff and a diff variable the client can read, and an inject pushes a diff", () =>
+        // The suite's own manifest: registered as a query first, injected next, so that the registration gets a diff.
+        NodeId? diffNode = null;
+        Record("C-06", "RegisterQuery answers the initial diff and a diff variable the client can read", () =>
         {
             var (status, outputs) = _blackboard.TryCall("RegisterQuery", OwnQuery);
             if (status != StatusCodes.Good || outputs.Count != 2 || outputs[0] is not string json)
@@ -153,22 +154,34 @@ public sealed class Suite
             {
                 return $"the initial diff has {added.GetArrayLength()} rows before the suite's manifest was injected";
             }
-            diffNode = resultId.GetString();
-            var node = NodeId.Parse(diffNode);
+            var node = NodeId.Parse(resultId.GetString());
             var before = _blackboard.Session.ReadValue(node);
             if (!StatusCode.IsGood(before.StatusCode) || before.Value is not string)
             {
-                return $"the diff variable {diffNode} cannot be read ({StatusCode.LookupSymbolicId(before.StatusCode.Code)})";
+                return $"the diff variable {resultId} cannot be read as a string ({StatusCode.LookupSymbolicId(before.StatusCode.Code)})";
             }
-            var (injectStatus, _) = _blackboard.TryCall("Inject", OwnManifest);
-            if (injectStatus != StatusCodes.Good)
+            diffNode = node;
+            return null;
+        });
+        var ownInjected = Record("C-03", "Inject answers for the suite's own manifest: a ManifestInjectionResult", () =>
+        {
+            var (status, outputs) = _blackboard.TryCall("Inject", OwnManifest);
+            return status != StatusCodes.Good ? $"Inject answered {StatusCode.LookupSymbolicId(status.Code)}" : CheckInjectionResult(outputs, ManifestFile.FromJsonString(OwnManifest));
+        });
+        if (ownInjected)
+        {
+            Record("C-04", "every provided variable of the suite's own manifest exists with its validity boolean", () => CheckVariables(ManifestFile.FromJsonString(OwnManifest)));
+        }
+        Record("C-06", "the registered query gets a diff with the suite's signal once its manifest is injected", () =>
+        {
+            if (diffNode is null || !ownInjected)
             {
-                return $"the suite's manifest was refused: {StatusCode.LookupSymbolicId(injectStatus.Code)}";
+                return "the registration or the injection failed above";
             }
             var stop = DateTime.UtcNow.AddSeconds(60);
             while (DateTime.UtcNow < stop)
             {
-                var value = _blackboard.Session.ReadValue(node).Value as string;
+                var value = _blackboard.Session.ReadValue(diffNode).Value as string;
                 if (value is not null && value.Contains($"{OwnProvider}.SPP", StringComparison.Ordinal) && value.Contains("\"Added\"", StringComparison.Ordinal))
                 {
                     return null;
