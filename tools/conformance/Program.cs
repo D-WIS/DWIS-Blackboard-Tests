@@ -5,7 +5,8 @@
 //                                             [--report-json FILE] [--report FILE]
 //
 // --manifests names a folder with one folder per manifest (manifest.json and, when there is one, expected-report.json
-// whose "status" 400 says the service refuses it), as fixtures/manifests/library; --manifest adds one file. The
+// whose "status" 400 says the service refuses it, and a 5xx that the service itself fails on it, so the manifest is
+// skipped with a SKIP line), as fixtures/manifests/library; --manifest adds one file. The
 // suite's own small manifest is always used, for the diff check. Each check prints one line, PASS or FAIL with the
 // reason; the JSON report lists them all. Exit code 0 when every check passed, 1 otherwise, 2 for a usage error.
 using System.Globalization;
@@ -51,8 +52,14 @@ if (manifestsFolder is not null)
             continue;
         }
         var expected = Path.Combine(folder, "expected-report.json");
-        var refused = File.Exists(expected) && JsonDocument.Parse(File.ReadAllText(expected)).RootElement.TryGetProperty("status", out var status) && status.GetInt32() >= 400;
-        manifests.Add(new ManifestCase(Path.GetFileName(folder), File.ReadAllText(file), refused));
+        var expectedStatus = File.Exists(expected) && JsonDocument.Parse(File.ReadAllText(expected)).RootElement.TryGetProperty("status", out var status) ? status.GetInt32() : 200;
+        if (expectedStatus >= 500)
+        {
+            // The semantic service itself fails on this manifest today (a bug its repository tracks); the endpoint has nothing to prove with it.
+            Console.WriteLine($"SKIP  {Path.GetFileName(folder)}: the semantic service fails on it today (expected-report.json status {expectedStatus})");
+            continue;
+        }
+        manifests.Add(new ManifestCase(Path.GetFileName(folder), File.ReadAllText(file), expectedStatus >= 400));
     }
 }
 foreach (var file in manifestFiles)
