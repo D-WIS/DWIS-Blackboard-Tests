@@ -32,6 +32,18 @@ public sealed class StackFixture : IDisposable
     /// <summary>Why a test skips without a stack.</summary>
     public const string NoStackReason = "DWIS_REALTIME_ENDPOINT is not set: no real-time process to talk to.";
 
+    /// <summary>The OPC UA endpoint of the second Blackboard of the hub profile (M5.3), for example <c>opc.tcp://127.0.0.1:48031</c>.</summary>
+    public static readonly string? EndpointB = Environment.GetEnvironmentVariable("DWIS_REALTIME_ENDPOINT_B");
+
+    /// <summary>The semantic service of the second Blackboard, for example <c>http://127.0.0.1:8090/api/v1</c>.</summary>
+    public static readonly string? SemanticApiB = Environment.GetEnvironmentVariable("DWIS_SEMANTIC_API_B");
+
+    /// <summary>True when there is no second Blackboard joined to a hub with the first.</summary>
+    public static bool NoHub => NoStack || string.IsNullOrWhiteSpace(EndpointB) || string.IsNullOrWhiteSpace(SemanticApi) || string.IsNullOrWhiteSpace(SemanticApiB);
+
+    /// <summary>Why a replication test skips.</summary>
+    public const string NoHubReason = "DWIS_REALTIME_ENDPOINT_B, DWIS_SEMANTIC_API and DWIS_SEMANTIC_API_B are not all set: no second Blackboard behind a hub (compose/hub.sh).";
+
     /// <summary>The namespace index the old client hard-codes for <c>DDHubServer</c> and its methods.</summary>
     public const ushort ServerNamespaceIndex = 2;
 
@@ -62,18 +74,24 @@ public sealed class StackFixture : IDisposable
     }
 
     /// <summary>Connects the old client as the applications do: the default configuration with the server address, no logger.</summary>
-    public static IOPCUADWISClient Connect()
+    public static IOPCUADWISClient Connect() => Connect(Endpoint!);
+
+    /// <summary>The old client connected to any endpoint (the second Blackboard of the hub profile, for instance).</summary>
+    public static IOPCUADWISClient Connect(string endpoint)
     {
-        var client = new DWISClientOPCF(new DefaultDWISClientConfiguration { ServerAddress = Endpoint! }, null);
+        var client = new DWISClientOPCF(new DefaultDWISClientConfiguration { ServerAddress = endpoint }, null);
         if (!client.Connected)
         {
-            throw new InvalidOperationException($"The old client did not connect to {Endpoint}.");
+            throw new InvalidOperationException($"The old client did not connect to {endpoint}.");
         }
         return client;
     }
 
     /// <summary>Opens a plain session with the old client's transport quotas, no security, anonymous.</summary>
-    public static Session OpenSession()
+    public static Session OpenSession() => OpenSession(Endpoint!);
+
+    /// <summary>A plain session to any endpoint.</summary>
+    public static Session OpenSession(string endpointUrl)
     {
         var application = new ApplicationInstance { ApplicationName = "DWIS Blackboard compatibility tests", ApplicationType = ApplicationType.Client };
         var configuration = application.Build("urn:d-wis:blackboard:tests:compatibility", "https://github.com/D-WIS/DWIS-Blackboard-Tests")
@@ -93,7 +111,7 @@ public sealed class StackFixture : IDisposable
             .SetAutoAcceptUntrustedCertificates(true)
             .Create().GetAwaiter().GetResult();
         application.CheckApplicationInstanceCertificate(true, 0).GetAwaiter().GetResult();
-        var endpoint = CoreClientUtils.SelectEndpoint(configuration, Endpoint, useSecurity: false);
+        var endpoint = CoreClientUtils.SelectEndpoint(configuration, endpointUrl, useSecurity: false);
         var configured = new ConfiguredEndpoint(null, endpoint, EndpointConfiguration.Create(configuration));
         return Session.Create(configuration, configured, false, "compatibility", 60_000, new UserIdentity(new AnonymousIdentityToken()), null).GetAwaiter().GetResult();
     }
@@ -109,9 +127,26 @@ public sealed class StackFixture : IDisposable
     /// <c>Update</c>) are stubs that throw, so no application ever called them; the Rig Edition answers them anyway
     /// (specification 3.1). The nodes and the triples go with the manifest.
     /// </summary>
-    public bool Delete(ManifestFile manifest)
+    public bool Delete(ManifestFile manifest) => Delete(Session, manifest);
+
+    /// <summary>
+    /// Deletes a manifest that a run before may have left live, so that the inject that follows creates the variables
+    /// anew with the manifest's initial values. With the hub profile (M5.3) the old hub replays every manifest it ever
+    /// saw, with the latest value of each variable as its initial value, to a real-time process that reconnects (a
+    /// restart, a hub outage), deleted ones included: a provider of an earlier run may be live again with those values,
+    /// and an inject of the same provider then keeps its nodes and values. That is also why the replication tests run
+    /// on their own, after the other tests of this collection: a restart with the hub role on replays into the tests
+    /// that follow it.
+    /// </summary>
+    public void Forget(ManifestFile manifest)
     {
-        var outputs = Session.Call(ServerObject, Method("Delete"), new object[] { new[] { ManifestFile.ToJsonString(manifest) } });
+        try { Delete(manifest); } catch (ServiceResultException) { /* not there */ }
+    }
+
+    /// <summary>The same through any session (the second Blackboard's, for instance).</summary>
+    public static bool Delete(Session session, ManifestFile manifest)
+    {
+        var outputs = session.Call(ServerObject, Method("Delete"), new object[] { new[] { ManifestFile.ToJsonString(manifest) } });
         return outputs.Count == 1 && outputs[0] is true;
     }
 
@@ -162,14 +197,29 @@ public sealed class StackFixture : IDisposable
         $"PREFIX ddhub: <http://ddhub.no/> SELECT ?signal WHERE {{ <http://ddhub.no/{provider}/SPPPoint> ddhub:HasDynamicValue ?signal }}";
 
     /// <summary>The rows of a SPARQL query through the service's HTTP API (CSV: the header line is dropped).</summary>
-    public async Task<List<string[]>> QueryStoreAsync(string sparql)
+    public Task<List<string[]>> QueryStoreAsync(string sparql) => QueryStoreAsync(SemanticApi!, sparql);
+
+    /// <summary>The same against any semantic service (the second Blackboard's, for instance).</summary>
+    public async Task<List<string[]>> QueryStoreAsync(string semanticApi, string sparql)
     {
-        var csv = await _http.GetStringAsync($"{SemanticApi}/sparql?query={Uri.EscapeDataString(sparql)}");
+        var csv = await _http.GetStringAsync($"{semanticApi}/sparql?query={Uri.EscapeDataString(sparql)}");
         return csv.Split('\n', StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(line => line.TrimEnd('\r').Split(',')).ToList();
     }
 
-    /// <summary>Waits until a condition holds, polling every half second.</summary>
-    public static bool Eventually(Func<bool> condition, TimeSpan timeout)
+    /// <summary>The manifests a semantic service lists (<c>GET /manifests</c>), as JSON.</summary>
+    public async Task<System.Text.Json.JsonElement> ListManifestsAsync(string semanticApi)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get, $"{semanticApi}/manifests");
+        request.Headers.Accept.Clear();
+        request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        using var response = await _http.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+        using var document = System.Text.Json.JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        return document.RootElement.Clone();
+    }
+
+    /// <summary>Waits until a condition holds, polling every half second (or <paramref name="every"/>).</summary>
+    public static bool Eventually(Func<bool> condition, TimeSpan timeout, TimeSpan? every = null)
     {
         var stop = DateTime.UtcNow + timeout;
         while (DateTime.UtcNow < stop)
@@ -178,7 +228,7 @@ public sealed class StackFixture : IDisposable
             {
                 return true;
             }
-            Thread.Sleep(500);
+            Thread.Sleep(every ?? TimeSpan.FromMilliseconds(500));
         }
         return condition();
     }
