@@ -102,10 +102,100 @@ services:
     environment:
       DWIS__RealTime__SemanticAddress: http://semantic:8081
       DWIS__RealTime__EndpointUrl: opc.tcp://localhost:48030
+      # The hub role (M5.3, specification 6): off while HUB_URL is empty; hub.sh sets it to the hub of the profile below.
+      DWIS__RealTime__Hub__Url: ${HUB_URL:-}
+      DWIS__RealTime__Hub__Group: ${HUB_GROUP:-default}
+      DWIS__RealTime__Hub__Site: rig-a
     ports:
       - "127.0.0.1:48030:48030"
     volumes:
       - realtime-pki:/app/pki
+    restart: unless-stopped
+
+  # The "hub" profile (M5.3, Tests #33; T-HUB-1, T-HUB-2): the old DWIS hub, digiwells/dwissignalr (HUB_TAG, default
+  # latest, the image the rigs replicate through today, unchanged), and a second Blackboard, "b": its own Fuseki,
+  # vocabulary loader, semantic service and real-time process on the next ports (3031, 8090 and 8091, 48031). Both
+  # real-time processes join the same group of the hub, so a value written on one is read on the other and a manifest
+  # injected on one arrives on the other through the hub (R-HUB-1 to R-HUB-3). The hub serves /dwishub under the path
+  # the rigs use, /blackboard/applications; the processes retry until it answers, so it has no health check.
+  hub:
+    profiles: [hub]
+    image: digiwells/dwissignalr:${HUB_TAG:-latest}
+    command: --path /blackboard/applications
+    ports:
+      - "127.0.0.1:8082:8080" # for inspection from this machine: http://127.0.0.1:8082/blackboard/applications/dwishub
+    restart: unless-stopped
+
+  fuseki-b:
+    profiles: [hub]
+    image: digiwells/dwis.blackboard.fuseki:${FUSEKI_TAG:-dev}
+    environment:
+      JAVA_OPTIONS: -Xmx2g -Xms512m
+    ports:
+      - "127.0.0.1:3031:3030"
+    volumes:
+      - fuseki-b-databases:/fuseki/databases
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3030/$$/ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+    restart: unless-stopped
+
+  vocabulary-b:
+    profiles: [hub]
+    image: curlimages/curl:8.23.0
+    depends_on:
+      fuseki-b:
+        condition: service_healthy
+    environment:
+      FUSEKI_URL: http://fuseki-b:3030
+      VOCABULARY_VERSION: ${VOCABULARY_VERSION:-2026-10-14}
+    volumes:
+      - ../fixtures/vocabulary:/vocabulary:ro
+      - ./load-vocabulary.sh:/load-vocabulary.sh:ro
+    entrypoint: ["/bin/sh", "/load-vocabulary.sh"]
+    restart: "no"
+
+  semantic-b:
+    profiles: [hub]
+    image: digiwells/dwis.blackboard.semantic:${SEMANTIC_TAG:-edge}
+    depends_on:
+      fuseki-b:
+        condition: service_healthy
+      vocabulary-b:
+        condition: service_completed_successfully
+    environment:
+      DWIS__Store__BaseUrl: http://fuseki-b:3030/
+      DWIS__Vocabulary__Version: ${VOCABULARY_VERSION:-2026-10-14}
+      DWIS__Validation__PolicyFile: /config/validation-policy.json
+    volumes:
+      - ../fixtures/vocabulary/validation-policy.json:/config/validation-policy.json:ro
+    ports:
+      - "127.0.0.1:8090:8080"
+      - "127.0.0.1:8091:8081"
+    restart: unless-stopped
+
+  realtime-b:
+    profiles: [hub]
+    image: digiwells/dwis.blackboard.realtime:${REALTIME_TAG:-edge}
+    hostname: realtime-b
+    depends_on:
+      semantic-b:
+        condition: service_started
+      hub:
+        condition: service_started
+    environment:
+      DWIS__RealTime__SemanticAddress: http://semantic-b:8081
+      DWIS__RealTime__EndpointUrl: opc.tcp://localhost:48031
+      DWIS__RealTime__Hub__Url: http://hub:8080/blackboard/applications
+      DWIS__RealTime__Hub__Group: ${HUB_GROUP:-default}
+      DWIS__RealTime__Hub__Site: rig-b
+    ports:
+      - "127.0.0.1:48031:48031"
+    volumes:
+      - realtime-b-pki:/app/pki
     restart: unless-stopped
 
   # The "bridge" profile (M4.4, T-BC-2): the MQTT broker the SmartConnect bridge expects (mutual TLS, a password) and
@@ -144,3 +234,5 @@ services:
 volumes:
   fuseki-databases:
   realtime-pki:
+  fuseki-b-databases:
+  realtime-b-pki:

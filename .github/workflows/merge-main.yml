@@ -132,15 +132,30 @@ jobs:
           if-no-files-found: ignore
       - name: The SmartConnect bridge image injects and writes through the stack (M4.4, T-BC-2)
         run: ./compose/bridge.sh
+      - name: Start the hub profile, the old DWIS hub and a second Blackboard joined to it (M5.3)
+        run: ./compose/hub.sh
+      - name: Replication tests, two Blackboards through the hub (M5.3; T-HUB-1, T-HUB-2)
+        if: steps.sln.outputs.file != ''
+        env:
+          DWIS_REALTIME_ENDPOINT: opc.tcp://127.0.0.1:48030
+          DWIS_SEMANTIC_API: http://127.0.0.1:8080/api/v1
+          DWIS_REALTIME_ENDPOINT_B: opc.tcp://127.0.0.1:48031
+          DWIS_SEMANTIC_API_B: http://127.0.0.1:8090/api/v1
+        # The replication class alone: the hub replays every manifest it ever saw to a process that reconnects, so the
+        # restart test must not run with the hub role on and other tests after it.
+        run: dotnet tests/DWIS.Blackboard.Compatibility.Tests/bin/Release/net10.0/DWIS.Blackboard.Compatibility.Tests.dll -class DWIS.Blackboard.Compatibility.Tests.ReplicationTests -result-trx TestResults/stack/replication.trx
       - name: Stack logs on failure
         if: failure()
         run: |
           docker compose -f compose/compose.yaml logs --no-log-prefix semantic | tail -100
           docker compose -f compose/compose.yaml logs --no-log-prefix realtime | tail -100
           docker compose -f compose/compose.yaml --profile bridge logs --no-log-prefix bridge | tail -60
+          docker compose -f compose/compose.yaml --profile hub logs --no-log-prefix hub | tail -40
+          docker compose -f compose/compose.yaml --profile hub logs --no-log-prefix semantic-b | tail -60
+          docker compose -f compose/compose.yaml --profile hub logs --no-log-prefix realtime-b | tail -60
       - name: Stop the stack
         if: always()
-        run: docker compose -f compose/compose.yaml --profile bridge down -v
+        run: docker compose -f compose/compose.yaml --profile bridge --profile hub down -v
       - name: Performance suite (nightly only)
         if: github.event_name == 'schedule' && steps.sln.outputs.file != ''
         run: echo "Performance suite arrives in milestone 5."
