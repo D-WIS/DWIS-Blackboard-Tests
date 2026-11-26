@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <PackageReference Include="DWIS.Client.ReferenceImplementation.OPCFoundation" Version="2.2.56" ExcludeAssets="contentFiles" />
+    <!-- The name rule of decision D-62 (Names.IriSafe): what the Rig Edition claims for a provider whose name an IRI cannot carry. -->
+    <PackageReference Include="DWIS.Blackboard.Contracts" Version="1.0.0-edge.8" />
   </ItemGroup>
 
   <ItemGroup>
