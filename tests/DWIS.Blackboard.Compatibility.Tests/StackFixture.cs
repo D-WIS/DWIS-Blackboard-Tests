@@ -44,6 +44,18 @@ public sealed class StackFixture : IDisposable
     /// <summary>Why a replication test skips.</summary>
     public const string NoHubReason = "DWIS_REALTIME_ENDPOINT_B, DWIS_SEMANTIC_API and DWIS_SEMANTIC_API_B are not all set: no second Blackboard behind a hub (compose/hub.sh).";
 
+    /// <summary>The base URL of the old hub of the hub profile (M5.4), for example <c>http://127.0.0.1:8082/blackboard/applications</c>: the test that replays a recording joins its group itself.</summary>
+    public static readonly string? HubUrl = Environment.GetEnvironmentVariable("DWIS_HUB_URL");
+
+    /// <summary>The group both real-time processes of the hub profile registered to (<c>DWIS_HUB_GROUP</c>, <c>default</c> as in the compose file).</summary>
+    public static readonly string HubGroup = Environment.GetEnvironmentVariable("DWIS_HUB_GROUP") is { Length: > 0 } group ? group : "default";
+
+    /// <summary>True when there is no hub to replay a recording into.</summary>
+    public static bool NoReplay => NoHub || string.IsNullOrWhiteSpace(HubUrl);
+
+    /// <summary>Why the replay test skips.</summary>
+    public const string NoReplayReason = "DWIS_HUB_URL is not set, or the variables of the hub profile are not: no hub to replay a recording into (compose/hub.sh).";
+
     /// <summary>The namespace index the old client hard-codes for <c>DDHubServer</c> and its methods.</summary>
     public const ushort ServerNamespaceIndex = 2;
 
@@ -163,6 +175,22 @@ public sealed class StackFixture : IDisposable
 
     /// <summary>The compose file as an absolute path.</summary>
     public static string ComposePath() => Path.IsPathRooted(ComposeFile!) ? ComposeFile! : Path.Combine(RepositoryRoot(), ComposeFile!);
+
+    /// <summary>The log of a service of the stack since a moment (<c>docker compose logs</c>), for a look at what a process reported; needs <c>DWIS_COMPOSE_FILE</c>.</summary>
+    public static string ComposeLogs(string service, DateTime sinceUtc)
+    {
+        using var docker = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("docker",
+            $"compose -f \"{ComposePath()}\" logs --no-log-prefix --since {sinceUtc.ToUniversalTime():yyyy-MM-ddTHH:mm:ssZ} {service}")
+        {
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+        }) ?? throw new InvalidOperationException("docker did not start");
+        var output = docker.StandardOutput.ReadToEnd();
+        var errors = docker.StandardError.ReadToEnd();
+        docker.WaitForExit(TimeSpan.FromSeconds(60));
+        return docker.ExitCode == 0 ? output : throw new InvalidOperationException($"docker compose logs {service} failed: {errors}");
+    }
 
     /// <summary>The hierarchical children of a node.</summary>
     public static ReferenceDescriptionCollection Children(Session session, NodeId node)
