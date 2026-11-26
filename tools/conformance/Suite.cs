@@ -255,7 +255,7 @@ public sealed class Suite
                     return "Delete answered false for a live manifest";
                 }
                 var first = manifest.ProvidedVariables?.FirstOrDefault();
-                if (first is not null && _blackboard.Read($"http://ddhub.no/{manifest.Provider.Name}/Variables/", $"{manifest.Provider.Name}.{first.VariableID}") is not null)
+                if (first is not null && _blackboard.Read(VariablesNamespace(manifest), VariableNodeId(manifest, first.VariableID)) is not null)
                 {
                     return $"the variable {first.VariableID} is still there after the delete";
                 }
@@ -317,7 +317,7 @@ public sealed class Suite
         {
             return "the result says Success false";
         }
-        var expectedNamespace = $"http://ddhub.no/{manifest.Provider.Name}/Variables/";
+        var expectedNamespace = VariablesNamespace(manifest);
         if (root.GetProperty("ProvidedVariablesNamespace").GetString() != expectedNamespace)
         {
             return $"ProvidedVariablesNamespace is {root.GetProperty("ProvidedVariablesNamespace")}, expected {expectedNamespace}";
@@ -328,16 +328,22 @@ public sealed class Suite
         return unmapped.Count == 0 ? null : $"{unmapped.Count} of {declared.Count} provided variables have no mapping, for example {unmapped[0]}";
     }
 
+    /// <summary>The namespace of a provider's variables as the Rig Edition claims it: the provider name made safe for an IRI (decision D-62, <c>Names.IriSafe</c> of the Contracts package).</summary>
+    private static string VariablesNamespace(ManifestFile manifest) => $"http://ddhub.no/{DWIS.Blackboard.Contracts.Names.IriSafe(manifest.Provider.Name)}/Variables/";
+
+    /// <summary>The node id of a provided variable, <c>{provider}.{VariableID}</c>, both made safe (decision D-62).</summary>
+    private static string VariableNodeId(ManifestFile manifest, string variableId) => $"{DWIS.Blackboard.Contracts.Names.IriSafe(manifest.Provider.Name)}.{DWIS.Blackboard.Contracts.Names.IriSafe(variableId)}";
+
     private string? CheckVariables(ManifestFile manifest)
     {
-        var ns = $"http://ddhub.no/{manifest.Provider.Name}/Variables/";
+        var ns = VariablesNamespace(manifest);
         foreach (var variable in manifest.ProvidedVariables ?? [])
         {
-            if (_blackboard.Read(ns, $"{manifest.Provider.Name}.{variable.VariableID}") is null)
+            if (_blackboard.Read(ns, VariableNodeId(manifest, variable.VariableID)) is null)
             {
                 return $"the variable {variable.VariableID} cannot be read in {ns}";
             }
-            var flag = variable.VariableID.EndsWith("_validitySignal", StringComparison.Ordinal) ? null : $"{manifest.Provider.Name}.{variable.VariableID}_validitySignal";
+            var flag = variable.VariableID.EndsWith("_validitySignal", StringComparison.Ordinal) ? null : VariableNodeId(manifest, variable.VariableID + "_validitySignal");
             if (flag is not null && _blackboard.Read(ns, flag)?.Value is not bool)
             {
                 return $"the validity boolean of {variable.VariableID} cannot be read as a boolean";
