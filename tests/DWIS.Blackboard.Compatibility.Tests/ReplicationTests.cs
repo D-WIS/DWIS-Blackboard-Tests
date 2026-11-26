@@ -1,5 +1,8 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using DWIS.API.DTO;
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
 using Opc.Ua;
 
 namespace DWIS.Blackboard.Compatibility.Tests;
@@ -9,9 +12,11 @@ namespace DWIS.Blackboard.Compatibility.Tests;
 /// DWIS hub (the <c>hub</c> profile of the compose file, <c>compose/hub.sh</c>). T-HUB-1: a value written on one is
 /// read on the other within a second, in both directions (R-HUB-1, R-HUB-2: the old hub image and its wire format,
 /// unchanged). T-HUB-2: a manifest injected on one arrives on the other through the hub, goes through the injection
-/// pipeline there and is reported with its origin in the provenance graph (R-HUB-3). Each test injects a provider of
-/// its own on the first Blackboard and removes it from both at the end. In the stack collection, so that the restart
-/// test never runs at the same time.
+/// pipeline there and is reported with its origin in the provenance graph (R-HUB-3). T-HUB-3 (M5.4, Tests #34): a
+/// session recorded from the old server, built on the Unified Automation stack, replays into the group and both
+/// processes take every message (R-HUB-2). Each test injects a provider of its own on the first Blackboard, or
+/// through the hub, and removes it from both at the end. In the stack collection, so that the restart test never
+/// runs at the same time.
 /// </summary>
 [Collection("stack")]
 public sealed class ReplicationTests(StackFixture stack)
@@ -116,6 +121,106 @@ public sealed class ReplicationTests(StackFixture stack)
         {
             stack.Delete(manifest).Should().BeTrue();
             StackFixture.Delete(sessionB, manifest).Should().BeTrue();
+        }
+    }
+
+    /// <summary>
+    /// The recording of T-HUB-3: a session of the old server (Unified Automation stack) through the old hub, as the
+    /// old recorder wrote it; how it was made in its README. <c>DWIS_HUB_RECORDING</c> names another recording folder
+    /// to replay instead (a session recorded on a rig, for instance).
+    /// </summary>
+    public static string RecordingFolder => Environment.GetEnvironmentVariable("DWIS_HUB_RECORDING") is { Length: > 0 } folder
+        ? folder
+        : Path.Combine(StackFixture.RepositoryRoot(), "fixtures", "hub", "unified-automation-session");
+
+    [Fact]
+    public async Task T_HUB_3_A_recorded_Unified_Automation_session_replays_into_the_process_without_errors()
+    {
+        Assert.SkipWhen(StackFixture.NoReplay, StackFixture.NoReplayReason);
+        var recording = Recording.Load(RecordingFolder);
+        recording.ManifestMessages.Should().NotBeEmpty("the recording holds the manifest the old server sent");
+        recording.ValueMessages.Should().NotBeEmpty("the recording holds the values the old server sent");
+        var manifests = recording.Manifests();
+        var providers = manifests.Select(m => m.Provider.Name).Distinct().ToList();
+        var expected = recording.LastValues();
+        expected.Should().NotBeEmpty("the recorded batches decode with the OPC Foundation stack (R-HUB-2)");
+        using var sessionB = StackFixture.OpenSession(StackFixture.EndpointB!);
+        foreach (var manifest in manifests)
+        {
+            Forget(manifest, sessionB);
+        }
+
+        // The player: the old player's part (DWIS.Server.Recording.Player), done here. It joins the group as a
+        // member of its own and sends the recorded messages as they are: the manifests as the old API's type, the
+        // batches of values byte for byte as the Unified Automation stack encoded them.
+        var since = DateTime.UtcNow;
+        var sender = Guid.NewGuid();
+        await using var player = new HubConnectionBuilder().WithUrl(StackFixture.HubUrl!.TrimEnd('/') + "/dwishub").AddMessagePackProtocol().Build();
+        await player.StartAsync();
+        (await player.InvokeAsync<bool>("RegisterToGroup", StackFixture.HubGroup, "")).Should().BeTrue("the player needs the write rights of the group");
+        try
+        {
+            // The manifests first, as recorded: both processes inject them, with the player as their origin.
+            foreach (var (_, jsons) in recording.ManifestMessages)
+            {
+                await player.SendAsync("SendManifest", new ManifestFileDTO { Sender = sender, ManifestFiles = jsons.Select(ManifestFile.FromJsonString).ToArray() });
+            }
+            foreach (var provider in providers)
+            {
+                StackFixture.Eventually(() => IsLive(StackFixture.SemanticApi!, provider), TimeSpan.FromSeconds(60))
+                    .Should().BeTrue($"the recorded manifest of {provider} should be live on the first Blackboard");
+                var entry = Entry(await stack.ListManifestsAsync(StackFixture.SemanticApi!), provider)!.Value;
+                entry.GetProperty("accepted").GetBoolean().Should().BeTrue($"the pipeline should accept the recorded manifest of {provider}");
+                entry.GetProperty("origin").GetString().Should().Be($"hub:{StackFixture.HubGroup}:{sender}", "the player is the sender the origin names (R-HUB-3)");
+                StackFixture.Eventually(() => IsLive(StackFixture.SemanticApiB!, provider), TimeSpan.FromSeconds(60))
+                    .Should().BeTrue($"the recorded manifest of {provider} should be live on the second Blackboard too");
+            }
+
+            // Then the values in their recorded order, at the recorded pace with the gaps capped (a recording
+            // lasts minutes; the test does not).
+            DateTime? previous = null;
+            foreach (var (at, values) in recording.ValueMessages)
+            {
+                if (previous is { } before && at > before)
+                {
+                    await Task.Delay(TimeSpan.FromMilliseconds(Math.Min((at - before).TotalMilliseconds, 50)));
+                }
+                previous = at;
+                await player.SendAsync("SendSignals", new RealTimeDataDTO { Sender = sender, NodeIDs = values.NodeIDs, Attributes = values.Attributes, Values = values.Values, Namespaces = values.Namespaces });
+            }
+
+            // Every recorded variable holds its last recorded value, with the recorded source timestamp: each
+            // batch was decoded and written. Read with plain OPC UA reads, as T-HUB-1 does.
+            var session = stack.Session;
+            foreach (var ((ns, id), (value, sourceTimestamp)) in expected)
+            {
+                StackFixture.Eventually(() => TryRead(session, ns, id, out var v) && Equals(v, value), TimeSpan.FromSeconds(15), TimeSpan.FromMilliseconds(50))
+                    .Should().BeTrue($"{ns} {id} should hold its last recorded value {StackFixture.Text(value)}, not {StackFixture.Text(TryRead(session, ns, id, out var last) ? last : "nothing")}");
+                var read = session.ReadValue(Node(session, ns, id));
+                read.Value.Should().Be(value, $"{id} holds the last recorded value");
+                read.SourceTimestamp.Should().BeCloseTo(sourceTimestamp, TimeSpan.FromMilliseconds(1), $"{id} keeps the recorded source timestamp");
+            }
+
+            // The old client reads them too, as a consumer on either Blackboard would.
+            var keys = expected.Keys.ToArray();
+            stack.Client.ReadAnyVariables(out var readA, keys.Select(k => (k.Namespace, k.Id)).ToArray()).Should().BeTrue();
+            readA.Should().Equal(keys.Select(k => expected[k].Value!));
+
+            // The process's own log: no batch it could not read, since the replay started.
+            if (!string.IsNullOrWhiteSpace(StackFixture.ComposeFile))
+            {
+                var log = StackFixture.ComposeLogs("realtime", since);
+                log.Should().NotContain("could not be read", "every batch of the Unified Automation stack decodes (R-HUB-2)");
+                log.Should().NotContain("has no variable here", "every value finds the variable its manifest declared");
+            }
+        }
+        finally
+        {
+            foreach (var manifest in manifests)
+            {
+                stack.Delete(manifest).Should().BeTrue();
+                StackFixture.Delete(sessionB, manifest).Should().BeTrue("the second Blackboard holds the replayed manifest too");
+            }
         }
     }
 

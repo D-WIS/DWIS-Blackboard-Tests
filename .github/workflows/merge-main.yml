@@ -134,13 +134,15 @@ jobs:
         run: ./compose/bridge.sh
       - name: Start the hub profile, the old DWIS hub and a second Blackboard joined to it (M5.3)
         run: ./compose/hub.sh
-      - name: Replication tests, two Blackboards through the hub (M5.3; T-HUB-1, T-HUB-2)
+      - name: Replication tests, two Blackboards through the hub (M5.3; T-HUB-1, T-HUB-2) and a recorded Unified Automation session replayed into it (M5.4; T-HUB-3)
         if: steps.sln.outputs.file != ''
         env:
           DWIS_REALTIME_ENDPOINT: opc.tcp://127.0.0.1:48030
           DWIS_SEMANTIC_API: http://127.0.0.1:8080/api/v1
           DWIS_REALTIME_ENDPOINT_B: opc.tcp://127.0.0.1:48031
           DWIS_SEMANTIC_API_B: http://127.0.0.1:8090/api/v1
+          DWIS_HUB_URL: http://127.0.0.1:8082/blackboard/applications
+          DWIS_COMPOSE_FILE: compose/compose.yaml
         # The replication class alone: the hub replays every manifest it ever saw to a process that reconnects, so the
         # restart test must not run with the hub role on and other tests after it.
         run: dotnet tests/DWIS.Blackboard.Compatibility.Tests/bin/Release/net10.0/DWIS.Blackboard.Compatibility.Tests.dll -class DWIS.Blackboard.Compatibility.Tests.ReplicationTests -result-trx TestResults/stack/replication.trx
