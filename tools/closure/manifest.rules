@@ -1,0 +1,52 @@
+# Tried and set aside (M5.6, 27 November 2026): the inference view /dwis-inf with the instance rules only,
+# as backward rules over the closed schema, instead of the OWL micro rule reasoner. Correct (the same
+# inferred graph as OWL micro for every manifest, digest 869c6495221b for the SmartConnect manifest) but
+# slower: the big manifest's commit took 143 s with the service asking its 270 predicates and 55 s with
+# the 24 it asks since M5.6, against 20 s with OWL micro (the numbers in docs/decisions.md of the Design
+# repository, D-64). Jena's backward engine is slow on rules whose head matches every goal and on the
+# generic (?x ?p ?y) subgoals they need. Kept here with its numbers; to try it again, copy it next to
+# fuseki/config/dwis.ttl and point the view's reasoner at it:
+#   ja:reasoner [ ja:reasonerURL <http://jena.hpl.hp.com/2003/GenericRuleReasoner> ;
+#                 ja:rulesFrom <file:///fuseki/config/manifest.rules> ;
+#                 <http://jena.hpl.hp.com/2003/RuleReasoner#ruleMode> "hybrid" ]
+# and load the closure (VOCABULARY_CLOSURE=on). Every rule is named after the OWL micro rule it mirrors
+# and has its bound argument first.
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl:  <http://www.w3.org/2002/07/owl#>.
+
+-> tableAll().
+
+# rdfs9: a type's superclasses (closed, so one step) are types too.
+[rdfs9:  (?x rdf:type ?c) <- bound(?x), (?x rdf:type ?b), (?b rdfs:subClassOf ?c), notEqual(?b, ?c)]
+[rdfs9:  (?x rdf:type ?c) <- unbound(?x), (?b rdfs:subClassOf ?c), notEqual(?b, ?c), (?x rdf:type ?b)]
+
+# rdfs2, rdfs3: a subject is of its properties' domains, an object of its properties' ranges (closed:
+# the domains and ranges a property inherits are already there).
+[rdfs2:  (?x rdf:type ?c) <- bound(?x), (?x ?p ?y), (?p rdfs:domain ?c)]
+[rdfs2:  (?x rdf:type ?c) <- unbound(?x), (?p rdfs:domain ?c), (?x ?p ?y)]
+[rdfs3:  (?y rdf:type ?c) <- bound(?y), (?x ?p ?y), (?p rdfs:range ?c)]
+[rdfs3:  (?y rdf:type ?c) <- unbound(?y), (?p rdfs:range ?c), (?x ?p ?y)]
+
+# rdfs6: a subproperty's value is the superproperty's value (closed: one step).
+[rdfs6:  (?x ?q ?y) <- bound(?x), (?x ?p ?y), (?p rdfs:subPropertyOf ?q), notEqual(?p, ?q)]
+[rdfs6:  (?x ?q ?y) <- unbound(?x), (?p rdfs:subPropertyOf ?q), notEqual(?p, ?q), (?x ?p ?y)]
+
+# inverseOf2b: an inverse's value, both ways (closed: the inverse is stated both ways).
+[inverseOf2b: (?x ?q ?y) <- bound(?x), (?q owl:inverseOf ?p), (?y ?p ?x)]
+[inverseOf2b: (?x ?q ?y) <- unbound(?x), (?q owl:inverseOf ?p), (?y ?p ?x)]
+
+# symmetricProperty1b, transitiveProperty1b.
+[symmetricProperty1b: (?x ?p ?y) <- (?p rdf:type owl:SymmetricProperty), (?y ?p ?x)]
+[transitiveProperty1b: (?x ?p ?z) <- bound(?x), (?p rdf:type owl:TransitiveProperty), (?x ?p ?y), (?y ?p ?z)]
+[transitiveProperty1b: (?x ?p ?z) <- unbound(?x), (?p rdf:type owl:TransitiveProperty), (?y ?p ?z), (?x ?p ?y)]
+
+# someRec2b: a subject with a value of the restriction's class is of the restriction (an anonymous
+# class, dropped by the service as trivia; its named superclasses and equivalents follow by rdfs9).
+[someRec2b: (?x rdf:type ?r) <- bound(?x), (?x ?p ?a), (?r owl:onProperty ?p), (?r owl:someValuesFrom ?d), (?a rdf:type ?d)]
+[someRec2b: (?x rdf:type ?r) <- unbound(?x), (?r owl:onProperty ?p), (?r owl:someValuesFrom ?d), (?x ?p ?a), (?a rdf:type ?d)]
+
+# hasValueIF: a restriction's members have its value, and a subject with the value is a member.
+[hasValueIF: (?x ?p ?v) <- bound(?x), (?x rdf:type ?r), (?r owl:onProperty ?p), (?r owl:hasValue ?v)]
+[hasValueIF: (?x rdf:type ?r) <- bound(?x), (?r owl:onProperty ?p), (?r owl:hasValue ?v), (?x ?p ?v)]
