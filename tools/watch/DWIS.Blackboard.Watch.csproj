@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DWIS.Blackboard.Contracts.Grpc" Version="1.0.0-edge.7" />
+    <PackageReference Include="DWIS.Blackboard.Contracts.Grpc" Version="1.0.0-edge.9" />
     <PackageReference Include="Grpc.Net.Client" Version="2.85.0" />
   </ItemGroup>
 
