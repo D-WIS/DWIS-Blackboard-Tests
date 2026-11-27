@@ -54,6 +54,7 @@ services:
     environment:
       FUSEKI_URL: http://fuseki:3030
       VOCABULARY_VERSION: ${VOCABULARY_VERSION:-2026-10-14}
+      VOCABULARY_CLOSURE: ${VOCABULARY_CLOSURE:-off}
     volumes:
       - ../fixtures/vocabulary:/vocabulary:ro
       - ./load-vocabulary.sh:/load-vocabulary.sh:ro
@@ -152,6 +153,7 @@ services:
     environment:
       FUSEKI_URL: http://fuseki-b:3030
       VOCABULARY_VERSION: ${VOCABULARY_VERSION:-2026-10-14}
+      VOCABULARY_CLOSURE: ${VOCABULARY_CLOSURE:-off}
     volumes:
       - ../fixtures/vocabulary:/vocabulary:ro
       - ./load-vocabulary.sh:/load-vocabulary.sh:ro

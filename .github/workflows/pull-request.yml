@@ -53,6 +53,11 @@ jobs:
           files=(compose/*.yaml compose/*.yml ./compose.y*ml)
           if [ ${#files[@]} -eq 0 ]; then echo "No compose files yet."; exit 0; fi
           for f in "${files[@]}"; do echo "== $f"; docker compose -f "$f" config --quiet; done
+      - name: The shipped closure of the vocabulary and the units is current (M5.6, decision D-47)
+        if: hashFiles('tools/closure/make-closure.py') != ''
+        run: |
+          python3 -m pip install --quiet rdflib==7.6.0
+          python3 tools/closure/make-closure.py --check
       - name: Decide whether the Fuseki image is built here or pulled
         id: fuseki
         if: hashFiles('fuseki/Dockerfile') != ''
