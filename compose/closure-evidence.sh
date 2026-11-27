@@ -25,7 +25,7 @@ work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
 i=0; until curl -sf "${SEMANTIC}/health" > /dev/null; do i=$((i+1)); [ $i -lt 60 ] || { echo "the semantic service is not healthy"; exit 1; }; sleep 2; done
-live="$(curl -sS --fail "${SEMANTIC}/manifests" | grep -o '"value":"[^"]*"' | wc -l | tr -d ' ')"
+live="$(curl -sS --fail "${SEMANTIC}/manifests" | { grep -o '"value":"[^"]*"' || true; } | wc -l | tr -d ' ')"
 [ "$live" -eq 0 ] || { echo "${live} manifests are live; start from a clean store"; exit 1; }
 
 # The first query on the view: the reasoner's preparation (the forward phase of OWL micro), once per Fuseki start.
