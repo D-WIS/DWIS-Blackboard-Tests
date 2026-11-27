@@ -155,7 +155,7 @@ jobs:
           docker compose -f compose/compose.yaml --profile hub logs --no-log-prefix hub | tail -40
           docker compose -f compose/compose.yaml --profile hub logs --no-log-prefix semantic-b | tail -60
           docker compose -f compose/compose.yaml --profile hub logs --no-log-prefix realtime-b | tail -60
-      - name: Performance suite, nightly only (M5.5; T-RT-7, R-RT-7: p99 under 10 ms, max under 50 ms with the semantic side loaded)
+      - name: "Performance suite, nightly only (M5.5; T-RT-7, R-RT-7: p99 under 10 ms, max under 50 ms with the semantic side loaded)"
         if: github.event_name == 'schedule' && steps.sln.outputs.file != ''
         # Against the stack as it stands at this point of the nightly, the hub role on; the thresholds of R-RT-7 are the
         # exit code (they were set for a laptop: a runner that misses them by a little is a number to read, not a bug).
