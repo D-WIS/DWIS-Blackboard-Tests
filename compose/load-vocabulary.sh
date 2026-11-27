@@ -3,14 +3,15 @@
 # (Appendix C.8: http://d-wis.org/vocabulary/{version}) after translating the legacy namespace
 # http://ddhub.no/ to http://d-wis.org/ (specification 3.6), the unit and quantity individuals into
 # the units graph, then the shipped closure of both (decision D-47, tools/closure/make-closure.py)
-# into the same two graphs when VOCABULARY_CLOSURE=on (off by default: measured in M5.6, the closure
-# makes the OWL micro view slower; it pays only with the SPARQL rules of D-64). Runs in the curl image (busybox sh).
+# into the same two graphs (decision D-64: the semantic service derives a manifest's consequences with
+# SPARQL rules that take the schema as closed, and refuses a version without its closure markers;
+# VOCABULARY_CLOSURE=off skips it, for a service older than M5.6). Runs in the curl image (busybox sh).
 set -eu
 
 FUSEKI_URL="${FUSEKI_URL:-http://fuseki:3030}"
 VOCABULARY_DIR="${VOCABULARY_DIR:-/vocabulary}"
 VERSION="${VOCABULARY_VERSION:?set VOCABULARY_VERSION}"
-CLOSURE="${VOCABULARY_CLOSURE:-off}"
+CLOSURE="${VOCABULARY_CLOSURE:-on}"
 GRAPH="http://d-wis.org/vocabulary/${VERSION}"
 GRAPH_PARAM="$(printf '%s' "$GRAPH" | sed 's#:#%3A#g; s#/#%2F#g')"
 
@@ -41,9 +42,9 @@ sed 's#http://ddhub\.no/#http://d-wis.org/#g' "${VOCABULARY_DIR}/unit-and-quanti
 
 # The closure (decision D-47): what the reasoner would derive about the schema and the individuals,
 # computed offline and shipped as closure/vocabulary.nt and closure/units.nt, appended to the two
-# graphs. The inference view's rules (fuseki/config/manifest.rules) take the schema as closed.
+# graphs. The inference rules of the semantic service take the schema as closed.
 if [ "$CLOSURE" = "off" ]; then
-  echo "closure not loaded (VOCABULARY_CLOSURE=off, the default while decision D-64 is open): the inference view derives the schema itself"
+  echo "closure not loaded (VOCABULARY_CLOSURE=off): a semantic service of M5.6 or later refuses the version; the inference view of an older one derives the schema itself"
 else
   for pair in "vocabulary.nt ${GRAPH_PARAM}" "units.nt ${UNITS_PARAM}"; do
     file="${VOCABULARY_DIR}/closure/${pair%% *}"
