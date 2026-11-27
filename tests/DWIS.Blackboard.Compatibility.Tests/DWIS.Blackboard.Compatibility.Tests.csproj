@@ -26,7 +26,7 @@
     <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" Version="2.5.3" />
     <PackageReference Include="FluentAssertions" Version="7.2.2" />
     <!-- The player of a recorded hub session (M5.4, T-HUB-3): the old hub speaks SignalR with MessagePack; the recorder's files are MessagePack too (brought by the protocol package). -->
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="10.0.15" />
   </ItemGroup>
 
